@@ -95,18 +95,17 @@
       letter-spacing: -0.03em;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #0f1f49 0%, #1947da 60%, #79a7ff 100%);
-      display: grid;
-      place-items: center;
-      color: white;
-      font-weight: 900;
-      box-shadow: 0 12px 30px rgba(33, 85, 255, 0.25);
-      flex-shrink: 0;
-    }
+    .brand-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  padding: 6px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+}
 
     .brand-text span {
       display: block;
@@ -394,7 +393,13 @@
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="brand">
-        <div class="brand-mark">WB</div>
+        <a href="index.html" class="brand">
+  <div class="brand-mark">WB</div>
+  <div class="brand-text">
+    <span>WebBoost</span>
+    <small>Widoczność firm online</small>
+  </div>
+</a>
         <div class="brand-text">
           <span>WebBoost</span>
           <small>Widoczność firm online</small>
