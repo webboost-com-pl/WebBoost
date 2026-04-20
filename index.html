@@ -912,8 +912,23 @@
 }
     @media (max-width: 768px) {
   .hero {
-    background: url("podtel.png") center/cover no-repeat;
-  }
+  position: relative;
+  background: url("podtel.png") center/cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* ← siła przyciemnienia */
+  z-index: 1;
+}
+
+/* żeby tekst był nad tym */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
 }
   </style>
 </head>
