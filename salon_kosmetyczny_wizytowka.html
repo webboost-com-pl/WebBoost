@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Beauty Studio | Salon Kosmetyczny</title>
+  <meta name="description" content="Elegancki salon kosmetyczny – zabiegi na twarz, stylizacja paznokci, rzęsy, brwi i relaksująca pielęgnacja w wyjątkowej atmosferze." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fffaf8;
+      --bg-soft: #fdf3f3;
+      --card: rgba(255,255,255,0.78);
+      --text: #2f2430;
+      --muted: #7a6877;
+      --line: rgba(122, 104, 119, 0.16);
+      --primary: #d58aa2;
+      --primary-dark: #b96f88;
+      --secondary: #f4d7de;
+      --gold: #d7b98c;
+      --shadow: 0 18px 50px rgba(111, 76, 96, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244,215,222,0.75), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(213,138,162,0.16), transparent 22%),
+        linear-gradient(180deg, #fffaf8 0%, #fff 100%);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: rgba(213, 138, 162, 0.1);
+      border: 1px solid rgba(213, 138, 162, 0.15);
+      padding: 10px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, .brand, .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.01em;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      line-height: 0.95;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.02;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    p.section-text,
+    .hero-subtitle,
+    .lead {
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.97rem;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 14px 26px rgba(185, 111, 136, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(185, 111, 136, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.72);
+      color: var(--text);
+      border-color: var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      border-color: rgba(213, 138, 162, 0.22);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 250, 248, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(122, 104, 119, 0.08);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand span {
+      color: var(--primary-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
+    }
+
+    .hero {
+      padding: 54px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.88));
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 36px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -50px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(213,138,162,0.22), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-subtitle {
+      max-width: 620px;
+      font-size: 1.08rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(213, 138, 162, 0.14);
+      color: var(--text);
+      font-size: 0.92rem;
+      box-shadow: 0 10px 22px rgba(100, 78, 90, 0.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 630px;
+    }
+
+    .hero-main-image,
+    .hero-small-image,
+    .floating-card {
+      position: absolute;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.7);
+      background: white;
+    }
+
+    .hero-main-image {
+      inset: 0 0 72px 60px;
+    }
+
+    .hero-main-image img,
+    .hero-small-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-small-image {
+      width: 220px;
+      height: 250px;
+      left: 0;
+      bottom: 0;
+    }
+
+    .floating-card {
+      right: 16px;
+      bottom: 24px;
+      padding: 18px 18px 16px;
+      width: 220px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 1.45rem;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .floating-card span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(103, 78, 95, 0.07);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .glass-card {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .about-list li::before {
+      content: "✦";
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      margin-top: 3px;
+    }
+
+    .image-card {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-overlay {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 28px 22px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(213, 138, 162, 0.12);
+      border-radius: 24px;
+      box-shadow: 0 14px 30px rgba(107, 83, 99, 0.08);
+      transition: 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(107, 83, 99, 0.12);
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(213,138,162,0.18), rgba(244,215,222,0.55));
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 0.9fr;
+      grid-template-rows: 280px 280px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      min-height: 220px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item.large {
+      grid-row: span 2;
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .testimonial {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(213, 138, 162, 0.12);
+      box-shadow: 0 14px 30px rgba(106, 78, 96, 0.08);
+    }
+
+    .stars {
+      color: #c89d52;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+
+    .testimonial p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .testimonial strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .promo-box {
+      padding: 34px;
+    }
+
+    .promo-box ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .promo-box li::before {
+      content: "•";
+      color: var(--primary-dark);
+      font-weight: 700;
+      margin-right: 10px;
+    }
+
+    .contact-card,
+    .booking-card {
+      padding: 34px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .contact-list li {
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--muted);
+    }
+
+    .contact-list strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .booking-form input,
+    .booking-form textarea,
+    .booking-form select {
+      width: 100%;
+      border: 1px solid rgba(122, 104, 119, 0.14);
+      background: rgba(255,255,255,0.88);
+      border-radius: 16px;
+      padding: 15px 16px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .booking-form input:focus,
+    .booking-form textarea:focus,
+    .booking-form select:focus {
+      border-color: rgba(185, 111, 136, 0.46);
+      box-shadow: 0 0 0 4px rgba(213, 138, 162, 0.08);
+    }
+
+    .booking-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      border-top: 1px solid rgba(122, 104, 119, 0.12);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .promo-grid,
+      .services-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-visual {
+        min-height: 560px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px 240px;
+      }
+
+      .gallery-item.large {
+        grid-row: span 1;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 16px;
+        right: 16px;
+        background: rgba(255,255,255,0.94);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(122, 104, 119, 0.12);
+        box-shadow: var(--shadow);
+        border-radius: 22px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .promo-grid,
+      .services-grid,
+      .testimonial-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 26px;
+      }
+
+      .hero-visual {
+        min-height: 470px;
+      }
+
+      .hero-main-image {
+        inset: 0 0 66px 28px;
+      }
+
+      .hero-small-image {
+        width: 170px;
+        height: 180px;
+      }
+
+      .floating-card {
+        width: 190px;
+        right: 10px;
+        bottom: 16px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .gallery-item,
+      .gallery-item.large {
+        height: 250px;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(calc(100% - 22px), var(--container));
+      }
+
+      .brand {
+        font-size: 1.72rem;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 2.1rem;
+      }
+
+      .hero-card,
+      .about-card,
+      .contact-card,
+      .booking-card,
+      .promo-box {
+        padding: 24px;
+      }
+
+      .hero-visual {
+        min-height: 390px;
+      }
+
+      .hero-main-image {
+        inset: 0 0 54px 18px;
+      }
+
+      .hero-small-image {
+        width: 130px;
+        height: 140px;
+      }
+
+      .floating-card {
+        width: 160px;
+        padding: 14px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#start" class="brand">Glow<span>Beauty</span></a>
+      <button class="mobile-toggle" id="menuToggle" aria-label="Otwórz menu">☰</button>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#o-nas">O salonie</a></li>
+          <li><a href="#uslugi">Usługi</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#opinie">Opinie</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="start">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Salon kosmetyczny premium</span>
+          <h1>Piękno, relaks i kobieca elegancja w jednym miejscu</h1>
+          <p class="hero-subtitle">
+            Tworzymy przestrzeń, w której pielęgnacja staje się przyjemnością. Delikatne kolory, wyjątkowa atmosfera i zabiegi dopasowane do Twoich potrzeb.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge">Pielęgnacja twarzy</div>
+            <div class="badge">Stylizacja paznokci</div>
+            <div class="badge">Brwi i rzęsy</div>
+            <div class="badge">Relaksująca atmosfera</div>
+          </div>
+
+          <div class="btn-row">
+            <a href="#kontakt" class="btn btn-primary">Umów wizytę</a>
+            <a href="#uslugi" class="btn btn-secondary">Zobacz ofertę</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>5★</strong>
+              <span>Średnia ocen klientek</span>
+            </div>
+            <div class="stat">
+              <strong>300+</strong>
+              <span>Zadowolonych wizyt</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>Indywidualnego podejścia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-main-image">
+            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80" alt="Elegancki zabieg kosmetyczny w salonie" />
+          </div>
+          <div class="hero-small-image">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Makijaż i pielęgnacja w salonie kosmetycznym" />
+          </div>
+          <div class="floating-card">
+            <strong>Naturalny blask</strong>
+            <span>Zadbana skóra, subtelna estetyka i chwila tylko dla Ciebie.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="o-nas">
+      <div class="container about-grid">
+        <div class="about-card glass-card">
+          <span class="eyebrow">O salonie</span>
+          <h2>Miejsce stworzone z myślą o komforcie i pięknie</h2>
+          <p class="section-text">
+            Nasz salon łączy nowoczesną kosmetologię z subtelnym, kobiecym stylem. Dbamy nie tylko o efekt, ale też o atmosferę, w której możesz zwolnić, odprężyć się i poczuć naprawdę zaopiekowana.
+          </p>
+          <ul class="about-list">
+            <li>Pracujemy na starannie dobranych produktach i sprawdzonych metodach pielęgnacyjnych.</li>
+            <li>Każdy zabieg dopasowujemy do typu skóry, potrzeb oraz oczekiwań klientki.</li>
+            <li>Stawiamy na estetykę, delikatność, higienę i naturalnie piękny efekt.</li>
+            <li>Tworzymy kameralny klimat, który sprzyja relaksowi i poczuciu luksusu.</li>
+          </ul>
+        </div>
+
+        <div class="image-card glass-card">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80" alt="Wnętrze eleganckiego salonu kosmetycznego" />
+          <div class="image-overlay">
+            <h3>Subtelne wnętrze i wyjątkowy klimat</h3>
+            <p class="lead">Jasne kolory, miękkie detale i estetyka, która buduje poczucie spokoju od pierwszej chwili.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="uslugi">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Nasze usługi</span>
+          <h2>Pielęgnacja dopasowana do Twoich potrzeb</h2>
+          <p class="section-text">Oferta została przygotowana tak, by łączyć estetykę, wygodę i przyjemność z każdej wizyty.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h3>Zabiegi na twarz</h3>
+            <p>Oczyszczanie, nawilżenie, odświeżenie i poprawa kondycji skóry twarzy.</p>
+            <div class="price">od 149 zł</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✿</div>
+            <h3>Stylizacja paznokci</h3>
+            <p>Manicure hybrydowy, klasyczny i estetyczne wykończenie dopasowane do stylu klientki.</p>
+            <div class="price">od 99 zł</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">❀</div>
+            <h3>Brwi i rzęsy</h3>
+            <p>Laminacja, henna, regulacja i podkreślenie spojrzenia w subtelny, elegancki sposób.</p>
+            <div class="price">od 69 zł</div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">♡</div>
+            <h3>Zabiegi relaksacyjne</h3>
+            <p>Pielęgnacja połączona z wyciszeniem, odprężeniem i chwilą tylko dla siebie.</p>
+            <div class="price">od 129 zł</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Galeria</span>
+          <h2>Zobacz klimat naszego salonu</h2>
+          <p class="section-text">Delikatne wnętrza, kobieca estetyka i efekty, które podkreślają naturalne piękno.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item large">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80" alt="Pielęgnacja twarzy w salonie kosmetycznym" />
+            <div class="gallery-label">Zabiegi pielęgnacyjne</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80" alt="Stylizacja paznokci" />
+            <div class="gallery-label">Manicure</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1631214524020-1e0f6d5278b5?auto=format&fit=crop&w=1200&q=80" alt="Kosmetyki do pielęgnacji" />
+            <div class="gallery-label">Profesjonalna pielęgnacja</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=1200&q=80" alt="Eleganckie wnętrze salonu kosmetycznego" />
+            <div class="gallery-label">Stylowe wnętrze</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=1200&q=80" alt="Makijaż i pielęgnacja" />
+            <div class="gallery-label">Piękno w detalu</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="opinie">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Opinie klientek</span>
+          <h2>To miejsce, do którego chce się wracać</h2>
+          <p class="section-text">Kilka przykładowych opinii, które budują zaufanie i pokazują jakość obsługi.</p>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>Piękne miejsce, cudowna atmosfera i pełen profesjonalizm. Wyszłam zrelaksowana i zachwycona efektem.</p>
+            <strong>Anna K.</strong>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>Wnętrze salonu robi ogromne wrażenie, a obsługa jest bardzo ciepła i dokładna. Zdecydowanie polecam.</p>
+            <strong>Magdalena W.</strong>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>W końcu trafiłam do miejsca, gdzie naprawdę czuć dbałość o szczegóły. Wszystko dopracowane i bardzo estetyczne.</p>
+            <strong>Klaudia S.</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container promo-grid">
+        <div class="promo-box glass-card">
+          <span class="eyebrow">Dlaczego my</span>
+          <h2>Piękno podane w eleganckiej formie</h2>
+          <p class="section-text">Łączymy kobiecą estetykę, wysoką jakość i atmosferę, która sprawia, że każda wizyta jest małym rytuałem.</p>
+          <ul>
+            <li>Stylowe, delikatne wnętrze i komfortowa przestrzeń</li>
+            <li>Indywidualne podejście do każdej klientki</li>
+            <li>Subtelny efekt i starannie dobrana pielęgnacja</li>
+            <li>Nowoczesna wizytówka online, która budzi zaufanie</li>
+          </ul>
+        </div>
+
+        <div class="image-card glass-card">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="Kobieta w eleganckim salonie piękności" />
+          <div class="image-overlay">
+            <h3>Twoja chwila dla siebie</h3>
+            <p class="lead">Bo pielęgnacja to nie tylko wygląd, ale też samopoczucie, pewność siebie i spokój.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="container contact-grid">
+        <div class="contact-card glass-card">
+          <span class="eyebrow">Kontakt</span>
+          <h2>Umów wizytę i odwiedź nasz salon</h2>
+          <p class="section-text">Możesz zadzwonić, napisać wiadomość albo wypełnić formularz po prawej stronie.</p>
+
+          <ul class="contact-list">
+            <li>
+              <strong>Adres</strong>
+              ul. Kwiatowa 12, 00-000 Twoje Miasto
+            </li>
+            <li>
+              <strong>Telefon</strong>
+              +48 123 456 789
+            </li>
+            <li>
+              <strong>E-mail</strong>
+              kontakt@glowbeauty.pl
+            </li>
+            <li>
+              <strong>Godziny otwarcia</strong>
+              Pon. – Pt. 9:00 – 19:00 | Sob. 9:00 – 14:00
+            </li>
+          </ul>
+        </div>
+
+        <div class="booking-card glass-card">
+          <span class="eyebrow">Formularz</span>
+          <h3>Zostaw wiadomość</h3>
+          <form class="booking-form" onsubmit="event.preventDefault(); alert('Dziękujemy! To przykładowy formularz — można go później podłączyć do maila lub backendu.');">
+            <input type="text" placeholder="Imię i nazwisko" required>
+            <input type="tel" placeholder="Numer telefonu" required>
+            <select required>
+              <option value="">Wybierz usługę</option>
+              <option>Zabieg na twarz</option>
+              <option>Stylizacja paznokci</option>
+              <option>Brwi i rzęsy</option>
+              <option>Zabieg relaksacyjny</option>
+            </select>
+            <textarea placeholder="Napisz, jaki termin Cię interesuje..."></textarea>
+            <button class="btn btn-primary" type="submit">Wyślij wiadomość</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <p>© 2026 Glow Beauty Studio. Wszelkie prawa zastrzeżone.</p>
+      <p>Elegancka strona wizytówka dla salonu kosmetycznego.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
