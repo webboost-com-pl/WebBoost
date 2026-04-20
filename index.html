@@ -910,25 +910,19 @@
   border: 1px solid #fecaca;
   color: #b91c1c;
 }
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
   .hero {
-  position: relative;
-  background: url("podtel.png") center/cover no-repeat;
-}
+    min-height: auto;
+    padding: 70px 0 40px;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.62)),
+      url("podtel.png") center center / cover no-repeat;
+  }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9); /* ← siła przyciemnienia */
-  z-index: 1;
-}
-
-/* żeby tekst był nad tym */
-.hero > * {
-  position: relative;
-  z-index: 2;
-}
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
 }
   </style>
 </head>
