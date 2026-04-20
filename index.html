@@ -1,1397 +1,1371 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<link rel="icon" href="/favicon.ico" sizes="any">
-	<link rel="icon" type="image/png" href="/LOGOSSS.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "WebBoost",
-  "url": "https://webboost.com.pl",
-  "logo": "https://webboost.com.pl/LOGOSSS.png",
-  "image": "https://webboost.com.pl/preview.jpg",
-  "email": "kontakt.webboost@gmail.com",
-  "telephone": "+48537275214",
-  "description": "WebBoost tworzy nowoczesne strony internetowe, poprawia wizytówki Google i pomaga firmom zwiększać widoczność online.",
-  "areaServed": "Polska",
-  "sameAs": []
-}
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebBoost — Widoczność Twojej firmy w internecie</title>
-<meta name="description" content="WebBoost tworzy nowoczesne strony internetowe, poprawia wizytówki Google i pomaga lokalnym firmom zwiększać widoczność w internecie." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-<meta property="og:title" content="WebBoost – widoczność firm w internecie">
-<meta property="og:description" content="Strony internetowe, wizytówki Google i obecność firm online.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="preview.jpg">
-	<link rel="icon" type="image/png" href="LOGOSSS.png">
+  <title>WebBoost — więcej klientów z internetu</title>
+  <meta name="description" content="WebBoost pomaga lokalnym firmom zdobywać więcej klientów z internetu dzięki nowoczesnym stronom, lepszej widoczności w Google i mocniejszej obecności online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f5f8ff;
-      --bg-soft: #edf3ff;
-      --surface: rgba(255, 255, 255, 0.86);
-      --surface-strong: #ffffff;
-      --text: #0e1728;
-      --text-soft: #5a6780;
-      --line: rgba(16, 24, 40, 0.08);
-      --primary: #2155ff;
-      --primary-2: #5a8cff;
-      --primary-dark: #1238b8;
-      --accent: #0d1f4d;
-      --success: #1ea672;
-      --shadow: 0 20px 60px rgba(22, 38, 90, 0.10);
-      --shadow-soft: 0 12px 35px rgba(22, 38, 90, 0.08);
+      --bg: #eef2f6;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fc;
+      --surface-dark: #0f2f5f;
+      --text: #0f1728;
+      --muted: #5f6b7d;
+      --line: #d9e0ea;
+      --brand: #1f78c5;
+      --brand-dark: #16386a;
+      --brand-deep: #0e2952;
+      --success: #0f7a42;
+      --shadow: 0 18px 60px rgba(12, 26, 52, 0.12);
       --radius-xl: 30px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --radius-sm: 14px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
       --container: 1180px;
-      --transition: 0.3s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(90, 140, 255, 0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(33, 85, 255, 0.12), transparent 30%),
-        linear-gradient(180deg, #f8fbff 0%, #f3f7ff 42%, #eef4ff 100%);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+      background: var(--bg);
+      line-height: 1.55;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .container {
-      width: min(100% - 28px, var(--container));
+      width: min(var(--container), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .blur-orb {
-      position: fixed;
+    .section {
+      padding: 88px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand-dark);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--brand);
       border-radius: 999px;
-      filter: blur(70px);
-      z-index: -1;
-      opacity: 0.5;
-      pointer-events: none;
     }
 
-    .orb-1 {
-      width: 230px;
-      height: 230px;
-      background: rgba(80, 125, 255, 0.22);
-      top: -30px;
-      left: -40px;
+    h1, h2, h3, h4, p { margin: 0; }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 86px);
+      line-height: .95;
+      letter-spacing: -0.05em;
+      font-weight: 900;
     }
 
-    .orb-2 {
-      width: 280px;
-      height: 280px;
-      background: rgba(23, 77, 255, 0.14);
-      top: 260px;
-      right: -80px;
+    h2 {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 800;
     }
 
-    .orb-3 {
-      width: 220px;
-      height: 220px;
-      background: rgba(108, 173, 255, 0.16);
-      bottom: 50px;
-      left: -60px;
+    .lead {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,.86);
+      max-width: 760px;
+      margin: 22px auto 0;
     }
 
-    .site-header {
+    .section-head {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .section-head p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: .22s ease;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: white;
+      box-shadow: 0 10px 30px rgba(31, 120, 197, .18);
+    }
+
+    .btn-primary:hover {
+      background: #1569b0;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.1);
+      color: white;
+      border-color: rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.16);
+      transform: translateY(-2px);
+    }
+
+    .btn-light {
+      background: white;
+      color: var(--brand-dark);
+      border-color: var(--line);
+    }
+
+    .btn-light:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(245, 248, 255, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(238, 242, 246, .82);
+      border-bottom: 1px solid rgba(217, 224, 234, .7);
     }
 
     .nav {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      min-height: 78px;
+      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1rem;
+      gap: 14px;
+      font-weight: 900;
+      color: var(--brand-dark);
       letter-spacing: -0.03em;
     }
 
-.brand-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-
-  background: white;
-  padding: 6px;
-  border-radius: 12px;
-  border: 1px solid rgba(16, 24, 40, 0.08);
-}
-    .brand-text span {
-      display: block;
-      line-height: 1;
-    }
-
-    .brand-text small {
-      display: block;
-      color: var(--text-soft);
-      font-size: 0.76rem;
-      font-weight: 600;
-      margin-top: 4px;
-      letter-spacing: 0;
+    .brand img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: white;
+      padding: 6px;
+      box-shadow: 0 8px 20px rgba(9, 28, 57, .10);
     }
 
     .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 15px;
+      color: #304056;
+    }
+
+    .nav-links a:hover { color: var(--brand); }
+
+    .menu-btn {
       display: none;
-      align-items: center;
-      gap: 22px;
-      color: var(--text-soft);
-      font-weight: 600;
-      font-size: 0.96rem;
-    }
-
-    .nav-links a {
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: white;
-      font-weight: 700;
-      font-size: 0.92rem;
-      box-shadow: 0 12px 28px rgba(33, 85, 255, 0.24);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px rgba(33, 85, 255, 0.30);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--brand-dark);
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .hero {
-      padding: 34px 0 22px;
+      position: relative;
+      min-height: calc(100vh - 76px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(10, 24, 48, .64), rgba(10, 24, 48, .70)),
+        url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .22;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      background: #1f78c5;
+      top: -140px;
+      left: -80px;
+    }
+
+    .hero::after {
+      width: 360px;
+      height: 360px;
+      background: #60a8e6;
+      right: -80px;
+      bottom: -80px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(980px, calc(100% - 32px));
+      padding: 80px 0 56px;
+    }
+
+    .hero-topline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #8ac3f5;
+    }
+
+    .hero-card-row {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     .hero-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      text-align: left;
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+    }
+
+    .logos-strip {
+      margin-top: -34px;
       position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
-      border: 1px solid rgba(255,255,255,0.7);
-      border-radius: 34px;
-      box-shadow: var(--shadow);
-      padding: 26px 18px 22px;
-      isolation: isolate;
+      z-index: 2;
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 85% 12%, rgba(114, 166, 255, 0.24), transparent 25%),
-        radial-gradient(circle at 15% 90%, rgba(33, 85, 255, 0.12), transparent 28%);
-      z-index: -1;
-    }
-
-    .eyebrow {
-      width: fit-content;
-      display: inline-flex;
+    .logos-box {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(217, 224, 234, .8);
+      border-radius: 22px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
       align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
-      color: var(--primary-dark);
-      border: 1px solid rgba(33, 85, 255, 0.10);
+      box-shadow: var(--shadow);
+    }
+
+    .logos-box p {
+      color: var(--muted);
+      font-size: 14px;
       font-weight: 700;
-      font-size: 0.82rem;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 18px;
     }
 
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #2155ff, #6ea0ff);
-      box-shadow: 0 0 0 6px rgba(33, 85, 255, 0.08);
+    .logos-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
-    .hero-grid {
+    .logo-pill {
+      min-height: 58px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--brand-dark);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .about-grid,
+    .offer-grid,
+    .steps-grid,
+    .gallery-grid,
+    .projects-grid,
+    .contact-grid,
+    .stats-grid {
       display: grid;
       gap: 22px;
     }
 
-    .hero-copy h1 {
-      font-size: clamp(2.1rem, 7vw, 4.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-      font-weight: 900;
-      margin-bottom: 16px;
-      max-width: 12ch;
+    .about-grid {
+      grid-template-columns: 1.1fr .9fr;
+      align-items: stretch;
     }
 
-    .hero-copy h1 .highlight {
-      background: linear-gradient(135deg, #0c1735 0%, #2155ff 48%, #7ca8ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
     }
 
-    .hero-copy p {
-      color: var(--text-soft);
-      font-size: 1.02rem;
-      line-height: 1.72;
-      max-width: 620px;
-      margin-bottom: 22px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .btn {
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: white;
-      font-weight: 800;
-      box-shadow: 0 18px 34px rgba(33, 85, 255, 0.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 40px rgba(33, 85, 255, 0.30);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.78);
-      color: var(--accent);
-      font-weight: 800;
-      border: 1px solid rgba(20, 30, 60, 0.08);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-    }
-
-    .hero-points {
+    .about-copy {
+      padding: 34px;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 18px;
     }
 
-    .hero-point {
+    .about-copy p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .ticks {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .tick {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.95rem;
+      gap: 12px;
+      align-items: flex-start;
+      color: #243144;
     }
 
-    .hero-point i {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      display: inline-grid;
+    .tick-badge {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
       place-items: center;
-      font-style: normal;
-      background: rgba(30, 166, 114, 0.10);
-      color: var(--success);
-      font-size: 0.88rem;
-      flex-shrink: 0;
+      background: rgba(31, 120, 197, .12);
+      color: var(--brand);
+      font-weight: 900;
     }
 
-    .hero-visual {
-      display: grid;
-      gap: 14px;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 24px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(16px);
-    }
-
-    .dashboard-card {
-      padding: 18px;
-    }
-
-    .dashboard-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .dashboard-title {
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.78rem;
-      color: var(--primary-dark);
-      font-weight: 700;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(33, 85, 255, 0.08);
-    }
-
-    .live-badge::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #2155ff;
-      box-shadow: 0 0 0 6px rgba(33, 85, 255, 0.10);
-    }
-
-    .phone-ui {
-      border-radius: 26px;
-      padding: 14px;
-      background:
-        linear-gradient(180deg, #0e1730 0%, #162753 100%);
-      color: white;
-      box-shadow: 0 22px 45px rgba(15, 24, 56, 0.30);
-      overflow: hidden;
-    }
-
-    .phone-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      font-size: 0.8rem;
-      opacity: 0.92;
-    }
-
-    .mini-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      font-weight: 700;
-      font-size: 0.75rem;
-    }
-
-    .phone-hero {
-      padding: 14px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(74, 118, 255, 0.28), rgba(255,255,255,0.07));
-      border: 1px solid rgba(255,255,255,0.10);
-      margin-bottom: 12px;
-    }
-
-    .phone-hero h3 {
-      font-size: 1rem;
-      line-height: 1.25;
-      margin-bottom: 8px;
-      letter-spacing: -0.03em;
-    }
-
-    .phone-hero p {
-      font-size: 0.84rem;
-      line-height: 1.55;
-      opacity: 0.85;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .metric {
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
-      letter-spacing: -0.03em;
-    }
-
-    .metric span {
-      font-size: 0.78rem;
-      opacity: 0.8;
-    }
-
-    .floating-stats {
-      display: grid;
-      gap: 12px;
-    }
-
-    .floating-stat {
-      padding: 16px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.84);
-      border: 1px solid rgba(255,255,255,0.92);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .floating-stat strong {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 4px;
-      letter-spacing: -0.04em;
-    }
-
-    .floating-stat span {
-      color: var(--text-soft);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .section {
-      padding: 22px 0;
-    }
-
-    .section-header {
-      margin-bottom: 18px;
-    }
-
-    .section-label {
-      color: var(--primary-dark);
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    .section-header h2 {
-      font-size: clamp(1.75rem, 5vw, 3rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      margin-bottom: 12px;
-      max-width: 12ch;
-    }
-
-    .section-header p {
-      max-width: 720px;
-      color: var(--text-soft);
-      line-height: 1.75;
-      font-size: 1rem;
-    }
-
-    .services-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .service-card {
+    .about-visual {
       position: relative;
       overflow: hidden;
-      padding: 20px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(255,255,255,0.92);
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--transition), box-shadow var(--transition);
+      min-height: 520px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(rgba(15, 47, 95, .18), rgba(15, 47, 95, .30)),
+        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
     }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(22, 38, 90, 0.12);
-    }
-
-    .service-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.3rem;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, rgba(33,85,255,0.12), rgba(90,140,255,0.18));
-      color: var(--primary-dark);
-    }
-
-    .service-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.03em;
-    }
-
-    .service-card p {
-      color: var(--text-soft);
-      line-height: 1.68;
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-    }
-
-    .service-card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .service-card li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+    .floating-note {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      max-width: 300px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
       color: var(--text);
-      font-size: 0.92rem;
-      line-height: 1.5;
-      font-weight: 600;
+      padding: 18px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.7);
     }
 
-    .service-card li::before {
-      content: "•";
-      color: var(--primary);
-      font-weight: 900;
-      font-size: 1rem;
-      line-height: 1.2;
-      margin-top: 1px;
+    .floating-note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--brand-dark);
     }
 
-    .process-grid {
-      display: grid;
-      gap: 14px;
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 26px;
     }
 
-    .process-card {
-      padding: 20px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.75));
-      border: 1px solid rgba(255,255,255,0.92);
-      box-shadow: var(--shadow-soft);
+    .stat {
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 14px 34px rgba(12, 26, 52, 0.08);
     }
 
-    .step-no {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      margin-bottom: 14px;
-      box-shadow: 0 14px 30px rgba(33, 85, 255, 0.22);
-    }
-
-    .process-card h3 {
-      font-size: 1.05rem;
+    .stat strong {
+      font-size: clamp(26px, 4vw, 42px);
+      display: block;
+      color: var(--brand-dark);
+      letter-spacing: -0.05em;
+      line-height: 1;
       margin-bottom: 8px;
-      letter-spacing: -0.03em;
     }
 
-    .process-card p {
-      color: var(--text-soft);
-      line-height: 1.65;
-      font-size: 0.95rem;
+    .stat span {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
     }
 
-    .about-wrap {
+    .offer-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .offer-card {
+      padding: 28px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
       display: grid;
       gap: 16px;
     }
 
-    .about-main,
-    .about-side {
-      padding: 22px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(255,255,255,0.92);
-      box-shadow: var(--shadow-soft);
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(31, 120, 197, .10);
+      color: var(--brand);
+      font-size: 24px;
     }
 
-    .about-main h3,
-    .about-side h3 {
-      font-size: 1.12rem;
-      margin-bottom: 12px;
+    .offer-card h3 {
+      font-size: 24px;
       letter-spacing: -0.03em;
     }
 
-    .about-main p,
-    .about-side p {
-      color: var(--text-soft);
-      line-height: 1.75;
-      font-size: 0.98rem;
+    .offer-card p,
+    .offer-card li,
+    .step p,
+    .project-card p,
+    .contact-card p,
+    .gallery-caption,
+    .faq-item p {
+      color: var(--muted);
     }
 
-    .about-tags {
+    .offer-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .steps-wrap {
+      background: var(--surface-dark);
+      color: white;
+      border-radius: 34px;
+      padding: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .steps-wrap::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -50px auto;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(31, 120, 197, .22);
+      filter: blur(50px);
+    }
+
+    .steps-wrap .section-head p,
+    .steps-wrap .eyebrow,
+    .steps-wrap h2,
+    .steps-wrap .step p { color: white; }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: white;
+      color: var(--brand-dark);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1.15fr .85fr;
+      align-items: stretch;
+    }
+
+    .gallery-main,
+    .gallery-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .gallery-photo {
+      position: relative;
+      min-height: 260px;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      background: rgba(255,255,255,.92);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 16px;
+      max-width: 280px;
+      font-size: 14px;
+      box-shadow: 0 10px 26px rgba(12, 26, 52, .16);
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 16px;
     }
 
     .tag {
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(33, 85, 255, 0.08);
-      color: var(--primary-dark);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      color: var(--brand-dark);
+      font-size: 12px;
       font-weight: 700;
-      font-size: 0.85rem;
     }
 
-    .cta-section {
-      padding: 28px 0 40px;
+    .project-link {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--brand);
+      font-weight: 700;
     }
 
-    .cta-card {
-      position: relative;
-      overflow: hidden;
-      padding: 24px 18px;
-      border-radius: 34px;
-      background:
-        linear-gradient(135deg, #0d1837 0%, #12306e 40%, #2155ff 100%);
-      color: white;
-      box-shadow: 0 28px 60px rgba(20, 46, 122, 0.28);
+    .project-link:hover { color: var(--brand-dark); }
+
+    .faq-list {
+      display: grid;
+      gap: 16px;
     }
 
-    .cta-card::before,
-    .cta-card::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      pointer-events: none;
-    }
-
-    .cta-card::before {
-      width: 240px;
-      height: 240px;
-      top: -80px;
-      right: -70px;
-    }
-
-    .cta-card::after {
-      width: 180px;
-      height: 180px;
-      bottom: -60px;
-      left: -30px;
-    }
-
-    .cta-card h2 {
-      font-size: clamp(1.9rem, 6vw, 3.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      margin-bottom: 12px;
-      max-width: 10ch;
-    }
-
-    .cta-card p {
-      max-width: 650px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.72;
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .cta-actions .btn-primary {
+    .faq-item {
+      padding: 24px;
+      border-radius: 20px;
       background: white;
-      color: #12306e;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.16);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 26px rgba(12, 26, 52, 0.06);
     }
 
-    .cta-actions .btn-secondary {
-      background: rgba(255,255,255,0.12);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: none;
+    .faq-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .contact-wrap {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: var(--shadow);
     }
 
     .contact-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: .9fr 1.1fr;
+      align-items: start;
     }
 
     .contact-card {
+      padding-right: 10px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .contact-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
       padding: 16px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
     }
 
-    .contact-card strong {
+    .contact-point strong {
       display: block;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+      margin-bottom: 4px;
+      color: var(--brand-dark);
     }
 
-    .contact-card span {
-      color: rgba(255,255,255,0.82);
-      line-height: 1.6;
-      font-size: 0.92rem;
+    form {
+      display: grid;
+      gap: 16px;
     }
 
-    .site-footer {
-      padding: 18px 0 34px;
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #243144;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(31, 120, 197, .10);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 0 40px;
     }
 
     .footer-box {
+      background: var(--brand-deep);
+      color: rgba(255,255,255,.86);
+      border-radius: 28px;
+      padding: 28px 30px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 18px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.88);
-      box-shadow: var(--shadow-soft);
-      color: var(--text-soft);
-      font-size: 0.92rem;
-      line-height: 1.6;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    .footer-brand {
-      font-weight: 800;
-      color: var(--text);
+    .footer-box strong {
+      color: white;
+      display: block;
+      margin-bottom: 6px;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-weight: 600;
     }
 
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
+    .footer-links a:hover { color: white; }
+
+    @media (max-width: 1080px) {
+      .hero-card-row,
+      .offer-grid,
+      .projects-grid,
+      .steps-grid,
+      .stats-grid,
+      .contact-grid,
+      .about-grid,
+      .gallery-grid,
+      .logos-box,
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-grid,
+      .contact-grid,
+      .gallery-grid,
+      .logos-box {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual { min-height: 420px; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (min-width: 700px) {
-      .hero-card {
-        padding: 34px 28px 28px;
-      }
-
-      .hero-actions,
-      .cta-actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .services-grid,
-      .process-grid,
-      .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .about-wrap {
-        grid-template-columns: 1.35fr 0.95fr;
-      }
-
-      .footer-box {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-
-    @media (min-width: 980px) {
+    @media (max-width: 820px) {
       .nav-links {
-        display: flex;
+        position: fixed;
+        inset: 76px 16px auto 16px;
+        background: rgba(255,255,255,.96);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 16px;
+        box-shadow: var(--shadow);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
       }
+
+      .nav-links.open { display: flex; }
+      .menu-btn { display: inline-grid; place-items: center; }
+      .nav .btn-light { display: none; }
 
       .hero {
-        padding: 46px 0 28px;
+        min-height: auto;
+        padding: 70px 0 40px;
       }
 
-      .hero-grid {
-        grid-template-columns: 1.12fr 0.88fr;
-        align-items: center;
+      .hero-inner { padding: 40px 0 24px; }
+      .hero-card-row,
+      .offer-grid,
+      .projects-grid,
+      .steps-grid,
+      .stats-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
       }
 
-      .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .process-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .hero-points {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .section { padding: 68px 0; }
+      .steps-wrap,
+      .contact-wrap { padding: 24px; }
+      .about-copy { padding: 24px; }
+      .footer-box { padding: 22px; }
+      .logos-track { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 420px) {
-      .hero-copy h1 {
-        font-size: 1.95rem;
-      }
-
-      .section-header h2,
-      .cta-card h2 {
-        max-width: none;
-      }
+    @media (max-width: 560px) {
+      .container { width: min(var(--container), calc(100% - 20px)); }
+      .brand img { width: 44px; height: 44px; }
+      .hero-topline { font-size: 11px; padding: 9px 14px; }
+      .lead { font-size: 16px; }
+      .btn-row { gap: 10px; }
+      .btn { width: 100%; }
+      .gallery-photo { min-height: 220px; }
+      .project-card img { height: 200px; }
+      .logos-track { grid-template-columns: 1fr; }
+      .floating-note { left: 14px; right: 14px; max-width: none; }
     }
+    .form-message {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.form-message.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-message.success {
+  background: #ecfdf3;
+  border: 1px solid #b7ebc8;
+  color: #0f7a42;
+}
+
+.form-message.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
   </style>
 </head>
 <body>
-  <div class="blur-orb orb-1"></div>
-  <div class="blur-orb orb-2"></div>
-  <div class="blur-orb orb-3"></div>
-
-  <header class="site-header">
+  <header>
     <div class="container nav">
-<a href="#start" class="brand">
-  <img src="LOGOSSS.png" alt="WebBoost logo" class="brand-logo">
-  <div class="brand-text">
-    <span>WebBoost</span>
-    <small>Widoczność firm online</small>
-  </div>
-</a>
+      <a class="brand" href="#top">
+        <img src="LOGO.png" alt="Logo WebBoost" />
+        <span>WebBoost</span>
+      </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
+        <a href="#o-nas">O nas</a>
         <a href="#oferta">Oferta</a>
-        <a href="#jak-to-dziala">Jak to działa</a>
-        <a href="#o-mnie">O firmie</a>
+        <a href="#proces">Proces</a>
+        <a href="#projekty">Projekty</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
 
-      <a href="#kontakt" class="nav-cta">Porozmawiajmy</a>
+      <a href="#kontakt" class="btn btn-light">Darmowa konsultacja</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Otwórz menu">☰</button>
     </div>
   </header>
 
-  <main id="start">
+  <main id="top">
     <section class="hero">
-      <div class="container">
-        <div class="hero-card reveal">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Pomagam firmom lepiej wyglądać i działać w internecie
+      <div class="hero-inner">
+        <div class="hero-topline">Strony internetowe • Wizytówki Google • Lepsza widoczność</div>
+        <h1>Więcej klientów z internetu <br><span>dla Twojej firmy.</span></h1>
+        <p class="lead">
+          Pomagam lokalnym firmom wyglądać profesjonalnie w internecie, jasno pokazywać ofertę i ułatwiać klientom kontakt.
+        </p>
+
+        <div class="btn-row">
+          <a href="#kontakt" class="btn btn-primary">Umów krótką konsultację</a>
+          <a href="#projekty" class="btn btn-secondary">Zobacz realizacje</a>
+        </div>
+
+        <div class="hero-card-row">
+          <div class="hero-card">
+            <strong>Lepsze pierwsze wrażenie</strong>
+            <p>Klient od razu widzi firmę, która wygląda profesjonalnie i wzbudza zaufanie.</p>
           </div>
-
-          <div class="hero-grid">
-            <div class="hero-copy">
-              <h1>
-                Twoja firma
-                <span class="highlight">widoczna</span>
-                tam gdzie szukają jej klienci
-              </h1>
-
-              <p>
-               Pomagam firmom wyglądać profesjonalnie w internecie.
-		Tworzę nowoczesne strony internetowe, poprawiam wizytówki Google
-		i pomagam uporządkować obecność firmy online.
-              </p>
-
-              <div class="hero-actions">
-                <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
-                <a href="#oferta" class="btn btn-secondary">Zobacz ofertę</a>
-              </div>
-
-              <div class="hero-points">
-                <div class="hero-point"><i>✓</i><span>Nowoczesne strony internetowe</span></div>
-                <div class="hero-point"><i>✓</i><span>Lepsza widoczność lokalna</span></div>
-                <div class="hero-point"><i>✓</i><span>Wizytówki Google i podstawy SEO</span></div>
-                <div class="hero-point"><i>✓</i><span>Spójny start w social media</span></div>
-              </div>
-            </div>
-
-            <div class="hero-visual">
-              <div class="dashboard-card glass-card">
-                <div class="dashboard-top">
-                  <div class="dashboard-title">Obecność Twojej firmy online</div>
-                  <div class="live-badge">Aktywne</div>
-                </div>
-
-                <div class="phone-ui">
-                  <div class="phone-top">
-                    <span>09:41</span>
-                    <span class="mini-pill">Mobilny widok</span>
-                  </div>
-
-                  <div class="phone-hero">
-                    <h3>Profesjonalna firma w internecie</h3>
-                    <p>
-                      Strona, wizytówka Google, podstawy social media i czytelny przekaz dla klientów.
-                    </p>
-                  </div>
-
-                  <div class="metric-grid">
-                    <div class="metric">
-                      <strong>WWW</strong>
-                      <span>strona firmowa</span>
-                    </div>
-                    <div class="metric">
-                      <strong>Google</strong>
-                      <span>wizytówka i dane</span>
-                    </div>
-                    <div class="metric">
-                      <strong>Social</strong>
-                      <span>spójny start</span>
-                    </div>
-                    <div class="metric">
-                      <strong>Kontakt</strong>
-                      <span>łatwiejszy dla klienta</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="floating-stats">
-                <div class="floating-stat">
-                  <strong>Lepsze pierwsze wrażenie</strong>
-                  <span>Klient szybciej ufa firmie, która wygląda profesjonalnie i nowocześnie.</span>
-                </div>
-                <div class="floating-stat">
-                  <strong>Większa przejrzystość oferty</strong>
-                  <span>Pokazujesz jasno, czym się zajmujesz, jak działasz i jak się z Tobą skontaktować.</span>
-                </div>
-              </div>
-            </div>
+          <div class="hero-card">
+            <strong>Jaśniejsza oferta</strong>
+            <p>Strona ma szybko pokazać, czym się zajmujesz i jak można się z Tobą skontaktować.</p>
+          </div>
+          <div class="hero-card">
+            <strong>Prosty proces</strong>
+            <p>Bez chaosu i technicznego zamieszania — jasno ustalamy kierunek i kolejne kroki.</p>
           </div>
         </div>
       </div>
     </section>
-<section class="section">
-  <div class="container">
 
-    <div class="section-header reveal">
-      <div class="section-label">Dlaczego to ważne</div>
-      <h2>Dlaczego obecność firmy w internecie ma dziś ogromne znaczenie</h2>
-      <p>
-        Dla wielu klientów internet jest pierwszym miejscem,
-        w którym spotykają Twoją firmę. To właśnie tam powstaje
-        pierwsze wrażenie i decyzja czy warto się z nią skontaktować.
-      </p>
+    <div class="logos-strip">
+      <div class="container">
+        <div class="logos-box">
+          <p>Pomagam firmom usługowym, lokalnym markom i biznesom, które chcą wyglądać lepiej w internecie.</p>
+          <div class="logos-track">
+            <div class="logo-pill">Usługi lokalne</div>
+            <div class="logo-pill">Beauty & wellness</div>
+            <div class="logo-pill">Mechanika i serwis</div>
+            <div class="logo-pill">Małe firmy i marki</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="services-grid">
+    <section class="section" id="o-nas">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-copy card">
+            <div class="eyebrow">WebBoost</div>
+            <h2>Strona, która nie tylko wygląda dobrze, ale pomaga sprzedawać.</h2>
+            <p>
+              Wiele lokalnych firm działa bardzo dobrze, ale w internecie nie wygląda tak profesjonalnie, jak w rzeczywistości. I właśnie to często osłabia pierwsze wrażenie.
+            </p>
+            <p>
+              WebBoost pomaga to uporządkować — od strony internetowej, przez prezentację oferty, aż po spójniejszy i bardziej wiarygodny wizerunek online.
+            </p>
 
-      <article class="service-card reveal">
-        <div class="service-icon">👀</div>
-        <h3>Pierwsze wrażenie</h3>
-        <p>
-          Klient często trafia najpierw na stronę internetową lub wizytówkę Google.
-          Jeśli firma wygląda profesjonalnie i nowocześnie, budzi większe zaufanie.
-        </p>
-      </article>
+            <div class="ticks">
+              <div class="tick">
+                <div class="tick-badge">✓</div>
+                <div><strong>Lepsze pierwsze wrażenie</strong><br>Klient szybciej ufa firmie, która wygląda nowocześnie i konkretnie.</div>
+              </div>
+              <div class="tick">
+                <div class="tick-badge">✓</div>
+                <div><strong>Większa przejrzystość oferty</strong><br>Od razu widać, czym się zajmujesz, co oferujesz i jak się z Tobą skontaktować.</div>
+              </div>
+              <div class="tick">
+                <div class="tick-badge">✓</div>
+                <div><strong>Mocniejsza obecność online</strong><br>Twoja firma zaczyna wyglądać jak realna marka, a nie przypadkowy profil w internecie.</div>
+              </div>
+            </div>
+          </div>
 
-      <article class="service-card reveal">
-        <div class="service-icon">📉</div>
-        <h3>Przewaga konkurencji</h3>
-        <p>
-          Jeśli strona wygląda przestarzale albo firma jest słabo widoczna w Google,
-          klient bardzo często wybiera konkurencję, która prezentuje się lepiej.
-        </p>
-      </article>
+          <div class="about-visual">
+            <div class="floating-note">
+              <strong>Dobry efekt online = większa wiarygodność</strong>
+              Kiedy ktoś trafia na firmę w Google, stronie albo przez polecenie, liczy się to, co zobaczy w pierwszych sekundach.
+            </div>
+          </div>
+        </div>
 
-      <article class="service-card reveal">
-        <div class="service-icon">🚀</div>
-        <h3>Więcej klientów</h3>
-        <p>
-          Nowoczesna i uporządkowana obecność online pomaga firmie
-          zdobywać więcej zapytań i ułatwia klientom szybki kontakt.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-
-    <div class="section-header reveal">
-      <div class="section-label">Problemy firm</div>
-      <h2>Najczęstsze problemy firm w internecie</h2>
-      <p>
-        Wiele firm ma podobne problemy ze swoją obecnością online.
-        Często nie chodzi o brak klientów, ale o to, że firma jest
-        słabo widoczna albo wygląda mniej profesjonalnie niż konkurencja.
-      </p>
-    </div>
-
-    <div class="services-grid">
-
-      <article class="service-card reveal">
-        <div class="service-icon">🖥️</div>
-        <h3>Przestarzała strona</h3>
-        <p>
-          Strona wygląda jak sprzed wielu lat albo nie działa dobrze na telefonie.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-icon">📵</div>
-        <h3>Brak strony</h3>
-        <p>
-          Firma istnieje tylko na Facebooku albo w ogóle nie ma własnej strony internetowej.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-icon">📍</div>
-        <h3>Słaba wizytówka Google</h3>
-        <p>
-          Wizytówka jest niepełna, nieczytelna lub nie pokazuje firmy w dobrym świetle.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-icon">📄</div>
-        <h3>Niejasna oferta</h3>
-        <p>
-          Klient nie rozumie szybko czym firma się zajmuje i jakie usługi oferuje.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-icon">☎️</div>
-        <h3>Trudny kontakt</h3>
-        <p>
-          Brakuje jasnych danych kontaktowych albo klient nie wie jak szybko się skontaktować.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-icon">✨</div>
-        <h3>Rozwiązanie</h3>
-        <p>
-          WebBoost pomaga uporządkować te elementy i stworzyć spójną,
-          nowoczesną obecność firmy w internecie.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-	<section class="section">
-<div class="container">
-<div class="section-header reveal">
-<div class="section-label">Dla kogo</div>
-<h2>Dla jakich firm jest WebBoost</h2>
-<p>
-Pomagam głównie lokalnym firmom usługowym, które chcą wyglądać
-bardziej profesjonalnie w internecie i łatwiej zdobywać klientów.
-</p>
-</div>
-
-<div class="services-grid">
-
-<div class="service-card reveal">
-<h3>Usługi lokalne</h3>
-<p>Mechanicy, elektrycy, hydraulicy, firmy remontowe.</p>
-</div>
-
-<div class="service-card reveal">
-<h3>Usługi dla ludzi</h3>
-<p>Salony fryzjerskie, kosmetyczne, trenerzy, dietetycy.</p>
-</div>
-
-<div class="service-card reveal">
-<h3>Małe firmy</h3>
-<p>Firmy które chcą mieć profesjonalną stronę i widoczność w Google.</p>
-</div>
-
-</div>
-</div>
-</section>
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>1</strong>
+            <span>spójny wizerunek firmy</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Twoja firma jest widoczna online</span>
+          </div>
+          <div class="stat">
+            <strong>+zaufanie</strong>
+            <span>lepsze pierwsze wrażenie klientów</span>
+          </div>
+          <div class="stat">
+            <strong>prościej</strong>
+            <span>łatwiejszy kontakt i prezentacja oferty</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="oferta">
       <div class="container">
-        <div class="section-header reveal">
-          <div class="section-label">Oferta</div>
-          <h2>Co mogę zrobić dla Twojej firmy</h2>
+        <div class="section-head">
+          <div class="eyebrow">Oferta</div>
+          <h2>Co mogę przygotować dla Twojej firmy</h2>
           <p>
-            Skupiam się na tym, żeby firma była dobrze pokazana w internecie:
-            estetycznie, nowocześnie i czytelnie dla klienta. Bez chaosu, bez przestarzałego wyglądu
-            i bez niepotrzebnego komplikowania.
+          Nie każda firma potrzebuje dużego projektu. Czasem wystarczy prosta, dobrze przemyślana strona, która wygląda profesjonalnie i ułatwia klientowi kontakt.
           </p>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <div class="service-icon">🌐</div>
-            <h3>Strona internetowa</h3>
-            <p>
-              Nowoczesna strona, która dobrze wygląda na telefonie, jasno pokazuje ofertę
-              i prowadzi klienta do kontaktu.
-            </p>
+        <div class="offer-grid">
+          <article class="offer-card">
+            <div class="icon">◼</div>
+            <h3>Strony internetowe</h3>
+            <p>Nowoczesne, przejrzyste strony, które pokazują ofertę, budują zaufanie i pomagają klientowi szybciej podjąć decyzję o kontakcie.</p>
             <ul>
-              <li>mobilny i elegancki wygląd</li>
-              <li>czytelna oferta i sekcje usług</li>
-              <li>formularz kontaktowy i CTA</li>
-              <li>szybsze i lepsze pierwsze wrażenie</li>
+              <li>strona główna dopracowana sprzedażowo</li>
+              <li>sekcje oferty, o firmie, kontakt i CTA</li>
+              <li>wersja mobilna dopracowana pod telefon</li>
+              <li>miejsce na realizacje i linki do projektów</li>
             </ul>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">📍</div>
-            <h3>Wizytówka Google</h3>
-            <p>
-              Uporządkowanie obecności lokalnej, aby firma była bardziej widoczna dla osób,
-              które szukają usług w swojej okolicy.
-            </p>
+          <article class="offer-card">
+            <div class="icon">◎</div>
+            <h3>Poprawa wizytówki Google</h3>
+            <p>Pomagam uporządkować wizytówkę Google tak, żeby firma wyglądała bardziej wiarygodnie i była łatwiejsza do znalezienia lokalnie.</p>
             <ul>
-              <li>uzupełnienie podstawowych informacji</li>
-              <li>lepsza prezentacja firmy</li>
-              <li>większa przejrzystość danych kontaktowych</li>
-              <li>mocniejsza lokalna widoczność</li>
+              <li>uporządkowanie informacji o firmie</li>
+              <li>lepsza prezentacja usług i opisów</li>
+              <li>wskazówki dotyczące zdjęć i wiarygodności</li>
+              <li>lepsza spójność z Twoją stroną</li>
             </ul>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">📱</div>
-            <h3>Obecność firmy online</h3>
-            <p>
-              Pomagam uporządkować obecność marki w mediach społecznościowych,
-              żeby firma wyglądała spójnie i profesjonalnie.
-            </p>
+          <article class="offer-card">
+            <div class="icon">↗</div>
+            <h3>Wizerunek online</h3>
+            <p>Pomagam zbudować spójniejszy obraz firmy w internecie, żeby klient od pierwszego wejścia widział konkretną i profesjonalną markę.</p>
             <ul>
-              <li>założenie lub uporządkowanie kont</li>
-              <li>spójny wygląd i podstawowe informacje</li>
-              <li>lepsze połączenie z marką</li>
-              <li>przygotowanie pod dalszy rozwój</li>
+              <li>spójny styl strony i treści</li>
+              <li>lepsze przedstawienie usług</li>
+              <li>większa czytelność komunikacji</li>
+              <li>mocniejsze elementy zachęcające do kontaktu</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="jak-to-dziala">
+    <section class="section">
       <div class="container">
-        <div class="section-header reveal">
-          <div class="section-label">Jak to działa</div>
-          <h2>Prosto, przejrzyście i bez chaosu</h2>
-          <p>
-            Współpraca ma być wygodna. Najpierw ustalamy, czego potrzebuje Twoja firma,
-            potem przygotowuję kierunek działania, a na końcu powstaje gotowa, estetyczna obecność online.
-          </p>
-        </div>
-
-        <div class="process-grid">
-          <article class="process-card reveal">
-            <div class="step-no">1</div>
-            <h3>Rozmowa</h3>
+        <div class="steps-wrap" id="proces">
+          <div class="section-head">
+            <div class="eyebrow">Jak wygląda współpraca</div>
+            <h2>Prosty proces bez zbędnego chaosu</h2>
             <p>
-              Poznaję Twoją firmę, ofertę, klientów i to, jak chcesz być postrzegany w internecie.
+              Nie musisz znać się na stronach internetowych. Wystarczy krótka rozmowa, żebym mógł zaproponować kierunek dopasowany do Twojej firmy.
             </p>
-          </article>
+          </div>
 
-          <article class="process-card reveal">
-            <div class="step-no">2</div>
-            <h3>Plan</h3>
-            <p>
-              Dobieram najlepszy kierunek: strona, wizytówka Google, social media lub połączenie tych elementów.
-            </p>
-          </article>
-
-          <article class="process-card reveal">
-            <div class="step-no">3</div>
-            <h3>Realizacja</h3>
-            <p>
-             Tworzę nowoczesną i spójną prezentację Twojej firmy,
-		która wygląda profesjonalnie i budzi zaufanie.
-            </p>
-          </article>
-
-          <article class="process-card reveal">
-            <div class="step-no">4</div>
-            <h3>Gotowy efekt</h3>
-            <p>
-              Twoja firma wygląda profesjonalnie, jest czytelniejsza dla klientów i lepiej przygotowana do rozwoju.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="o-mnie">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-label">O firmie</div>
-          <h2>Pomagam firmom wyglądać lepiej online</h2>
-          <p>
-            Moim celem jest tworzenie nowoczesnej, estetycznej i uporządkowanej obecności firm w internecie.
-            Bez przesady, bez sztuczności i bez stron, które wyglądają jak sprzed wielu lat.
-          </p>
-        </div>
-
-        <div class="about-wrap">
-          <div class="about-main reveal">
-            <h3>Na czym się skupiam</h3>
-            <p>
-              Dla wielu firm internet to dziś pierwsze miejsce kontaktu z klientem.
-              Jeśli strona wygląda słabo, wizytówka jest zaniedbana albo marka nie istnieje nigdzie poza nazwą,
-              klient często przechodzi dalej. Dlatego tworzę rozwiązania, które poprawiają odbiór firmy
-              i pomagają jej lepiej zaprezentować się online.
-            </p>
-
-            <div class="about-tags">
-              <span class="tag">nowoczesny wygląd</span>
-              <span class="tag">mobilne strony</span>
-              <span class="tag">lokalne firmy</span>
-              <span class="tag">czytelna oferta</span>
-              <span class="tag">lepszy kontakt z klientem</span>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h3>Krótka rozmowa</h3>
+              <p>Ustalamy, czym zajmuje się firma, skąd trafiają klienci i co warto poprawić online.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h3>Propozycja kierunku</h3>
+              <p>Pokazuję, co ma największy sens: prosta strona, rozbudowana strona albo uporządkowanie obecności w Google.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h3>Projekt i wdrożenie</h3>
+              <p>Tworzę stronę z naciskiem na wygląd, przejrzystość i wygodny kontakt dla klienta.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <h3>Gotowa prezentacja firmy</h3>
+              <p>Otrzymujesz stronę, którą możesz realnie wykorzystać do budowania zaufania i zdobywania zapytań.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="about-side reveal">
-            <h3>Dla kogo</h3>
-            <p>
-              Dla lokalnych firm, usług, małych biznesów i marek, które chcą wyglądać lepiej,
-              wzbudzać większe zaufanie i być bardziej widoczne tam, gdzie szukają ich klienci.
-            </p>
+
+
+    <section class="section" id="projekty">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Przykładowe realizacje</div>
+          <h2>Wybrane projekty</h2>
+          <p>
+            Przykładowe projekty pokazujące, jak może wyglądać nowoczesna strona dla firmy usługowej lub lokalnego biznesu.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="salon_kosmetyczny.png" alt="Przykładowy projekt strony usługowej" />
+            <div class="project-content">
+
+              <h3>Strona dla salonu beauty</h3>
+              <p>Nowoczesna strona dla salonu beauty zaprojektowana tak, aby podkreślić estetykę marki i ułatwić klientkom szybkie umówienie wizyty. Przejrzysta oferta, spokojny styl i czytelny układ zwiększają zaufanie już od pierwszego wejścia.</p>
+              <a class="project-link" href="salon_kosmetyczny_wizytowka.html" target="_blank" rel="noopener">Zobacz projekt →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img src="Warsztata samochdowdy.png" />
+            <div class="project-content">
+              <div class="tag-row">
+              </div>
+              <h3>Strona dla mechanika / wulkanizacji</h3>
+              <p>Strona zaprojektowana z naciskiem na szybki kontakt i czytelne przedstawienie usług. Wyraźne CTA, numer telefonu na pierwszym ekranie i prosta struktura pomagają klientowi od razu zadzwonić lub zapytać o pomoc.</p>
+              <a class="project-link" href="Mechanik_stronka.html" target="_blank" rel="noopener">Zobacz projekt →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Przykładowy projekt dla lokalnej firmy" />
+            <div class="project-content">
+              <div class="tag-row">
+                <span class="tag">Lokalna firma</span>
+                <span class="tag">Nowoczesny design</span>
+              </div>
+              <h3>Projekt nr 3</h3>
+              <p>To miejsce dobrze sprawdza się też na mini case study: problem, rozwiązanie i link do gotowej realizacji.</p>
+              <a class="project-link" href="#" target="_blank" rel="noopener">Zobacz projekt →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Najczęstsze pytania</div>
+          <h2>Krótko i konkretnie</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Czy mogę zamówić prostą stronę, a nie duży projekt?</h3>
+            <p>Tak. Dla wielu firm lepiej zacząć od prostej, dobrze zrobionej strony niż od rozbudowanego rozwiązania bez potrzeby.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Czy mogę dodać swoje realizacje i linki?</h3>
+            <p>Tak — ta strona ma już sekcję przygotowaną właśnie pod przykładowe projekty, portfolio albo konkretne wdrożenia.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Ile trwa przygotowanie strony?</h3>
+            <p>To zależy od zakresu, ale prosta strona może powstać znacznie szybciej niż rozbudowany projekt.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section" id="kontakt">
+    <section class="section" id="kontakt">
       <div class="container">
-        <div class="cta-card reveal">
-          <h2>Zadbaj o lepszy wizerunek swojej firmy w internecie</h2>
-          <p>
-            Jeśli chcesz mieć nowoczesną stronę internetową, lepiej pokazaną firmę w Google
-            albo uporządkowaną obecność w social media. Napisz kilka słów o swojej firmie i o tym,
-	co chciałbyś poprawić w jej obecności online.
-          </p>
-
-        <div class="cta-actions">
-  <a href="kontakt.html" class="btn btn-primary">Formularz</a>
-  <a href="mailto:kontakt.webboost@gmail.com" class="btn btn-secondary">Email</a>
-  <a href="tel:+48537275214" class="btn btn-secondary">Zadzwoń</a>
-</div>
-
+        <div class="contact-wrap">
           <div class="contact-grid">
             <div class="contact-card">
-              <strong>Email</strong>
-              <span>kontakt.webboost@gmail.com</span>
+              <div class="eyebrow">Kontakt</div>
+              <h2>Masz firmę i chcesz wyglądać lepiej w internecie?</h2>
+              <p>
+                Napisz krótko, czym zajmuje się Twoja firma i czego potrzebujesz. Strona internetowa, poprawa wizytówki Google albo po prostu lepszy wizerunek online.
+              </p>
+
+              <div class="contact-points">
+                <div class="contact-point">
+                  <div class="tick-badge">→</div>
+                  <div>
+                    <strong>Krótka konsultacja</strong>
+                    Na początku wystarczy krótka rozmowa, żeby ocenić, co warto poprawić.
+                  </div>
+                </div>
+                <div class="contact-point">
+                  <div class="tick-badge">→</div>
+                  <div>
+                    <strong>Jasny zakres współpracy</strong>
+                   Od początku wiadomo, co robimy, w jakim kierunku i po co.
+                  </div>
+                </div>
+                <div class="contact-point">
+                  <div class="tick-badge">→</div>
+                  <div>
+                    <strong>Wygodny kontakt</strong>
+                    Możesz napisać wiadomość i krótko opisać, czego potrzebujesz.
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="contact-card">
-              <strong>Telefon</strong>
-              <span>+48 537 275 214</span>
-            </div>
+            <form action="https://formspree.io/f/mykndgko" method="POST">
+              <div class="form-grid">
+                <label>
+                  Imię
+                  <input type="text" name="imie" placeholder="Jak masz na imię?" required />
+                </label>
+                <label>
+                  E-mail
+                  <input type="email" name="email" placeholder="twoj@email.pl" required />
+                </label>
+              </div>
 
-            <div class="contact-card">
-              <strong>Zakres</strong>
-              <span>Strony internetowe, wizytówki Google, social media, obecność online</span>
-            </div>
+              <div class="form-grid">
+                <label>
+                  Firma
+                  <input type="text" name="firma" placeholder="Nazwa firmy" />
+                </label>
+                <label>
+                  Czego potrzebujesz?
+                  <select name="zakres">
+                    <option value="">Wybierz opcję</option>
+                    <option>Strona internetowa</option>
+                    <option>Poprawa wizytówki Google</option>
+                    <option>Wizerunek online</option>
+                    <option>Nie wiem jeszcze</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                Wiadomość
+                <textarea name="wiadomosc" placeholder="Napisz krótko, czym zajmuje się Twoja firma i czego potrzebujesz."></textarea>
+              </label>
+
+             <input type="hidden" name="_subject" value="Nowa wiadomość ze strony WebBoost" />
+<button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+<div class="form-message" id="formMessage"></div>
+<p class="form-note"></p>
+              </p>
+            </form>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container">
       <div class="footer-box">
         <div>
-          <div class="footer-brand">WebBoost</div>
-          <div>Nowoczesna obecność firm w internecie.</div>
+          <strong>WebBoost</strong>
+          <span>Nowoczesne strony i lepsza widoczność Twojej firmy w internecie.</span>
         </div>
-        <div>
-          © 2026 WebBoost. Wszystkie prawa zastrzeżone.
+
+        <div class="footer-links">
+          <a href="#o-nas">O nas</a>
+          <a href="#oferta">Oferta</a>
+          <a href="#projekty">Projekty</a>
+          <a href="#kontakt">Kontakt</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    const reveals = document.querySelectorAll(".reveal");
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    }, {
-      threshold: 0.12
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const form = document.querySelector('form');
+  const formMessage = document.getElementById('formMessage');
+  let messageTimeout;
+
+  function showFormMessage(text, type = 'success') {
+    clearTimeout(messageTimeout);
+
+    formMessage.textContent = text;
+    formMessage.className = `form-message ${type}`;
+    formMessage.style.display = 'block';
+
+    requestAnimationFrame(() => {
+      formMessage.classList.add('show');
     });
 
-    reveals.forEach(el => observer.observe(el));
-  </script>
+    messageTimeout = setTimeout(() => {
+      formMessage.classList.remove('show');
+
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+      }, 250);
+    }, 4000);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wysyłanie...';
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        showFormMessage('Dziękuję! Wiadomość została wysłana.', 'success');
+      } else {
+        showFormMessage('Nie udało się wysłać wiadomości. Spróbuj ponownie.', 'error');
+      }
+    } catch (error) {
+      showFormMessage('Wystąpił problem z połączeniem. Spróbuj ponownie za chwilę.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
+  });
+</script>
 </body>
 </html>
