@@ -916,52 +916,53 @@
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 820px) {
-      .nav-links {
-        position: fixed;
-        inset: 76px 16px auto 16px;
-        background: rgba(255,255,255,.96);
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        padding: 16px;
-        box-shadow: var(--shadow);
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-          .pricing-wrap,
-      .pricing-main,
-      .pricing-side {
-        padding: 24px;
-      }
-      }
+@media (max-width: 820px) {
+  .nav-links {
+    position: fixed;
+    inset: 76px 16px auto 16px;
+    background: rgba(255,255,255,.96);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
 
-      .nav-links.open { display: flex; }
-      .menu-btn { display: inline-grid; place-items: center; }
-      .nav .btn-light { display: none; }
+  .pricing-wrap,
+  .pricing-main,
+  .pricing-side {
+    padding: 24px;
+  }
 
-      .hero {
-        min-height: auto;
-        padding: 70px 0 40px;
-      }
+  .nav-links.open { display: flex; }
+  .menu-btn { display: inline-grid; place-items: center; }
+  .nav .btn-light { display: none; }
 
-      .hero-inner { padding: 40px 0 24px; }
-      .hero-card-row,
-      .offer-grid,
-      .projects-grid,
-      .steps-grid,
-      .stats-grid,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+  .hero {
+    min-height: auto;
+    padding: 70px 0 40px;
+  }
 
-      .section { padding: 68px 0; }
-      .steps-wrap,
-      .contact-wrap { padding: 24px; }
-      .about-copy { padding: 24px; }
-      .footer-box { padding: 22px; }
-      .logos-track { grid-template-columns: repeat(2, 1fr); }
-    }
+  .hero-inner { padding: 40px 0 24px; }
+  .hero-card-row,
+  .offer-grid,
+  .projects-grid,
+  .steps-grid,
+  .stats-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section { padding: 68px 0; }
+  .steps-wrap,
+  .contact-wrap { padding: 24px; }
+  .about-copy { padding: 24px; }
+  .footer-box { padding: 22px; }
+  .logos-track { grid-template-columns: repeat(2, 1fr); }
+}
 
     @media (max-width: 560px) {
       .container { width: min(var(--container), calc(100% - 20px)); }
