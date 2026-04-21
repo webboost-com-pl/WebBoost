@@ -307,51 +307,40 @@
       cursor: pointer;
     }
 
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 76px);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(10, 24, 48, .64), rgba(10, 24, 48, .70)),
-        url("biznesowe.png") center/cover no-repeat;
-      color: white;
-      text-align: center;
-    }
+ .hero {
+  position: relative;
+  min-height: calc(100vh - 76px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  background: none;
+}
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: .22;
-      pointer-events: none;
-    }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background:
+    linear-gradient(rgba(10, 24, 48, .78), rgba(10, 24, 48, .78)),
+    url("biznesowe.png") center/cover no-repeat;
+  filter: blur(4px);
+  transform: scale(1.06);
+  z-index: 0;
+}
 
-    .hero::before {
-      width: 420px;
-      height: 420px;
-      background: #1f78c5;
-      top: -140px;
-      left: -80px;
-    }
-
-    .hero::after {
-      width: 360px;
-      height: 360px;
-      background: #60a8e6;
-      right: -80px;
-      bottom: -80px;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(980px, calc(100% - 32px));
-      padding: 80px 0 56px;
-    }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 120, 197, 0.10),
+    rgba(14, 41, 82, 0.18)
+  );
+  z-index: 0;
+}
 
     .hero-topline {
       display: inline-flex;
