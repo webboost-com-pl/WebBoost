@@ -61,7 +61,95 @@
       color: var(--brand-dark);
       margin-bottom: 18px;
     }
+    .pricing-wrap {
+      background: linear-gradient(135deg, #f7fbff 0%, #eef5fb 100%);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .pricing-main,
+    .pricing-side {
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(217, 224, 234, .9);
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    .pricing-main {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pricing-main p,
+    .pricing-side p,
+    .pricing-points li {
+      color: var(--muted);
+    }
+
+    .price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(31, 120, 197, .10);
+      border: 1px solid rgba(31, 120, 197, .18);
+      color: var(--brand-dark);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .price-range {
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      color: var(--brand-dark);
+    }
+
+    .price-note {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .pricing-points {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .pricing-side {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
+    }
+
+    .pricing-side-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .pricing-side-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brand-dark);
+      font-size: 16px;
+    }
     .eyebrow::before {
       content: "";
       width: 34px;
@@ -803,7 +891,7 @@
     .footer-links a:hover { color: white; }
 
     @media (max-width: 1080px) {
-      .hero-card-row,
+           .hero-card-row,
       .offer-grid,
       .projects-grid,
       .steps-grid,
@@ -812,17 +900,18 @@
       .about-grid,
       .gallery-grid,
       .logos-box,
-      .form-grid {
+      .form-grid,
+      .pricing-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .about-grid,
+           .about-grid,
       .contact-grid,
       .gallery-grid,
-      .logos-box {
+      .logos-box,
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
-
       .about-visual { min-height: 420px; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -840,6 +929,11 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 14px;
+          .pricing-wrap,
+      .pricing-main,
+      .pricing-side {
+        padding: 24px;
+      }
       }
 
       .nav-links.open { display: flex; }
@@ -937,6 +1031,7 @@
       <nav class="nav-links" id="navLinks">
         <a href="#o-nas">O nas</a>
         <a href="#oferta">Oferta</a>
+        <a href="#cennik">Cennik</a>
         <a href="#proces">Proces</a>
         <a href="#projekty">Projekty</a>
         <a href="#kontakt">Kontakt</a>
@@ -1099,7 +1194,57 @@
         </div>
       </div>
     </section>
+    <section class="section" id="cennik">
+      <div class="container">
+        <div class="pricing-wrap">
+          <div class="pricing-grid">
+            <div class="pricing-main">
+              <div class="eyebrow">Widełki cenowe</div>
+              <h2>Ile kosztuje współpraca?</h2>
+              <div class="price-badge">Dla większości lokalnych firm</div>
+              <div class="price-range">800 – 1500 zł</div>
+              <p class="price-note">
+                Większość prostych realizacji dla lokalnych firm mieści się właśnie w tym przedziale. Dokładna cena zależy od zakresu, liczby sekcji, stopnia dopracowania i tego, czy poza stroną potrzebne jest też uporządkowanie obecności firmy w Google.
+              </p>
 
+              <ul class="pricing-points">
+                <li>prosta, nowoczesna strona dla firmy usługowej</li>
+                <li>wersja mobilna dopracowana pod telefon</li>
+                <li>czytelna oferta, sekcja kontaktu i mocniejsze CTA</li>
+                <li>możliwość rozszerzenia o dodatkowe elementy lub poprawę wizytówki Google</li>
+              </ul>
+
+              <div class="btn-row" style="justify-content:flex-start; margin-top: 6px;">
+                <a href="#kontakt" class="btn btn-primary">Zapytaj o swoją wycenę</a>
+              </div>
+            </div>
+
+            <div class="pricing-side">
+              <div>
+                <h3>Bez sztywnego cennika</h3>
+                <p>
+                  Każda firma działa trochę inaczej, dlatego końcowa wycena jest dopasowana do realnych potrzeb — bez dokładania rzeczy, które nic nie wnoszą.
+                </p>
+              </div>
+
+              <div class="pricing-side-card">
+                <strong>Co wpływa na cenę?</strong>
+                <p>
+                  Zakres strony, liczba sekcji, ilość treści, poziom dopracowania oraz to, czy projekt obejmuje tylko stronę, czy także poprawę wizytówki Google i spójności wizerunku online.
+                </p>
+              </div>
+
+              <div class="pricing-side-card">
+                <strong>Dobra opcja na start</strong>
+                <p>
+                  Dla wielu firm najlepszym początkiem jest prosta, konkretna strona, która wygląda profesjonalnie i ułatwia klientowi szybki kontakt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section">
       <div class="container">
         <div class="steps-wrap" id="proces">
