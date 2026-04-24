@@ -157,7 +157,85 @@
       background: var(--brand);
       border-radius: 999px;
     }
+.faq-wrap {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 24px;
+  align-items: stretch;
+}
 
+.faq-panel {
+  background: linear-gradient(135deg, var(--brand-deep), var(--brand-dark));
+  color: white;
+  border-radius: 32px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.faq-panel .eyebrow,
+.faq-panel h2 {
+  color: white;
+}
+
+.faq-panel p {
+  color: rgba(255,255,255,.78);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.faq-item {
+  padding: 22px;
+  border-radius: 24px;
+  background: white;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.faq-number {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(31,120,197,.10);
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.faq-item:nth-child(2),
+.faq-item:nth-child(4) {
+  transform: translateX(18px);
+}
+
+.faq-item h3 {
+  margin-bottom: 6px;
+}
+
+.faq-item p {
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .faq-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-item:nth-child(2),
+  .faq-item:nth-child(4) {
+    transform: none;
+  }
+}
     h1, h2, h3, h4, p { margin: 0; }
 
     h1 {
@@ -1300,11 +1378,12 @@
  <section class="section-tight">
   <div class="container">
     <div class="faq-wrap better-faq">
-      <div class="faq-intro">
-        <div class="eyebrow">Najczęstsze pytania</div>
-        <h2>Zanim napiszesz</h2>
-        <p>Najważniejsze rzeczy wyjaśnione prosto, bez technicznego gadania.</p>
-      </div>
+<div class="faq-panel">
+  <div class="eyebrow">Najczęstsze pytania</div>
+  <h2>Zanim napiszesz</h2>
+  <p>Najważniejsze obawy wyjaśnione prosto — bez technicznego gadania.</p>
+  <a href="#kontakt" class="btn btn-primary">Zapytaj o swoją firmę</a>
+</div>
 
       <div class="faq-item">
   <span class="faq-number">01</span>
