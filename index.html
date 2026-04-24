@@ -9,6 +9,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    #oferta::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(31,120,197,0.15), transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+}
+
+#oferta::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(14,41,82,0.18), transparent 70%);
+  filter: blur(70px);
+  z-index: 0;
+}
+    #oferta .container {
+  position: relative;
+  z-index: 1;
+}
     :root {
       --bg: #eef2f6;
       --surface: #ffffff;
