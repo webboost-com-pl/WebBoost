@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    #oferta {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(31,120,197,.14), transparent 32%),
+    radial-gradient(circle at 85% 70%, rgba(14,41,82,.12), transparent 34%),
+    linear-gradient(180deg, #eef2f6 0%, #e8f0f8 100%);
+}
     #oferta::before {
   content: "";
   position: absolute;
@@ -707,6 +715,8 @@
     }
 
     .offer-card {
+       background: rgba(255,255,255,.82);
+  backdrop-filter: blur(10px);
       padding: 28px;
       background: white;
       border: 1px solid var(--line);
@@ -714,6 +724,7 @@
       box-shadow: var(--shadow);
       display: grid;
       gap: 16px;
+      
     }
 
     .icon {
