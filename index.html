@@ -680,16 +680,53 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .offer-card {
-      padding: 28px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      display: grid;
-      gap: 16px;
-      
-    }
+   .offer-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 20px 60px rgba(12,26,52,.12);
+  transition: .25s ease;
+}
+
+/* Pasek kolorowy u góry */
+.offer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: var(--card-accent);
+}
+
+/* KOLORY */
+.offer-card:nth-child(1) {
+  --card-accent: linear-gradient(90deg, #1f78c5, #4aa3df);
+}
+
+.offer-card:nth-child(2) {
+  --card-accent: linear-gradient(90deg, #16a34a, #4ade80);
+}
+
+.offer-card:nth-child(3) {
+  --card-accent: linear-gradient(90deg, #7c3aed, #a78bfa);
+}
+
+/* Ikony pod kolor */
+.offer-card:nth-child(1) .icon {
+  background: rgba(31,120,197,.12);
+}
+.offer-card:nth-child(2) .icon {
+  background: rgba(22,163,74,.12);
+}
+.offer-card:nth-child(3) .icon {
+  background: rgba(124,58,237,.12);
+}
+
+/* Hover */
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 90px rgba(12,26,52,.18);
+}
 
     .icon {
       width: 56px;
