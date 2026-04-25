@@ -7,7 +7,7 @@
   <meta name="description" content="WebBoost pomaga lokalnym firmom zdobywać więcej klientów z internetu dzięki nowoczesnym stronom, lepszej widoczności w Google i mocniejszej obecności online." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">o
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
 
     :root {
@@ -1157,35 +1157,40 @@
   color: #b91c1c;
 }
 @media (max-width: 768px) {
-  h1 {
-    font-size: clamp(46px, 12vw, 62px);
-    line-height: 0.98;
-    letter-spacing: -0.05em;
-  }
   .hero {
-    min-height: auto;
-    padding: 70px 0 40px;
-    background: none;
-  }
-
-  .hero::before {
-    display: block;
-    inset: -20px;
-    background:
-      linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)),
-      url("podtel.png") center center / cover no-repeat;
-    filter: blur(3px);
-    transform: scale(1.05);
-  }
-
-  .hero::after {
-    display: block;
+    min-height: calc(100vh - 110px);
+    padding: 42px 0 44px;
   }
 
   .hero-inner {
-            width: calc(100% - 28px);
- /* było za wąsko */
-    padding: 40px 0 24px;
+    width: calc(100% - 28px);
+    padding: 0;
+  }
+
+  .hero-topline {
+    display: none;
+  }
+
+  h1 {
+    font-size: clamp(42px, 12vw, 56px);
+    line-height: .96;
+  }
+
+  .lead {
+    max-width: 340px;
+    font-size: 18px;
+    line-height: 1.45;
+    margin-top: 22px;
+  }
+
+  .btn-secondary {
+    display: none;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 17px;
   }
 }
   </style>
@@ -1221,7 +1226,7 @@
   <span>dla Twojej firmy.</span>
 </h1>
         <p class="lead">
-          Pomagam lokalnym firmom wyglądać profesjonalnie w internecie, jasno pokazywać ofertę i ułatwiać klientom kontakt.
+         Pomagam lokalnym firmom wyglądać profesjonalnie i zdobywać więcej zapytań z internetu.
         </p>
 
         <div class="btn-row">
