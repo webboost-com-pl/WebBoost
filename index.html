@@ -1157,10 +1157,10 @@
   color: #b91c1c;
 }
 @media (max-width: 768px) {
-    h1 {
-    font-size: 42px; /* trochę mniejsze */
-    line-height: 1.05; /* ciaśniej = mniej “rozstrzelone” */
-    letter-spacing: -0.03em;
+  h1 {
+    font-size: clamp(46px, 12vw, 62px);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
   }
   .hero {
     min-height: auto;
@@ -1183,7 +1183,8 @@
   }
 
   .hero-inner {
-        width: calc(100% - 20px); /* było za wąsko */
+            width: calc(100% - 28px);
+ /* było za wąsko */
     padding: 40px 0 24px;
   }
 }
@@ -1214,7 +1215,11 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-topline">Strony internetowe • Wizytówki Google • Lepsza widoczność</div>
-        <h1>Więcej klientów z internetu <br><span>dla Twojej firmy.</span></h1>
+       <h1>
+  Więcej klientów<br>
+  z internetu<br>
+  <span>dla Twojej firmy.</span>
+</h1>
         <p class="lead">
           Pomagam lokalnym firmom wyglądać profesjonalnie w internecie, jasno pokazywać ofertę i ułatwiać klientom kontakt.
         </p>
