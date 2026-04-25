@@ -679,46 +679,68 @@
     }
 
 .offer-card {
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s;
+  background: #f8fafc; /* delikatne tło */
+  border: 3px solid transparent;
   border-radius: 24px;
   padding: 28px;
-  background: white; /* CZYSTA karta */
-  border: 1px solid rgba(0,0,0,.06);
   box-shadow: 0 20px 60px rgba(12,26,52,.12);
-  transition: .25s ease;
 }
 
-/* cienki pasek u góry */
-.offer-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px; /* cienki pasek */
-  background: var(--card-accent);
-}
 
-/* kolory */
+/* NIEBIESKI */
+/* NIEBIESKI */
+.offer-card:nth-child(1) .icon img {
+  filter: invert(32%) sepia(89%) saturate(1200%) hue-rotate(190deg);
+}
 .offer-card:nth-child(1) {
-  --card-accent: #1f78c5;
+  border-color: #1f78c5;
+}
+.offer-card:nth-child(1)::before {
+  background: #1f78c5;
 }
 
+/* ZIELONY */
+/* ZIELONY */
+.offer-card:nth-child(2) .icon img {
+  filter: invert(45%) sepia(70%) saturate(900%) hue-rotate(90deg);
+}
 .offer-card:nth-child(2) {
-  --card-accent: #16a34a;
+  border-color: #16a34a;
+}
+.offer-card:nth-child(2)::before {
+  background: #16a34a;
 }
 
+/* FIOLET */
+/* FIOLET */
+.offer-card:nth-child(3) .icon img {
+  filter: invert(35%) sepia(80%) saturate(1200%) hue-rotate(260deg);
+}
 .offer-card:nth-child(3) {
-  --card-accent: #7c3aed;
+  border-color: #7c3aed;
+}
+.offer-card:nth-child(3)::before {
+  background: #7c3aed;
+}
+/* NIEBIESKI */
+.offer-card:nth-child(1) .icon {
+  background: rgba(31, 120, 197, 0.12);
 }
 
-/* hover */
+/* ZIELONY */
+.offer-card:nth-child(2) .icon {
+  background: rgba(22, 163, 74, 0.12);
+}
+
+/* FIOLET */
+.offer-card:nth-child(3) .icon {
+  background: rgba(124, 58, 237, 0.12);
+}
 .offer-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 30px 80px rgba(12,26,52,.18);
 }
-
     .icon {
       width: 56px;
       height: 56px;
@@ -1158,39 +1180,37 @@
 }
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - 110px);
-    padding: 42px 0 44px;
+    min-height: calc(100vh - 76px) !important;
+    padding: 55px 0 120px !important;
+    align-items: flex-start !important;
   }
 
   .hero-inner {
-    width: calc(100% - 28px);
-    padding: 0;
+    width: calc(100% - 44px) !important;
+    padding: 0 !important;
+    text-align: left !important;
+    margin: 0 auto !important;
   }
 
-  .hero-topline {
-    display: none;
-  }
-
-  h1 {
-    font-size: clamp(42px, 12vw, 56px);
-    line-height: .96;
+  .hero h1 {
+    font-size: clamp(40px, 11.5vw, 54px) !important;
+    line-height: .97 !important;
+    text-align: left !important;
   }
 
   .lead {
-    max-width: 340px;
-    font-size: 18px;
-    line-height: 1.45;
-    margin-top: 22px;
+    max-width: 360px !important;
+    margin: 24px 0 0 !important;
+    text-align: left !important;
   }
 
-  .btn-secondary {
-    display: none;
+  .hero .btn-row {
+    margin-top: 42px !important;
   }
 
-  .btn {
-    width: 100%;
-    padding: 18px 20px;
-    font-size: 17px;
+  .hero .btn {
+    width: 100% !important;
+    padding: 22px 22px !important;
   }
 }
   </style>
@@ -1220,7 +1240,7 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-topline">Strony internetowe • Wizytówki Google • Lepsza widoczność</div>
-       <h1>
+     <h1>
   Więcej klientów<br>
   z internetu<br>
   <span>dla Twojej firmy.</span>
