@@ -7,7 +7,7 @@
   <meta name="description" content="WebBoost pomaga lokalnym firmom zdobywać więcej klientów z internetu dzięki nowoczesnym stronom, lepszej widoczności w Google i mocniejszej obecności online." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">o
   <style>
 
     :root {
@@ -680,43 +680,43 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-  .offer-card {
+.offer-card {
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
   padding: 28px;
-  border-radius: 26px;
-  background: rgba(255,255,255,.94);
-  border: 1px solid rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.05);
   box-shadow: 0 20px 60px rgba(12,26,52,.12);
   transition: .25s ease;
-  display: grid;
-  gap: 16px;
 }
 
-.offer-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 7px;
-  background: var(--card-accent);
-  border-radius: 26px 26px 0 0;
-}
-
+/* KOLORY CAŁYCH KART */
 .offer-card:nth-child(1) {
-  --card-accent: linear-gradient(90deg, #1f78c5, #4aa3df);
-  background: linear-gradient(180deg, rgba(31,120,197,.10), rgba(255,255,255,.94) 42%);
+  background: linear-gradient(180deg, rgba(31,120,197,.18), rgba(255,255,255,.95));
 }
 
 .offer-card:nth-child(2) {
-  --card-accent: linear-gradient(90deg, #16a34a, #4ade80);
-  background: linear-gradient(180deg, rgba(22,163,74,.11), rgba(255,255,255,.94) 42%);
+  background: linear-gradient(180deg, rgba(22,163,74,.18), rgba(255,255,255,.95));
 }
 
 .offer-card:nth-child(3) {
-  --card-accent: linear-gradient(90deg, #7c3aed, #a78bfa);
-  background: linear-gradient(180deg, rgba(124,58,237,.11), rgba(255,255,255,.94) 42%);
+  background: linear-gradient(180deg, rgba(124,58,237,.18), rgba(255,255,255,.95));
 }
 
+/* Ikony dopasowane */
+.offer-card:nth-child(1) .icon {
+  background: rgba(31,120,197,.20);
+}
+
+.offer-card:nth-child(2) .icon {
+  background: rgba(22,163,74,.20);
+}
+
+.offer-card:nth-child(3) .icon {
+  background: rgba(124,58,237,.20);
+}
+
+/* Hover */
 .offer-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 35px 90px rgba(12,26,52,.18);
