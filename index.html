@@ -1157,6 +1157,11 @@
   color: #b91c1c;
 }
 @media (max-width: 768px) {
+    h1 {
+    font-size: 42px; /* trochę mniejsze */
+    line-height: 1.05; /* ciaśniej = mniej “rozstrzelone” */
+    letter-spacing: -0.03em;
+  }
   .hero {
     min-height: auto;
     padding: 70px 0 40px;
@@ -1178,6 +1183,7 @@
   }
 
   .hero-inner {
+        width: calc(100% - 20px); /* było za wąsko */
     padding: 40px 0 24px;
   }
 }
