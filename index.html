@@ -971,6 +971,16 @@
     height: 150px;
   }
 }
+    #formStatus {
+  display: none;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #eaf2ff;
+  color: #1f63e9;
+  font-weight: 800;
+  text-align: center;
+  font-size: 14px;
+}
   </style>
 </head>
 
@@ -1256,10 +1266,11 @@
   </div>
 
   <input type="email" name="email" placeholder="E-mail" required />
-
   <textarea name="message" placeholder="Wiadomość"></textarea>
 
   <button class="submit" type="submit">Wyślij wiadomość</button>
+
+  <p id="formStatus"></p>
 </form>
         </div>
       </section>
@@ -1308,36 +1319,58 @@
     </footer>
   </div>
 
-  <script>
-    // const form = document.getElementById("contactForm");
+<script>
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
 
-    // form.addEventListener("submit", function(e) {
-    //   e.preventDefault();
-    //   alert("Dziękujemy! Wiadomość została wysłana.");
-    //   form.reset();
-    // });
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-    const cards = document.querySelectorAll(".service-card, .project, .testimonial, .price-card");
+    const data = new FormData(form);
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = entry.target.classList.contains("featured")
-            ? "translateY(-8px)"
-            : "translateY(0)";
-        }
-      });
-    }, {
-      threshold: 0.15
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        "Accept": "application/json"
+      }
     });
 
-    cards.forEach(card => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(25px)";
-      card.style.transition = "0.6s ease";
-      observer.observe(card);
+    if (response.ok) {
+      status.textContent = "Dziękujemy! Formularz został wysłany.";
+      status.style.display = "block";
+      form.reset();
+
+      setTimeout(() => {
+        status.style.display = "none";
+      }, 4000);
+    } else {
+      status.textContent = "Coś poszło nie tak. Spróbuj ponownie.";
+      status.style.display = "block";
+    }
+  });
+
+  const cards = document.querySelectorAll(".service-card, .project, .testimonial, .price-card");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = entry.target.classList.contains("featured")
+          ? "translateY(-8px)"
+          : "translateY(0)";
+      }
     });
-  </script>
+  }, {
+    threshold: 0.15
+  });
+
+  cards.forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(25px)";
+    card.style.transition = "0.6s ease";
+    observer.observe(card);
+  });
+</script>
 </body>
 </html>
