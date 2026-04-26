@@ -865,7 +865,11 @@
   .hero {
     padding: 36px 0 52px;
   }
-
+.process-icon img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 34px;
@@ -995,6 +999,287 @@
   text-align: center;
   font-size: 14px;
 }
+.process-section {
+  position: relative;
+  padding: 70px 0 80px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.process-section::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 260px;
+  left: -80px;
+  top: -40px;
+  background: linear-gradient(135deg, rgba(31,99,233,.14), rgba(31,99,233,.03));
+  border-radius: 0 0 120px 0;
+}
+
+.process-section::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 220px;
+  right: -90px;
+  bottom: -70px;
+  background: linear-gradient(135deg, rgba(31,99,233,.12), rgba(31,99,233,.03));
+  border-radius: 160px 0 0 0;
+}
+
+.process-dots {
+  position: absolute;
+  width: 140px;
+  height: 110px;
+  background-image: radial-gradient(#74a7ff 2px, transparent 2px);
+  background-size: 20px 20px;
+  opacity: .65;
+}
+
+.process-dots.top {
+  right: 80px;
+  top: 50px;
+}
+
+.process-dots.bottom {
+  left: 40px;
+  bottom: 70px;
+}
+
+.process-head {
+  text-align: center;
+  margin-bottom: 58px;
+  position: relative;
+  z-index: 2;
+}
+
+.process-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #eaf2ff;
+  color: #1f63e9;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  margin-bottom: 28px;
+}
+
+.process-pill span {
+  width: 7px;
+  height: 7px;
+  background: #1f63e9;
+  border-radius: 50%;
+}
+
+.process-head h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 950;
+  color: #08142c;
+}
+
+.process-line-title {
+  width: 46px;
+  height: 4px;
+  background: #1f63e9;
+  border-radius: 20px;
+  margin: 18px auto 22px;
+}
+
+.process-head p {
+  color: #4b5875;
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.process-steps {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 44px;
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+}
+
+.process-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 105px;
+  left: calc(50% + 95px);
+  width: 140px;
+  height: 1px;
+  background: #9ec2ff;
+}
+
+.process-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 101px;
+  left: calc(50% + 230px);
+  width: 9px;
+  height: 9px;
+  background: #1f63e9;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.process-icon-wrap {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  border: 1px solid #dce9ff;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: rgba(255,255,255,.7);
+}
+
+.process-number {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: -4px;
+  top: -4px;
+  border-radius: 50%;
+  background: #1f63e9;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 900;
+  box-shadow: 0 12px 25px rgba(31,99,233,.28);
+} 
+
+
+.process-icon {
+  width: 128px;
+  height: 128px;
+  border-radius: 34px;
+  overflow: hidden;
+}
+
+.process-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke-width: 2.2;
+}
+
+.process-small-line {
+  width: 28px;
+  height: 3px;
+  background: #1f63e9;
+  border-radius: 20px;
+  margin: 0 auto 22px;
+}
+
+.process-step h3 {
+  font-size: 18px;
+  color: #08142c;
+  margin-bottom: 14px;
+  font-weight: 900;
+}
+
+.process-step p {
+  color: #4b5875;
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+.process-step:not(:last-child)::after {
+  width: 90px;
+  left: calc(50% + 70px);
+}
+
+.process-step:not(:last-child)::before {
+  left: calc(50% + 155px);
+}
+
+@media (max-width: 900px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .process-step::before,
+  .process-step::after {
+    display: none;
+  }
+
+  .process-icon-wrap {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 28px;
+  }
+
+  .process-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .process-head p {
+    font-size: 16px;
+  }
+}
+.process-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 34px;
+}
+.why-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 130px 0;
+}
+
+.why-section .section-head {
+  margin-bottom: 70px;
+}
+@media (max-width: 900px) {
+
+  /* kropki (pattern) */
+  .process-dots {
+    width: 80px;
+    height: 60px;
+    background-size: 12px 12px;
+    opacity: 0.4;
+  }
+
+  .process-dots.top {
+    right: 20px;
+    top: 20px;
+  }
+
+  .process-dots.bottom {
+    left: 20px;
+    bottom: 20px;
+  }
+
+  /* tła za sekcją (te duże jasne plamy) */
+  .process-section::before {
+    width: 180px;
+    height: 140px;
+    left: -40px;
+    top: -20px;
+  }
+
+  .process-section::after {
+    width: 200px;
+    height: 120px;
+    right: -40px;
+    bottom: -30px;
+  }
+}
   </style>
 </head>
 
@@ -1086,7 +1371,7 @@
         </div>
       </section>
 
-      <section class="soft">
+      <section class="soft why-section">
         <div class="container">
           <div class="section-head">
             <span class="mini">Dlaczego my?</span>
@@ -1174,39 +1459,69 @@
         </div>
       </section>
 
-    <section id="proces" class="soft">
+    <section id="proces" class="process-section">
+  <div class="process-dots top"></div>
+  <div class="process-dots bottom"></div>
+
   <div class="container">
-    <div class="section-head">
-      <span class="mini">Proces współpracy</span>
-      <h2>Prosty plan od pomysłu do gotowej strony</h2>
+    <div class="process-head">
+      <div class="process-pill"><span></span> Proces współpracy</div>
+      <h2>Jak wygląda współpraca?</h2>
+      <div class="process-line-title"></div>
+      <p>Prosty proces od pierwszej rozmowy do gotowej strony,<br>która pomaga zdobywać klientów.</p>
     </div>
 
-    <div class="benefits">
-      <div class="benefit">
-        <div class="icon">1</div>
-        <h3>Krótka rozmowa</h3>
-        <p>Ustalamy, czego potrzebuje Twoja firma i jaki cel ma spełniać strona.</p>
-      </div>
+ <div class="process-steps">
 
-      <div class="benefit">
-        <div class="icon">2</div>
-        <h3>Projekt i treści</h3>
-        <p>Przygotowujemy układ strony, teksty i kierunek wizualny dopasowany do branży.</p>
-      </div>
-
-      <div class="benefit">
-        <div class="icon">3</div>
-        <h3>Wdrożenie strony</h3>
-        <p>Tworzymy stronę, dopracowujemy szczegóły i dostosowujemy ją pod telefon.</p>
-      </div>
-
-      <div class="benefit">
-        <div class="icon">4</div>
-        <h3>Publikacja</h3>
-        <p>Pomagamy uruchomić stronę i przygotować ją pod widoczność w Google.</p>
+  <div class="process-step">
+    <div class="process-icon-wrap">
+      <div class="process-number">01</div>
+      <div class="process-icon">
+        <img src="rozmowa.png" alt="">
       </div>
     </div>
+    <div class="process-small-line"></div>
+    <h3>Rozmowa i analiza</h3>
+    <p>Poznajemy Twoją firmę,<br>ofertę i cele biznesowe.</p>
   </div>
+
+  <div class="process-step">
+    <div class="process-icon-wrap">
+      <div class="process-number">02</div>
+      <div class="process-icon">
+        <img src="projekt.png" alt="">
+      </div>
+    </div>
+    <div class="process-small-line"></div>
+    <h3>Projekt strony</h3>
+    <p>Tworzymy układ, styl wizualny<br>i treści dopasowane do branży.</p>
+  </div>
+
+  <div class="process-step">
+    <div class="process-icon-wrap">
+      <div class="process-number">03</div>
+      <div class="process-icon">
+        <img src="wdrozenie.png" alt="">
+      </div>
+    </div>
+    <div class="process-small-line"></div>
+    <h3>Wdrożenie</h3>
+    <p>Budujemy szybką, responsywną<br>stronę działającą na telefonie<br>i komputerze.</p>
+  </div>
+
+  <div class="process-step">
+    <div class="process-icon-wrap">
+      <div class="process-number">04</div>
+      <div class="process-icon">
+        <img src="publikacja.png" alt="">
+      </div>
+    </div>
+    <div class="process-small-line"></div>
+    <h3>Publikacja i wsparcie</h3>
+    <p>Pomagamy uruchomić stronę<br>i przygotować ją pod Google.</p>
+  </div>
+</div>
+</div>
 </section>
 
       <section id="cennik">
