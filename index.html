@@ -437,7 +437,21 @@
       border-bottom: 5px solid var(--blue);
       border-radius: 50%;
     }
+.project a,
+.project-link {
+  text-decoration: none;
+  color: inherit;
+}
 
+.project a:hover,
+.project-link:hover {
+  text-decoration: none;
+  color: inherit;
+}.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
     .benefits {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -492,11 +506,11 @@
     }
 
     .p2 {
-      background-image: url("Warsztata samochdowdy.png");
+      background-image: url("logistyka.png");
     }
 
     .p3 {
-      background-image: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80");
+      background-image: url("hero_mechanior.png");
     }
 
     .project-info {
@@ -998,7 +1012,7 @@
           <a href="#">Strona główna</a>
           <a href="#oferta">Usługi</a>
           <a href="#realizacje">Realizacje</a>
-          <a href="#opinie">Opinie</a>
+          <a href="#proces">Proces</a>
           <a href="#cennik">Cennik</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
@@ -1116,106 +1130,100 @@
           </div>
 
           <div class="projects">
-            <div class="project">
-              <a href="salon_kosmetyczny_wizytowka.html" target="_blank">
-              <div class="project-img p1" ></div>
-              </a>
-              <div class="project-info">
-                <div>
-                  <h3>Salon kosmetyczny</h3>
-                  <p>Strona internetowa</p>
-                </div>
-                <div class="arrow">➜</div>
-              </div>
-            </div>
+          <a href="salonik_kosmetyczny.html" class="project-link">
+  <div class="project">
+    <div class="project-img p1"></div>
+    <div class="project-info">
+      <div>
+        <h3>Salon kosmetyczny</h3>
+        <p>Strona internetowa</p>
+      </div>
+      <div class="arrow">➜</div>
+    </div>
+  </div>
+</a>
 
-            <div class="project">
-              <div class="project-img p2"></div>
-              <div class="project-info">
-                <div>
-                  <h3>Salon samochodowy</h3>
-                  <p>Strona internetowa</p>
-                </div>
-                <div class="arrow">➜</div>
-              </div>
-            </div>
+            <a href="logistka.html" class="project-link">
+  <div class="project">
+    <div class="project-img p2"></div>
+    <div class="project-info">
+      <div>
+        <h3>Firma logistyczna</h3>
+        <p>Strona internetowa</p>
+      </div>
+      <div class="arrow">➜</div>
+    </div>
+  </div>
+</a>
 
-            <div class="project">
-              <div class="project-img p3"></div>
-              <div class="project-info">
-                <div>
-                  <h3>Budmex</h3>
-                  <p>Strona internetowa</p>
-                </div>
-                <div class="arrow">➜</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="opinie" class="soft">
-        <div class="container">
-          <div class="section-head">
-            <span class="mini">Opinie klientów</span>
-            <h2>Klienci polecają nasze usługi</h2>
-          </div>
-
-          <div class="testimonials">
-            <div class="card testimonial">
-              <div class="stars">★★★★★</div>
-              <p>"Dzięki WebBoost nasza strona zaczęła przynosić klientów już w pierwszym miesiącu. Pełen profesjonalizm!"</p>
-              <div class="person">
-                <div class="avatar"></div>
-                <div>
-                  <strong>Anna Kowalska</strong>
-                  <span>Gabinet Kosmetyczny</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card testimonial">
-              <div class="stars">★★★★★</div>
-              <p>"Pozycjonowanie lokalne przyniosło świetne efekty. Jesteśmy teraz liderem w naszej okolicy."</p>
-              <div class="person">
-                <div class="avatar"></div>
-                <div>
-                  <strong>Marek Zieliński</strong>
-                  <span>Zakład Instalacyjny</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card testimonial">
-              <div class="stars">★★★★★</div>
-              <p>"Świetny kontakt, szybkie działanie i realne efekty. Polecam każdemu lokalnemu przedsiębiorcy!"</p>
-              <div class="person">
-                <div class="avatar"></div>
-                <div>
-                  <strong>Piotr Wiśniewski</strong>
-                  <span>Sklep Rowerowy</span>
-                </div>
+            <a href="mechanikowska.html" class="project-link">
+  <div class="project">
+    <div class="project-img p3"></div>
+    <div class="project-info">
+      <div>
+        <h3>Mechanik samochodowy</h3>
+        <p>Strona internetowa</p>
+      </div>
+      <div class="arrow">➜</div>
+    </div>
+  </div>
+</a>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+    <section id="proces" class="soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="mini">Proces współpracy</span>
+      <h2>Prosty plan od pomysłu do gotowej strony</h2>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="icon">1</div>
+        <h3>Krótka rozmowa</h3>
+        <p>Ustalamy, czego potrzebuje Twoja firma i jaki cel ma spełniać strona.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="icon">2</div>
+        <h3>Projekt i treści</h3>
+        <p>Przygotowujemy układ strony, teksty i kierunek wizualny dopasowany do branży.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="icon">3</div>
+        <h3>Wdrożenie strony</h3>
+        <p>Tworzymy stronę, dopracowujemy szczegóły i dostosowujemy ją pod telefon.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="icon">4</div>
+        <h3>Publikacja</h3>
+        <p>Pomagamy uruchomić stronę i przygotować ją pod widoczność w Google.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section id="cennik">
         <div class="container">
           <div class="section-head">
             <span class="mini">Proste zasady</span>
-            <h2>Przejrzyste pakiety dopasowane do Ciebie</h2>
+            <h2>Wybierz rozwiązanie dla swojej firmy</h2>
           </div>
 
           <div class="pricing">
             <div class="card price-card">
               <h3>Starter</h3>
-              <div class="price">1500 – 2500 zł</div>
+              <div class="price">199 – 299 zł</div>
               <ul>
-                <li>Strona internetowa</li>
-                <li>Podstawowe SEO</li>
-                <li>Optymalizacja wizytówki Google</li>
+                <li>Strona dopasowana do Twojej firmy</li>
+<li>Pełna wersja mobilna</li>
+<li>Przejrzysta prezentacja oferty</li>
               </ul>
               <button class="price-btn">Wybieram pakiet ➜</button>
             </div>
@@ -1223,24 +1231,25 @@
             <div class="card price-card featured">
               <span class="popular">Najpopularniejszy</span>
               <h3>Standard</h3>
-              <div class="price">2500 – 4500 zł</div>
+              <div class="price">299 – 399 zł</div>
               <ul>
-                <li>Strona internetowa</li>
-                <li>Pozycjonowanie lokalne SEO</li>
-                <li>Optymalizacja wizytówki Google</li>
-                <li>Podstawowe reklamy online</li>
+               <li>Nowoczesna strona dopasowana do branży</li>
+<li>Pełna wersja mobilna</li>
+<li>Formularz kontaktowy</li>
+<li>Podstawowa widoczność w Google</li>
               </ul>
               <button class="price-btn">Wybieram pakiet ➜</button>
             </div>
 
             <div class="card price-card">
               <h3>Premium</h3>
-              <div class="price">4500 – 8000 zł</div>
+              <div class="price">399 – 500 zł</div>
               <ul>
-                <li>Strona internetowa</li>
-                <li>SEO lokalne</li>
-                <li>Reklamy online</li>
-                <li>Stała obsługa i raportowanie</li>
+                <li>Rozbudowana strona dla firmy</li>
+<li>Pełna wersja mobilna</li>
+<li>Formularz kontaktowy</li>
+<li>Optymalizacja pod Google</li>
+<li>Lepsze dopasowanie pod klientów</li>
               </ul>
               <button class="price-btn">Wyślij wiadomość ➜</button>
             </div>
@@ -1289,7 +1298,7 @@
             <p><a href="#">Strona główna</a></p>
             <p><a href="#oferta">Usługi</a></p>
             <p><a href="#realizacje">Realizacje</a></p>
-            <p><a href="#opinie">Opinie</a></p>
+            <p><a href="#proces">Proces</a></p>
           </div>
 
           <div>
