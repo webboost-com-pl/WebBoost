@@ -1249,15 +1249,18 @@
             </p>
           </div>
 
-          <form id="contactForm">
-            <div class="form-row">
-              <input type="text" placeholder="Imię i nazwisko" required />
-              <input type="tel" placeholder="Telefon" required />
-            </div>
-            <input type="email" placeholder="E-mail" required />
-            <textarea placeholder="Wiadomość"></textarea>
-            <button class="submit" type="submit">Wyślij wiadomość</button>
-          </form>
+          <form id="contactForm" action="https://formspree.io/f/mykndgko" method="POST">
+  <div class="form-row">
+    <input type="text" name="name" placeholder="Imię i nazwisko" required />
+    <input type="tel" name="phone" placeholder="Telefon" required />
+  </div>
+
+  <input type="email" name="email" placeholder="E-mail" required />
+
+  <textarea name="message" placeholder="Wiadomość"></textarea>
+
+  <button class="submit" type="submit">Wyślij wiadomość</button>
+</form>
         </div>
       </section>
     </main>
@@ -1289,13 +1292,13 @@
           <div>
             <h3>Kontakt</h3>
             <p>kontakt@webboost.pl</p>
-            <p>+48 123 456 789</p>
-            <p>ul. Przykładowa 123,<br>00-000 Warszawa</p>
+            <p>+48 537 275 214</p>
+            <p>>64-600 Oborniki</p>
           </div>
         </div>
 
         <div class="copy">
-          <div>© 2025 WebBoost. Wszelkie prawa zastrzeżone.</div>
+          <div>© 2026 WebBoost. Wszelkie prawa zastrzeżone.</div>
           <div class="socials">
             <div class="social">f</div>
             <div class="social">◎</div>
@@ -1306,13 +1309,13 @@
   </div>
 
   <script>
-    const form = document.getElementById("contactForm");
+    // const form = document.getElementById("contactForm");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Dziękujemy! Wiadomość została wysłana.");
-      form.reset();
-    });
+    // form.addEventListener("submit", function(e) {
+    //   e.preventDefault();
+    //   alert("Dziękujemy! Wiadomość została wysłana.");
+    //   form.reset();
+    // });
 
     const cards = document.querySelectorAll(".service-card, .project, .testimonial, .price-card");
 
