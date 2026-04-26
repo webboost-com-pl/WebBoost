@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Serwis</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #e6332a;
+      --red-dark: #c92720;
+      --dark: #090d10;
+      --dark2: #11161b;
+      --text: #161a20;
+      --muted: #666;
+      --white: #fff;
+      --light: #f5f6f7;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 20px 50px rgba(0,0,0,.18);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #fff;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+html, body {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+* {
+  max-width: 100%;
+}
+ .container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 86px;
+      background: rgba(7, 10, 13, .92);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: #fff;
+      line-height: .9;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-links a:first-child {
+      color: var(--red);
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 21px;
+    }
+
+    .nav-phone small {
+      display: block;
+      font-size: 12px;
+      color: #ddd;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(4,6,8,.95) 0%, rgba(4,6,8,.78) 37%, rgba(4,6,8,.25) 72%),
+        url("hero_mechanior.png") center/cover;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      padding-top: 86px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      padding: 80px 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: 1.04;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 600;
+      color: #f1f1f1;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      height: 58px;
+      padding: 0 30px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: .25s;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-red:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: #fff;
+      border-color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .arrow-down {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      opacity: .8;
+    }
+
+    section {
+      padding: 110px 0;
+    }
+
+    .about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #fff;
+    }
+
+ .about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+    .eyebrow {
+      color: var(--red);
+      font-weight: 900;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .eyebrow::after {
+      content: "";
+      width: 170px;
+      height: 1px;
+      background: #ddd;
+      position: absolute;
+      left: 72px;
+      top: 50%;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -1.3px;
+      margin-bottom: 24px;
+      font-weight: 900;
+    }
+
+    .about p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 42px;
+      font-weight: 500;
+    }
+
+  .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 44px;
+}
+
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+    .stat i {
+      color: var(--red);
+      width: 38px;
+      height: 38px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .stat span {
+      font-size: 11px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .about-img {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 440px;
+    }
+
+    .about-img img {
+      height: 100%;
+      object-fit: cover;
+    }
+.stat-img {
+  width: 92px;
+  height:92px;
+  min-width: 52px;
+  object-fit: contain;
+}
+    .dark-section {
+      background:
+        radial-gradient(circle at top, rgba(230,51,42,.08), transparent 35%),
+        linear-gradient(135deg, #070b0e, #11161b);
+      color: #fff;
+    }
+
+    .services {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .center .eyebrow::after {
+      display: none;
+    }
+
+    .red-line {
+      width: 42px;
+      height: 3px;
+      background: var(--red);
+      margin: 18px auto 46px;
+      border-radius: 10px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,.055);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(230,51,42,.55);
+    }
+
+    .service-card img {
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .service-body {
+      padding: 20px 17px 24px;
+    }
+
+    .service-body h3 {
+      font-size: 16px;
+      line-height: 1.25;
+      margin-bottom: 13px;
+    }
+
+    .service-body p {
+      color: #cfcfcf;
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .why {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #fff;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: #fff;
+      min-height: 205px;
+      padding: 38px 25px;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.1);
+      border: 1px solid #eee;
+    }
+
+    .why-card i {
+      color: var(--red);
+      width: 54px;
+      height: 54px;
+      margin-bottom: 22px;
+    }
+
+    .why-card h3 {
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .why-card p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .pricing {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      margin-top: 44px;
+    }
+
+    .price-card {
+      min-height: 205px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.055);
+      border-radius: 7px;
+      padding: 31px 18px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+    }
+
+    .price-card i {
+      width: 48px;
+      height: 48px;
+      color: #fff;
+      margin-bottom: 18px;
+      opacity: .95;
+    }
+
+    .price-card h3 {
+      font-size: 19px;
+      line-height: 1.25;
+      margin-bottom: 9px;
+    }
+
+    .price-card small {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .price-card strong {
+      display: block;
+      color: var(--red);
+      font-size: 38px;
+      margin-top: 8px;
+      font-weight: 900;
+    }
+
+    .pricing .btn {
+      margin-top: 34px;
+      height: 46px;
+      font-size: 12px;
+    }
+
+   
+    .contact {
+      background: linear-gradient(135deg, #070b0e, #11161b);
+      color: #fff;
+      padding: 70px 0 28px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr .65fr 1.25fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact h2 {
+      font-size: 38px;
+      margin-bottom: 32px;
+      letter-spacing: -1px;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .contact-item i {
+      color: var(--red);
+      min-width: 23px;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .appointment {
+      background: rgba(255,255,255,.055);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 34px 28px;
+      text-align: center;
+    }
+
+    .appointment i {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 18px;
+    }
+
+    .appointment h3 {
+      font-size: 22px;
+      margin-bottom: 9px;
+    }
+
+    .appointment p {
+      color: #cfcfcf;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .appointment .btn {
+      height: 46px;
+      font-size: 12px;
+      width: 100%;
+    }
+
+    .map {
+      border-radius: 7px;
+      overflow: hidden;
+      min-height: 220px;
+      background:
+        linear-gradient(rgba(20,20,20,.72), rgba(20,20,20,.72)),
+        url("https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=80") center/cover;
+      position: relative;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .map::after {
+      content: "📍";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+    }
+
+    .footer {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ccc;
+      font-size: 13px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 50px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      color: #fff;
+      background: none;
+      border: 0;
+    }
+
+    @media (max-width: 1050px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .services-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        height: 76px;
+      }
+
+      .nav-phone {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 76px;
+        min-height: 100vh;
+        background-position: center;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 85px 0;
+      }
+
+      .services-grid,
+      .pricing-grid,
+      .why-grid,
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card img,
+
+
+      .about-img {
+        height: 320px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        gap: 20px;
+      }
+    }
+    @media (max-width: 700px) {
+  .about {
+    min-height: auto;
+    padding: 80px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .section-title {
+    font-size: 38px;
+  }
+
+  .about p {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 32px;
+  }
+
+  .stat {
+    background: #fff;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.08);
+  }
+
+  .stat-img {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+  }
+
+  .about-img {
+    height: 280px;
+    border-radius: 16px;
+  }
+
+  .services-grid,
+  .pricing-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card img {
+    height: 220px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact h2 {
+    font-size: 32px;
+  }
+}
+.price-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 15px;
+}
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">AUTO<br><span>SERWIS</span></a>
+
+      <nav class="nav-links">
+        <a href="#home">Strona główna</a>
+        <a href="#about">O nas</a>
+        <a href="#services">Usługi</a>
+        <a href="#pricing">Cennik</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+
+      <div class="nav-phone">
+        <i data-lucide="phone"></i>
+        <div>
+          510 123 456
+          <small>Pon - Pt: 8:00 - 18:00</small>
+        </div>
+      </div>
+
+      <button class="mobile-menu-btn">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Profesjonalny<br> serwis<span> samochodowy</span></h1>
+          <p>Diagnostyka komputerowa, naprawy, wymiana oleju, hamulce, zawieszenie oraz serwis klimatyzacji.</p>
+
+          <div class="buttons">
+            <a href="#contact" class="btn btn-red"><i data-lucide="calendar"></i> Umów wizytę</a>
+            <a href="tel:510123456" class="btn btn-outline"><i data-lucide="phone"></i> Zadzwoń teraz</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-down">
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">O nas</span>
+          <h2 class="section-title">Zaufaj doświadczeniu<br>i profesjonalizmowi</h2>
+          <p>
+            Nasz warsztat to połączenie wieloletniego doświadczenia, nowoczesnych technologii oraz pasji do motoryzacji.
+            Zapewniamy kompleksową obsługę Twojego samochodu na najwyższym poziomie.
+          </p>
+<div class="stats">
+  <div class="stat">
+    <img src="odznaka.png" alt="" class="stat-img">
+    <div>
+      <strong>15+</strong>
+      <span>Lat doświadczenia</span>
+    </div>
+  </div>
+
+  <div class="stat">
+    <img src="kluczMecha.png" alt="" class="stat-img">
+    <div>
+      <strong>5000+</strong>
+      <span>Zadowolonych klientów</span>
+    </div>
+  </div>
+
+  <div class="stat">
+    <img src="tarczaa.png" alt="" class="stat-img">
+    <div>
+      <strong>100%</strong>
+      <span>Gwarancji jakości</span>
+    </div>
+  </div>
+</div>
+
+<a href="#services" class="btn btn-red">Dowiedz się więcej</a>
+        </div>
+
+        <div class="about-img">
+          <img src="zdj_salonu.png" alt="Warsztat samochodowy">
+        </div>
+      </div>
+    </section>
+
+    <section class="services dark-section" id="services">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">Nasze usługi</span>
+          <h2 class="section-title">Kompleksowa obsługa Twojego samochodu</h2>
+          <div class="red-line"></div>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <img src="tablecik.png" alt="">
+            <div class="service-body">
+              <h3>Diagnostyka komputerowa</h3>
+              <p>Szybka i dokładna diagnoza usterek przy użyciu nowoczesnego sprzętu.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <img src="olej.png" alt="">
+            <div class="service-body">
+              <h3>Wymiana oleju</h3>
+              <p>Profesjonalna wymiana oleju i filtrów z użyciem wysokiej jakości produktów.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <img src="hamule.png" alt="">
+            <div class="service-body">
+              <h3>Hamulce</h3>
+              <p>Kompleksowa obsługa układu hamulcowego. Bezpieczeństwo przede wszystkim.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <img src="amory.png" alt="">
+            <div class="service-body">
+              <h3>Zawieszenie</h3>
+              <p>Naprawa i regulacja zawieszenia. Komfort i bezpieczeństwo jazdy.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <img src="klima.png" alt="">
+            <div class="service-body">
+              <h3>Klimatyzacja</h3>
+              <p>Serwis, odgrzybianie i napełnianie klimatyzacji. Zadbaj o świeże powietrze.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <img src="silnior.png" alt="">
+            <div class="service-body">
+              <h3>Naprawy silnika</h3>
+              <p>Kompleksowe naprawy silników benzynowych i diesla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">Dlaczego my?</span>
+          <h2 class="section-title">Dlaczego warto wybrać nasz serwis?</h2>
+          <div class="red-line"></div>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <i data-lucide="timer"></i>
+            <h3>Szybka diagnoza</h3>
+            <p>Nowoczesny sprzęt pozwala nam szybko zidentyfikować problem i zaproponować rozwiązanie.</p>
+          </div>
+
+          <div class="why-card">
+            <i data-lucide="file-text"></i>
+            <h3>Uczciwa wycena</h3>
+            <p>Przejrzyste zasady i uczciwe ceny. Płacisz tylko za to, czego naprawdę potrzebujesz.</p>
+          </div>
+
+          <div class="why-card">
+            <i data-lucide="calendar-days"></i>
+            <h3>Terminowa realizacja</h3>
+            <p>Szanujemy Twój czas. Zawsze dotrzymujemy ustalonych terminów.</p>
+          </div>
+
+          <div class="why-card">
+            <i data-lucide="users"></i>
+            <h3>Doświadczeni mechanicy</h3>
+            <p>Nasz zespół to wykwalifikowani specjaliści z wieloletnim doświadczeniem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing dark-section" id="pricing">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">Cennik</span>
+          <h2 class="section-title">Przykładowy cennik usług</h2>
+          <div class="red-line"></div>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card">
+            <img src="olejor.png" alt="" class="price-img">
+            <h3>Wymiana oleju<br>i filtra</h3>
+            <small>już od</small>
+            <strong>150 zł</strong>
+          </div>
+
+          <div class="price-card">
+           <img src="hamulek.png" alt="" class="price-img">
+            <h3>Wymiana klocków<br>hamulcowych</h3>
+            <small>już od</small>
+            <strong>200 zł</strong>
+          </div>
+
+          <div class="price-card">
+            <img src="zawieszenie.png" alt="" class="price-img">
+            <h3>Regeneracja<br>zawieszenia</h3>
+            <small>już od</small>
+            <strong>300 zł</strong>
+          </div>
+
+          <div class="price-card">
+            <img src="klimka.png" alt="" class="price-img">
+            <h3>Napełnianie<br>klimatyzacji</h3>
+            <small>już od</small>
+            <strong>180 zł</strong>
+          </div>
+
+          <div class="price-card">
+            <img src="silnikk.png" alt="" class="price-img">
+            <h3>Diagnostyka<br>komputerowa</h3>
+            <small>już od</small>
+            <strong>120 zł</strong>
+          </div>
+        </div>
+
+        <div class="center">
+          <a href="#contact" class="btn btn-red">Zobacz pełny cennik</a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Kontakt</span>
+            <h2>Skontaktuj się z nami</h2>
+
+            <div class="contact-info">
+              <div class="contact-item">
+                <i data-lucide="phone"></i>
+                <div><strong>510 123 456</strong>Zadzwoń do nas</div>
+              </div>
+
+              <div class="contact-item">
+                <i data-lucide="clock"></i>
+                <div><strong>Pon - Pt: 8:00 - 18:00</strong>Sobota: 8:00 - 14:00</div>
+              </div>
+
+              <div class="contact-item">
+                <i data-lucide="map-pin"></i>
+                <div><strong>ul. Mechaników 12</strong>30-123 Kraków</div>
+              </div>
+
+              <div class="contact-item">
+                <i data-lucide="mail"></i>
+                <div><strong>biuro@autoservis.pl</strong>Napisz do nas</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="appointment">
+            <i data-lucide="calendar-days"></i>
+            <h3>Umów wizytę</h3>
+            <p>Zarezerwuj dogodny termin wizyty online</p>
+            <a href="#" class="btn btn-red">Umów wizytę</a>
+          </div>
+
+          <div><img src="dojazd.png" alt=""></div>
+        </div>
+
+        <div class="footer">
+          <div class="logo">AUTO <span>SERWIS</span></div>
+          <p>© 2024 AutoSerwis. Wszelkie prawa zastrzeżone.</p>
+          <div class="footer-links">
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    const nav = document.querySelector(".navbar");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        nav.style.background = "rgba(7, 10, 13, .98)";
+      } else {
+        nav.style.background = "rgba(7, 10, 13, .92)";
+      }
+    });
+  </script>
+
+</body>
+</html>
