@@ -1341,6 +1341,232 @@
 .price-card.featured .price-note {
   color: rgba(255,255,255,0.8);
 }
+.mobile-why-section {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-why {
+    display: none !important;
+  }
+
+  .mobile-why-section {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 45%, #f6faff 100%);
+    padding: 34px 0 48px;
+  }
+
+  .why-mobile-container {
+    width: min(100% - 34px, 430px);
+    margin: 0 auto;
+  }
+
+  .why-badge {
+    width: fit-content;
+    margin: 0 auto 22px;
+    padding: 9px 20px 9px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(31, 99, 233, 0.3);
+    color: #1f63e9;
+    font-weight: 900;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    background: white;
+  }
+
+  .why-badge span {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1f63e9;
+    color: white;
+    display: grid;
+    place-items: center;
+  }
+
+  .mobile-why-section h2 {
+    text-align: center;
+    color: #061232;
+    font-size: 48px;
+    line-height: 0.98;
+    letter-spacing: -2px;
+    font-weight: 950;
+    margin-bottom: 22px;
+  }
+
+  .why-line {
+    width: 58px;
+    height: 4px;
+    background: #1f63e9;
+    border-radius: 999px;
+    margin: 0 auto 22px;
+  }
+
+  .why-desc {
+    text-align: center;
+    color: #33415f;
+    font-size: 19px;
+    line-height: 1.55;
+    margin: 0 auto 34px;
+  }
+
+  .why-cards {
+    display: grid;
+    gap: 16px;
+  }
+
+  .why-card {
+    position: relative;
+    min-height: 132px;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 18px 45px rgba(15, 35, 70, 0.09);
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 20px 20px 16px;
+    overflow: hidden;
+  }
+
+  .why-card-main {
+    background: linear-gradient(135deg, #2677ff, #0057f5);
+    color: white;
+  }
+
+  .why-icon-wrap {
+    position: relative;
+    width: 78px;
+    height: 78px;
+  }
+
+  .why-icon {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    color: #1f63e9;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
+  }
+
+  .why-card-main .why-icon {
+    background: white;
+  }
+
+  .why-small-num {
+    position: absolute;
+    left: -5px;
+    bottom: -6px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #1f63e9;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 950;
+  }
+
+  .why-card-main .why-small-num {
+    background: white;
+    color: #1f63e9;
+  }
+
+  .why-card h3 {
+    color: #071532;
+    font-size: 22px;
+    font-weight: 950;
+    margin-bottom: 8px;
+  }
+
+  .why-card p {
+    color: #33415f;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .why-card-main h3,
+  .why-card-main p {
+    color: white;
+  }
+
+  .why-big-num {
+    position: absolute;
+    right: 20px;
+    top: 28px;
+    font-size: 48px;
+    font-weight: 950;
+    color: rgba(31, 99, 233, 0.09);
+  }
+
+  .why-card-main .why-big-num {
+    color: rgba(255, 255, 255, 0.18);
+  }
+}
+/* NAPRAWA MOBILNEJ SEKCJI DLACZEGO MY */
+@media (max-width: 900px) {
+  .why-card {
+    grid-template-columns: 92px 1fr !important;
+    padding: 20px 62px 20px 16px !important;
+    gap: 16px !important;
+  }
+
+  .why-icon-wrap {
+    width: 82px !important;
+    height: 82px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 50% !important;
+    background: #eaf2ff !important;
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  .why-card-main .why-icon-wrap {
+    background: white !important;
+  }
+
+  .why-icon-wrap img {
+    width: 66px !important;
+    height: 66px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  .why-icon {
+    width: 82px !important;
+    height: 82px !important;
+  }
+
+  .why-card h3,
+  .why-card p {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .why-card h3 {
+    font-size: 21px !important;
+    line-height: 1.15 !important;
+  }
+
+  .why-card p {
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+  }
+
+  .why-big-num {
+    right: 18px !important;
+    top: 30px !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+}
   </style>
 </head>
 
@@ -1432,7 +1658,7 @@
         </div>
       </section>
 
-      <section class="soft why-section">
+      <section class="soft why-section desktop-why">
         <div class="container">
           <div class="section-head">
             <span class="mini">Dlaczego my?</span>
@@ -1467,6 +1693,64 @@
           </div>
         </div>
       </section>
+      <section class="mobile-why-section">
+  <div class="why-mobile-container">
+    <div class="why-badge"><span>★</span> Dlaczego my?</div>
+
+    <h2>Zyskujesz więcej<br>niż stronę</h2>
+    <div class="why-line"></div>
+
+    <p class="why-desc">
+      Tworzymy narzędzia, które realnie wspierają rozwój Twojego biznesu i przynoszą efekty.
+    </p>
+
+    <div class="why-cards">
+      <div class="why-card why-card-main">
+        <div class="why-icon-wrap">
+          <img src="ludziki.png" alt="">
+        </div>
+        <div>
+          <h3>Więcej klientów</h3>
+          <p>Docieramy do osób, które szukają właśnie Twoich usług.</p>
+        </div>
+        <span class="why-big-num">01</span>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <img src="wzrost.png" alt="">
+        </div>
+        <div>
+          <h3>Stały napływ zapytań</h3>
+          <p>Dzięki SEO i reklamom zdobywasz regularne i wartościowe leady.</p>
+        </div>
+        <span class="why-big-num">02</span>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <img src="tarczaak.png" alt="">
+        </div>
+        <div>
+          <h3>Nowoczesny wizerunek</h3>
+          <p>Profesjonalna strona i obecność w Google budują zaufanie.</p>
+        </div>
+        <span class="why-big-num">03</span>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon-wrap">
+         <img src="trofum.png" alt="">
+        </div>
+        <div>
+          <h3>Przewaga nad konkurencją</h3>
+          <p>Skuteczne działania, dzięki którym wyprzedzasz lokalną konkurencję.</p>
+        </div>
+        <span class="why-big-num">04</span>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section id="realizacje">
         <div class="container">
