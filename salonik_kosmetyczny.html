@@ -639,7 +639,44 @@ background:
       section{
         padding:44px 0;
       }
+@media(max-width:620px){
 
+  header{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    z-index: 100;
+
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(80,55,32,.12);
+
+    padding: 10px 14px;
+  }
+
+  .nav{
+    gap: 10px;
+  }
+
+  .logo{
+    font-size: 26px;
+  }
+
+  .logo span{
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  .nav .btn{
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+}
       h2{
         font-size:36px;
       }
