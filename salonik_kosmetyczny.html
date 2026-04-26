@@ -305,6 +305,7 @@ nav li:first-child a::after{
     }
 
     .service-card img{
+      
       height:230px;
       width:100%;
     }
@@ -744,6 +745,364 @@ img{
     background-position:center top;
   }
 }
+
+/* DESKTOP (normalnie 4 kolumny) */
+.price-image-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+/* TABLET */
+@media(max-width:1000px){
+  .price-image-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* TELEFON */
+@media(max-width:620px){
+  .price-image-grid{
+    grid-template-columns:1fr;
+    gap:26px;
+    padding:0 12px;
+  }
+
+  .price-image-grid img{
+    width:100%;
+    height:auto;
+    border-radius:20px;
+    box-shadow:0 20px 45px rgba(80,55,32,.14);
+  }
+}
+
+price-card-img{
+  transition: transform .35s ease, box-shadow .35s ease;
+  will-change: transform;
+}
+
+.price-card-img:hover{
+  transform: translateY(-6px) scale(1.025);
+  box-shadow:0 28px 65px rgba(80,55,32,.18);
+}
+
+.price-card-img img{
+  transition: transform .35s ease;
+}
+
+.price-card-img:hover img{
+  transform: scale(1.03);
+}
+
+@media(max-width:1000px){
+  .price-image-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+.beauty-hero{
+  display:none;
+}
+
+@media(max-width:620px){
+
+  header,
+  .hero-desktop{
+    display:none;
+  }
+
+  .beauty-hero{
+    display:flex;
+    position:relative;
+    min-height:100vh;
+    width:100%;
+    overflow:hidden;
+    background-image:url("hero_kosmetka.png");
+    background-size:cover;
+    background-position:center right 35%;
+    padding:16px;
+    flex-direction:column;
+    font-family:"Inter",sans-serif;
+  }
+
+  .beauty-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      90deg,
+      rgba(250,246,240,.96) 0%,
+      rgba(250,246,240,.80) 34%,
+      rgba(250,246,240,.25) 58%,
+      rgba(250,246,240,.02) 100%
+    );
+    z-index:1;
+  }
+
+  .beauty-hero__nav,
+  .beauty-hero__content,
+  .beauty-hero__cta{
+    position:relative;
+    z-index:2;
+  }
+
+  .beauty-hero__nav{
+    min-height:58px;
+    border-radius:22px;
+    padding:9px 10px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(16px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .beauty-hero__logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:34px;
+    font-weight:600;
+    color:#2e2924;
+    letter-spacing:-.05em;
+    padding-left:10px;
+  }
+
+  .beauty-hero__nav-btn{
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    padding:11px 16px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#c8a05d,#b88d46);
+    white-space:nowrap;
+  }
+
+  .beauty-hero__content{
+    max-width:56%;
+    margin-top:auto;
+    margin-bottom:125px;
+  }
+
+  .beauty-hero__content h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:42px;
+    line-height:.96;
+    font-weight:600;
+    letter-spacing:-.045em;
+    color:#372d27;
+  }
+
+  .beauty-hero__content h1 span{
+    color:#c3a05e;
+  }
+
+  .beauty-hero__line{
+    width:64px;
+    height:2px;
+    background:#c3a05e;
+    margin:22px 0 18px;
+  }
+
+  .beauty-hero__content p{
+    font-size:15.5px;
+    line-height:1.45;
+    color:#3b3b3b;
+    letter-spacing:-.02em;
+  }
+
+  .beauty-hero__cta{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:22px;
+    text-align:center;
+    color:#fff;
+    font-size:20px;
+    font-weight:800;
+    padding:18px 16px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#cba55f,#b98f48);
+    box-shadow:0 16px 36px rgba(138,99,44,.25);
+  }
+    .about-img{
+    display:none;
+  }
+
+  .about{
+    min-height:auto;
+    padding:70px 0;
+  }
+
+  .about-grid{
+    gap:0;
+  }
+
+}
+.price-card-img{
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 20px 45px rgba(80,55,32,.14);
+}
+
+.price-card-img img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+  display:block;
+}
+
+@media(max-width:620px){
+  .price-card-img{
+    border-radius:20px;
+  }
+
+  .price-card-img img{
+    height:auto;
+  }
+}
+.about-mobile{
+  display:none;
+}
+@media(max-width:620px){
+
+  .about-premium-card{
+    display:grid;
+    grid-template-columns:96px 1fr;
+    align-items:center;
+    gap:20px;
+
+    background:rgba(255,255,255,.88);
+    border:1px solid #eee3d8;
+    border-radius:22px;
+    padding:22px 18px;
+    box-shadow:0 18px 45px rgba(80,55,32,.08);
+  }
+
+  .about-card-icon{
+    width:74px;
+    height:74px;
+    border:1px solid #d6b990;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold);
+    font-size:28px;
+    margin:0;
+  }
+
+  .about-premium-card > div:last-child{
+    border-left:1px solid #eaded1;
+    padding-left:20px;
+  }
+
+  .about-premium-card h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    line-height:1.1;
+    margin:0;
+  }
+
+  .about-premium-card span{
+    display:block;
+    width:38px;
+    height:2px;
+    background:var(--gold);
+    margin:10px 0 12px;
+  }
+
+  .about-premium-card p{
+    font-size:14px;
+    line-height:1.55;
+    color:#6a625b;
+    margin:0;
+  }
+}
+ .about-card-icon img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+}
+
+@media(max-width:620px){
+  .about-card-icon img{
+    width:80px;
+    height:80px;
+  }
+}
+@media(max-width:620px){
+  .about-desktop{
+    display:none !important;
+  }
+
+  .about-mobile{
+    display:block !important;
+    padding:70px 0;
+    background:#fffaf7;
+  }
+}
+.feature img{
+  width:80px !important;
+  height:80px !important;
+  min-width:80px;
+  min-height:80px;
+  object-fit:contain !important;
+  border:1px solid #d6b990;
+    border-radius:50% !important;
+
+  padding:5px;
+  margin-bottom:15px;
+}
+.about-card-icon img{
+  width:58px !important;
+  height:58px !important;
+  object-fit:cover !important;
+  border-radius:50% !important;
+  padding:0 !important;
+}
+@media(max-width:620px){
+  .about-premium-cards{
+    display:grid;
+    gap:28px; /* odstęp między kartami */
+  }
+
+  .about-premium-card{
+    margin-bottom:0;
+  }
+
+  .about-premium-card h3{
+    margin-bottom:14px;
+  }
+
+  .about-premium-card span{
+    margin:12px 0 16px;
+  }
+
+  .about-premium-card p{
+    line-height:1.75;
+  }
+}
+@media(max-width:620px){
+
+  /* odstęp od opisu */
+  .about-premium-head{
+    margin-bottom:30px;
+  }
+
+  /* kontener kart */
+  .about-premium-cards{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    align-items:center; /* WYŚRODKOWANIE */
+  }
+
+  /* same karty */
+  .about-premium-card{
+    width:100%;
+    max-width:360px; /* żeby nie dotykało krawędzi */
+  }
+
+}
   </style>
 </head>
 
@@ -769,8 +1128,8 @@ img{
 </header>
 
 <main>
-  <section class="hero">
-    <div class="container">
+<section class="hero hero-desktop">
+      <div class="container">
       <div class="hero-content">
         <h1>Naturalne piękno<br>w najlepszym<br><span>wydaniu</span></h1>
         <p>Pielęgnacja twarzy, paznokcie, rzęsy i chwila relaksu tylko dla Ciebie.</p>
@@ -778,38 +1137,99 @@ img{
       </div>
     </div>
   </section>
+<section class="beauty-hero">
+  <nav class="beauty-hero__nav">
+    <div class="beauty-hero__logo">Belleza</div>
+    <a href="#kontakt" class="beauty-hero__nav-btn">Umów wizytę</a>
+  </nav>
 
-  <section class="about" id="onas">
+  <div class="beauty-hero__content">
+    <h1>
+      Naturalne<br>
+      piękno w<br>
+      najlepszym<br>
+      <span>wydaniu</span>
+    </h1>
+
+    <div class="beauty-hero__line"></div>
+
+    <p>
+      Pielęgnacja twarzy, paznokcie,<br>
+      rzęsy i chwila relaksu<br>
+      tylko dla Ciebie.
+    </p>
+  </div>
+
+  <a href="#kontakt" class="beauty-hero__cta">Umów wizytę</a>
+</section>
+  <section class="about about-desktop" id="onas">
     <div class="container about-grid">
       <div class="about-img">
         <img src="kacik_makijazowy.png" alt="">
       </div>
 
       <div>
-        <div class="section-mark">⌁</div>
         <h2>O naszym salonie</h2>
         <p>Belleza to miejsce stworzone z pasji do piękna i dobrego samopoczucia. Łączymy nowoczesne technologie z indywidualnym podejściem, aby wydobyć Twoje naturalne piękno i podkreślić je w najlepszy sposób. Zadbamy o Twój wygląd, relaks i pewność siebie.</p>
 
         <div class="features">
           <div class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/></svg>
+            <img src="kwiat.png" alt="">
             <h3>Profesjonalizm</h3>
             <p>Doświadczony zespół i najwyższej jakości produkty.</p>
           </div>
           <div class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c2.7 3 6 3.8 6 8a6 6 0 0 1-12 0c0-4.2 3.3-5 6-8z"/></svg>
+            <img src="kolejnabuzia.png" alt="">
             <h3>Indywidualne podejście</h3>
             <p>Każda usługa dopasowana do Twoich potrzeb.</p>
           </div>
           <div class="feature">
-            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 6v11l-8-5-8 5V9z"/></svg>
-            <h3>Relaks i komfort</h3>
+<img src="swieca.png" alt="">            
+<h3>Relaks i komfort</h3>
             <p>Wyjątkowa atmosfera i chwila dla Ciebie.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <section class="about-mobile" id="onas-mobile">
+  <div class="container">
+    <div class="about-premium-head">
+      <h2>O naszym salonie</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Belleza to miejsce stworzone z pasji do piękna i dobrego samopoczucia. Łączymy nowoczesne technologie z indywidualnym podejściem.</p>
+    </div>
+
+    <div class="about-premium-cards">
+      <div class="about-premium-card">
+        <div class="about-card-icon"><img src="kwiat.png" alt=""></div>
+        <div>
+          <h3>1. Profesjonalizm</h3>
+          <span></span>
+          <p>Doświadczony zespół i najwyższej jakości produkty.</p>
+        </div>
+      </div>
+
+      <div class="about-premium-card">
+        <div class="about-card-icon"><img src="kolejnabuzia.png" alt=""></div>
+        <div>
+          <h3>2. Indywidualne podejście</h3>
+          <span></span>
+          <p>Każda usługa dopasowana do Twoich potrzeb.</p>
+        </div>
+      </div>
+
+      <div class="about-premium-card">
+        <div class="about-card-icon"><img src="swieca.png" alt=""></div>
+        <div>
+          <h3>3. Relaks i komfort</h3>
+          <span></span>
+          <p>Wyjątkowa atmosfera i chwila dla Ciebie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section class="services" id="uslugi">
     <div class="container">
@@ -820,7 +1240,7 @@ img{
 
       <div class="service-grid">
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=90" alt="">
+          <img src="kosmetka_1.png" alt="">
           <div class="body">
             <h3>Zabiegi na twarz</h3>
             <p>Profesjonalna pielęgnacja dopasowana do potrzeb Twojej skóry.</p>
@@ -829,7 +1249,7 @@ img{
         </div>
 
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=90" alt="">
+          <img src="pazy.png" alt="">
           <div class="body">
             <h3>Paznokcie</h3>
             <p>Stylizacja paznokci, manicure klasyczny, hybrydowy oraz przedłużanie.</p>
@@ -838,7 +1258,7 @@ img{
         </div>
 
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=700&q=90" alt="">
+          <img src="brwy.png" alt="">
           <div class="body">
             <h3>Rzęsy</h3>
             <p>Przedłużanie rzęs różnymi metodami oraz lifting i stylizacja.</p>
@@ -847,7 +1267,7 @@ img{
         </div>
 
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=700&q=90" alt="">
+          <img src="jednak_brwy.png" alt="">
           <div class="body">
             <h3>Brwi</h3>
             <p>Regulacja, henna pudrowa, laminacja brwi oraz stylizacja.</p>
@@ -856,7 +1276,7 @@ img{
         </div>
 
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=90" alt="">
+          <img src="maszasz.png" alt="">
           <div class="body">
             <h3>Masaże</h3>
             <p>Relaksujące masaże ciała, które odprężają i dodają energii.</p>
@@ -868,51 +1288,31 @@ img{
   </section>
 
   <section class="pricing" id="cennik">
-    <div class="container">
-      <div class="center-title">
-        <h2>Cennik</h2>
-        <div class="ornament"><span>✦</span></div>
-      </div>
-
-      <div class="price-grid">
-        <div class="price-card">
-          <h3>Zabiegi na twarz</h3>
-          <div class="price-row"><span>Oczyszczanie wodorowe</span><strong>250 zł</strong></div>
-          <div class="price-row"><span>Mezoterapia bezigłowa</span><strong>300 zł</strong></div>
-          <div class="price-row"><span>Peeling chemiczny</span><strong>280 zł</strong></div>
-          <div class="price-row"><span>Zabieg nawilżający</span><strong>220 zł</strong></div>
-          <a class="more" href="#">Zobacz więcej →</a>
-        </div>
-
-        <div class="price-card">
-          <h3>Paznokcie</h3>
-          <div class="price-row"><span>Manicure hybrydowy</span><strong>120 zł</strong></div>
-          <div class="price-row"><span>Przedłużanie paznokci</span><strong>180 zł</strong></div>
-          <div class="price-row"><span>Uzupełnienie żelowe</span><strong>150 zł</strong></div>
-          <div class="price-row"><span>Zdobienia</span><strong>od 10 zł</strong></div>
-          <a class="more" href="#">Zobacz więcej →</a>
-        </div>
-
-        <div class="price-card">
-          <h3>Rzęsy i brwi</h3>
-          <div class="price-row"><span>Przedłużanie rzęs 1:1</span><strong>150 zł</strong></div>
-          <div class="price-row"><span>Przedłużanie rzęs 2-3D</span><strong>180 zł</strong></div>
-          <div class="price-row"><span>Laminacja brwi</span><strong>120 zł</strong></div>
-          <div class="price-row"><span>Henna pudrowa brwi</span><strong>100 zł</strong></div>
-          <a class="more" href="#">Zobacz więcej →</a>
-        </div>
-
-        <div class="price-card">
-          <h3>Masaże</h3>
-          <div class="price-row"><span>Masaż relaksacyjny 60 min</span><strong>180 zł</strong></div>
-          <div class="price-row"><span>Masaż klasyczny 60 min</span><strong>160 zł</strong></div>
-          <div class="price-row"><span>Masaż gorącymi kamieniami</span><strong>200 zł</strong></div>
-          <div class="price-row"><span>Masaż pleców</span><strong>120 zł</strong></div>
-          <a class="more" href="#">Zobacz więcej →</a>
-        </div>
-      </div>
+  <div class="container">
+    <div class="center-title">
+      <h2>Cennik</h2>
+      <div class="ornament"><span>✦</span></div>
     </div>
-  </section>
+
+    <div class="price-image-grid">
+  <div class="price-card-img">
+    <img src="zabieg_1.png" alt="Cennik zabiegi na twarz">
+  </div>
+
+  <div class="price-card-img">
+    <img src="zabieg_2.png" alt="Cennik paznokcie">
+  </div>
+
+  <div class="price-card-img">
+    <img src="zabieg_3.png" alt="Cennik rzęsy i brwi">
+  </div>
+
+  <div class="price-card-img">
+    <img src="zabieg_4.png" alt="Cennik masaże">
+  </div>
+</div>
+  </div>
+</section>
 
   <section class="gallery" id="galeria">
   <div class="container">
@@ -922,11 +1322,11 @@ img{
     </div>
 
     <div class="gallery-slider">
-      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=90" alt="">
-      <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=900&q=90" alt="">
-      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=900&q=90" alt="">
-      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=90" alt="">
-      <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=90" alt="">
+      <img src="zdj_salonu_rozne.png" alt="">
+      <img src="buzaa.png" alt="">
+      <img src="jakieszdj.png" alt="">
+      <img src="pazurasy.png" alt="">
+      <img src="masaas.png" alt="">
     </div>
 
     <div class="gallery-btn">
