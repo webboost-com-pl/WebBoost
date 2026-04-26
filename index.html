@@ -915,10 +915,14 @@
   .hero {
     padding: 36px 0 52px;
   }
-.process-icon img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
+.process-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1195,26 +1199,31 @@
 
 .process-number {
   position: absolute;
-  width: 52px;
-  height: 52px;
-  left: -4px;
-  top: -4px;
+  top: -10px;
+  left: -10px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #1f63e9;
   color: white;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 900;
-  box-shadow: 0 12px 25px rgba(31,99,233,.28);
-} 
+  font-size: 16px;
+  box-shadow: 0 10px 25px rgba(31,99,233,0.3);
+  z-index: 3;
+}
 
 
 .process-icon {
-  width: 128px;
-  height: 128px;
-  border-radius: 34px;
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .process-icon svg {
@@ -1264,26 +1273,30 @@
     display: none;
   }
 
-  .process-icon-wrap {
-    width: 160px;
-    height: 160px;
-    margin-bottom: 28px;
-  }
+.process-icon-wrap {
+  border: none;
+  background: transparent;
+}
 
-  .process-icon {
-    width: 100px;
-    height: 100px;
-  }
+.process-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
   .process-head p {
     font-size: 16px;
   }
 }
 .process-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 34px;
+  width: 200%;
+  height: 200%;
+  object-fit: contain;
+  border-radius: 100%px;
 }
 .why-section {
   min-height: 90vh;
@@ -1567,6 +1580,552 @@
     pointer-events: none !important;
   }
 }
+.why-premium-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 760px;
+  padding: 120px 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(31, 99, 233, 0.16), transparent 18%),
+    radial-gradient(circle at 100% 100%, rgba(31, 99, 233, 0.18), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.why-premium-container {
+  width: min(1440px, calc(100% - 120px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  gap: 90px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.why-premium-badge {
+  width: fit-content;
+  padding: 12px 22px 12px 14px;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1f63e9;
+  font-size: 17px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 42px;
+}
+
+.why-premium-badge span {
+  font-size: 17px;
+}
+
+.why-premium-left h2 {
+  color: #071532;
+  font-size: clamp(58px, 5vw, 86px);
+  line-height: 1.05;
+  letter-spacing: -4px;
+  font-weight: 950;
+  margin-bottom: 42px;
+}
+
+.why-premium-left h2 span {
+  color: #1f63e9;
+  position: relative;
+  display: inline-block;
+}
+
+.why-premium-left h2 span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -6px;
+  bottom: -8px;
+  height: 12px;
+  border-bottom: 6px solid #1f63e9;
+  border-radius: 50%;
+  transform: rotate(-2deg);
+  opacity: 0.9;
+}
+
+.why-premium-left p {
+  max-width: 570px;
+  color: #34425f;
+  font-size: 22px;
+  line-height: 1.65;
+  font-weight: 500;
+  margin-bottom: 70px;
+}
+
+.why-formula {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 18px 18px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.86);
+  border: 1px solid #e7eefb;
+  box-shadow: 0 18px 45px rgba(15, 35, 70, 0.08);
+}
+
+.formula-item {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  gap: 9px !important;
+}
+
+.formula-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eaf2ff;
+  color: #1f63e9;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.formula-google {
+  font-size: 28px;
+}
+
+.formula-plus {
+  color: #1f63e9;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.formula-result {
+  min-height: 58px;
+  padding: 0 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2574ff, #0057f5);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  box-shadow: 0 16px 35px rgba(31, 99, 233, 0.3);
+}
+
+.formula-result span {
+  font-size: 26px;
+}
+
+.why-premium-right {
+  min-height: 590px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+.why-axis-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, #e4ebf7 12%, #e4ebf7 88%, transparent);
+}
+
+.why-axis-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e4ebf7 12%, #e4ebf7 88%, transparent);
+}
+
+.axis-dot {
+  position: absolute;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  background: #1f63e9;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.dot-one {
+  top: calc(50% - 5px);
+}
+
+.dot-two {
+  top: calc(100% - 128px);
+}
+
+.why-feature {
+  position: relative;
+  padding: 34px 46px 38px;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feature-icon {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: #eef5ff;
+  color: #1f63e9;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  margin-bottom: 26px;
+}
+
+.feature-icon-main {
+  width: 118px;
+  height: 118px;
+  background: linear-gradient(135deg, #3f86ff, #0b5cff);
+  color: white;
+  font-size: 50px;
+  box-shadow: 0 22px 45px rgba(31, 99, 233, 0.32);
+}
+
+.feature-number {
+  display: block;
+  color: #1f63e9;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 950;
+  margin-bottom: 22px;
+}
+
+.why-feature h3 {
+  color: #071532;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  font-weight: 950;
+  margin-bottom: 14px;
+}
+
+.why-feature p {
+  color: #34425f;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 500;
+  max-width: 350px;
+}
+
+.why-feature::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: 58px;
+  top: 90px;
+  background-image: radial-gradient(rgba(31,99,233,.23) 2px, transparent 2px);
+  background-size: 12px 12px;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+.why-premium-bg {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(31, 99, 233, 0.22);
+  filter: blur(42px);
+  z-index: 0;
+}
+
+.why-bg-left {
+  width: 360px;
+  height: 360px;
+  left: -160px;
+  bottom: -120px;
+}
+
+.why-bg-right {
+  width: 420px;
+  height: 420px;
+  right: -130px;
+  bottom: -120px;
+}
+
+.why-dots {
+  position: absolute;
+  width: 220px;
+  height: 180px;
+  background-image: radial-gradient(rgba(31,99,233,.28) 2px, transparent 2px);
+  background-size: 18px 18px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.why-dots-left {
+  left: 0;
+  bottom: 40px;
+}
+
+.why-dots-right {
+  right: 55px;
+  top: 70px;
+}
+
+@media (max-width: 1100px) {
+  .why-premium-container {
+    grid-template-columns: 1fr;
+  }
+
+  .why-premium-right {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* POPRAWKA SEKCJI DLACZEGO MY - MNIEJSZA, BEZ MOCNYCH GRADIENTÓW */
+.why-premium-section {
+  min-height: 620px !important;
+  padding: 80px 0 !important;
+  background: #ffffff !important;
+
+}
+
+.why-premium-bg {
+  display: none !important;
+}
+
+.why-premium-container {
+  width: min(1240px, calc(100% - 80px)) !important;
+  gap: 60px !important;
+}
+
+.why-premium-left h2 {
+  font-size: clamp(48px, 4.2vw, 68px) !important;
+  margin-bottom: 28px !important;
+}
+
+.why-premium-left p {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 44px !important;
+}
+
+.why-premium-badge {
+  margin-bottom: 28px !important;
+  font-size: 15px !important;
+  padding: 10px 18px 10px 12px !important;
+}
+
+.why-premium-right {
+  min-height: 500px !important;
+}
+
+.why-feature {
+  min-height: 240px !important;
+  padding: 24px 34px !important;
+}
+
+.feature-icon {
+  width: 70px !important;
+  height: 70px !important;
+  font-size: 34px !important;
+  margin-bottom: 20px !important;
+  background: #eef5ff !important;
+}
+
+.feature-icon-main {
+  width: 92px !important;
+  height: 92px !important;
+  font-size: 42px !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 34px rgba(31, 99, 233, 0.22) !important;
+}
+
+.feature-number {
+  font-size: 23px !important;
+  margin-bottom: 14px !important;
+}
+
+.why-feature h3 {
+  font-size: 22px !important;
+}
+
+.why-feature p {
+  font-size: 16px !important;
+}
+
+.why-formula {
+  transform: scale(0.9);
+  transform-origin: left center;
+}
+/* POPRAWKA IKON W SEKCJI WHY PREMIUM */
+.why-premium-section .feature-icon {
+  overflow: hidden !important;
+}
+
+.why-premium-section .feature-icon img {
+  width: 56px !important;
+  height: 56px !important;
+  object-fit: contain !important;
+}
+.why-premium-section {
+  background: #fff !important;
+}
+
+.why-dots {
+  opacity: 0.35 !important;
+}
+/* FORMUŁA: Strona + Google + formularz = więcej zapytań */
+.why-formula {
+  transform: none !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 26px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.formula-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #071532 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+.formula-item strong {
+  font-size: 13px !important;
+}
+.formula-icon {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 50% !important;
+  background: #eef5ff !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.formula-icon img {
+  width: 34px !important;
+  height: 34px !important;
+  object-fit: contain !important;
+}
+
+.formula-plus {
+  margin-top: 18px !important;
+  color: #1f63e9 !important;
+  font-size: 34px !important;
+  font-weight: 800 !important;
+}
+
+.formula-result {
+  margin-top: 0 !important;
+  min-height: 74px !important;
+  padding: 0 34px !important;
+  border-radius: 999px !important;
+  background: #1f63e9 !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 18px 35px rgba(31, 99, 233, 0.28) !important;
+}
+
+.formula-result img {
+  width: 34px !important;
+  height: 34px !important;
+  object-fit: contain !important;
+}
+.icon,
+.process-icon,
+.feature-icon,
+.why-icon-wrap,
+.formula-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon img,
+.process-icon img,
+.feature-icon img,
+.why-icon-wrap img,
+.formula-icon img {
+  display: block;
+  margin: 0 auto;
+}
+/* POPRAWKA PROCESU NA TELEFONIE */
+@media (max-width: 900px) {
+  .process-icon-wrap {
+    width: 135px !important;
+    height: 135px !important;
+    margin: 0 auto 24px !important;
+    border: none !important;
+    background: transparent !important;
+    position: relative !important;
+  }
+
+  .process-icon {
+    width: 115px !important;
+    height: 115px !important;
+    border-radius: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+
+  .process-icon img {
+    width: 125% !important;
+    height: 125% !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  .process-number {
+    top: 6px !important;
+    left: 0px !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 17px !important;
+    z-index: 5 !important;
+  }
+
+  .process-step h3 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .process-step p {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+  }
+}
+/* POPRAWKA IKON PROCESU NA KOMPUTERZE */
+@media (min-width: 901px) {
+  .process-icon {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+  }
+
+  .process-icon img {
+    width: 130% !important;
+    height: 130% !important;
+    object-fit: contain !important;
+    border-radius: 50% !important;
+  }
+
+  .process-icon-wrap {
+    border-radius: 50% !important;
+  }
+}
   </style>
 </head>
 
@@ -1658,41 +2217,108 @@
         </div>
       </section>
 
-      <section class="soft why-section desktop-why">
-        <div class="container">
-          <div class="section-head">
-            <span class="mini">Dlaczego my?</span>
-            <h2>Zyskujesz więcej niż stronę</h2>
-            <div class="underline"></div>
-          </div>
+      <section class="why-premium-section desktop-why">
+  <div class="why-premium-bg why-bg-left"></div>
+  <div class="why-premium-bg why-bg-right"></div>
+  <div class="why-dots why-dots-left"></div>
+  <div class="why-dots why-dots-right"></div>
 
-          <div class="benefits">
-            <div class="benefit">
-              <div class="icon"><img src="ludzie.png" alt="" height="50px"></div>
-              <h3>Więcej klientów</h3>
-              <p>Docieramy do osób, które szukają właśnie Twoich usług.</p>
-            </div>
+  <div class="why-premium-container">
+    <div class="why-premium-left">
+      <div class="why-premium-badge">
+        <span>★</span>
+        Dlaczego my?
+      </div>
 
-            <div class="benefit">
-              <div class="icon"><img src="przyro.png" alt="" height="50px"></div>
-              <h3>Stały napływ zapytań</h3>
-              <p>Dzięki SEO i reklamom zdobywasz regularne i wartościowe leady.</p>
-            </div>
+      <h2>
+        Zyskujesz<br>
+        <span>więcej</span> niż stronę
+      </h2>
 
-            <div class="benefit">
-              <div class="icon"><img src="tarcza.png" alt="" height="50px"></div>
-              <h3>Nowoczesny wizerunek</h3>
-              <p>Profesjonalna strona i obecność w Google budują zaufanie.</p>
-            </div>
+      <p>
+        Tworzymy strony i rozwiązania, które nie tylko dobrze wyglądają,
+        ale pomagają zdobywać klientów i budować zaufanie.
+      </p>
 
-            <div class="benefit">
-              <div class="icon"><img src="trofeum.png" alt="" height="50px"></div>
-              <h3>Przewaga nad konkurencją</h3>
-              <p>Skuteczne działania, dzięki którym wyprzedzasz lokalną konkurencję.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div class="why-formula">
+  <div class="formula-item">
+    <div class="formula-icon">
+      <img src="IKONA_STRONA.png" alt="">
+    </div>
+    <strong>Strona</strong>
+  </div>
+
+  <span class="formula-plus">+</span>
+
+  <div class="formula-item">
+    <div class="formula-icon">
+      <img src="IKONA_GOOGLE.png" alt="">
+    </div>
+    <strong>Google</strong>
+  </div>
+
+  <span class="formula-plus">+</span>
+
+  <div class="formula-item">
+    <div class="formula-icon">
+      <img src="IKONA_STRONA.png" alt="">
+    </div>
+    <strong>formularz</strong>
+  </div>
+
+  <span class="formula-plus">=</span>
+
+<div class="formula-result">
+  <img src="IKONA_WIECEJ_ZAPYTAN.png" alt="">
+  <strong>więcej zapytań</strong>
+</div>
+</div>
+    </div>
+
+    <div class="why-premium-right">
+      <div class="why-axis why-axis-v"></div>
+      <div class="why-axis why-axis-h"></div>
+      <span class="axis-dot dot-one"></span>
+      <span class="axis-dot dot-two"></span>
+
+      <div class="why-feature feature-one">
+        <div class="feature-icon feature-icon-main">
+  <img src="ludzy.png" alt="">
+</div>
+        <span class="feature-number">01</span>
+        <h3>Więcej klientów</h3>
+        <p>Docieramy do osób, które szukają właśnie Twoich usług.</p>
+      </div>
+
+      <div class="why-feature">
+       <div class="feature-icon feature-icon-main">
+  <img src="wykry.png" alt="">
+</div>
+        <span class="feature-number">02</span>
+        <h3>Stały napływ zapytań</h3>
+        <p>Dzięki SEO i reklamom zdobywasz regularne i wartościowe leady.</p>
+      </div>
+
+      <div class="why-feature">
+        <div class="feature-icon feature-icon-main">
+  <img src="tarczy.png" alt="">
+</div>
+        <span class="feature-number">03</span>
+        <h3>Nowoczesny wizerunek</h3>
+        <p>Profesjonalna strona i obecność w Google budują zaufanie.</p>
+      </div>
+
+      <div class="why-feature">
+         <div class="feature-icon feature-icon-main">
+  <img src="puchry.png" alt="">
+</div>
+        <span class="feature-number">04</span>
+        <h3>Przewaga nad konkurencją</h3>
+        <p>Skuteczne działania, dzięki którym wyprzedzasz lokalną konkurencję.</p>
+      </div>
+    </div>
+  </div>
+</section>
       <section class="mobile-why-section">
   <div class="why-mobile-container">
     <div class="why-badge"><span>★</span> Dlaczego my?</div>
