@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel właściciela</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+  <style>
+    :root{
+      --blue:#155cff;
+      --blue2:#0050ff;
+      --text:#07163a;
+      --muted:#72809d;
+      --line:#e5ebf5;
+      --soft:#f4f8ff;
+      --soft2:#eef5ff;
+      --shadow:0 22px 50px rgba(19,55,120,.09);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter, sans-serif;
+      color:var(--text);
+      background:#fff;
+      overflow-x:hidden;
+    }
+
+    .page{
+      min-height:100vh;
+      position:relative;
+      padding:70px 30px 50px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .blob-left{
+      position:absolute;
+      left:-120px;
+      top:-120px;
+      width:350px;
+      height:480px;
+      background:linear-gradient(160deg,#eef5ff,#ffffff);
+      border-radius:0 0 65% 0;
+      z-index:-1;
+    }
+
+    .blob-bottom{
+      position:absolute;
+      right:-60px;
+      bottom:-90px;
+      width:430px;
+      height:200px;
+      background:linear-gradient(160deg,#eaf2ff,#ffffff);
+      border-radius:60% 0 0 0;
+      z-index:-1;
+    }
+
+    .dots{
+      position:absolute;
+      width:82px;
+      height:100px;
+      background-image:radial-gradient(#bcd1ff 2.6px, transparent 2.6px);
+      background-size:20px 20px;
+      opacity:.8;
+    }
+
+    .dots.top{
+      right:110px;
+      top:105px;
+    }
+
+    .dots.bottom{
+      left:36px;
+      bottom:32px;
+    }
+
+    .badge{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border:1px solid #d7e5ff;
+      background:rgba(248,251,255,.9);
+      color:var(--blue);
+      border-radius:15px;
+      font-weight:800;
+      font-size:16px;
+      box-shadow:0 8px 20px rgba(21,92,255,.05);
+    }
+
+    h1{
+      margin:28px 0 16px;
+      font-size:44px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-1.5px;
+      text-align:center;
+    }
+
+    .subtitle{
+      margin:0 0 42px;
+      color:#6f7c99;
+      font-size:17px;
+      text-align:center;
+      font-weight:500;
+    }
+
+    .login-card{
+      width:100%;
+      max-width:570px;
+      background:rgba(255,255,255,.92);
+      border:1px solid #e4eaf4;
+      border-radius:22px;
+      padding:36px 28px 30px;
+      box-shadow:var(--shadow);
+    }
+
+    .store-icon{
+      width:96px;
+      height:96px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#eef5ff,#e9f1ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--blue);
+      font-size:42px;
+    }
+
+    .login-card h2{
+      margin:0;
+      text-align:center;
+      font-size:23px;
+      letter-spacing:-.5px;
+    }
+
+    .desc{
+      margin:12px 0 38px;
+      text-align:center;
+      color:#77839d;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .form{
+      max-width:500px;
+      margin:0 auto;
+    }
+
+    .field{
+      height:62px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:0 18px;
+      margin-bottom:18px;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(20,45,90,.03);
+    }
+
+    .field i{
+      color:#71809f;
+      font-size:19px;
+      width:20px;
+      text-align:center;
+    }
+
+    .field input{
+      border:0;
+      outline:0;
+      width:100%;
+      height:100%;
+      font-size:16px;
+      color:var(--text);
+      font-weight:500;
+      background:transparent;
+    }
+
+    .field input::placeholder{
+      color:#7b86a0;
+    }
+
+    .eye{
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      color:#74809b;
+      font-size:17px;
+    }
+
+    .main-btn{
+      width:100%;
+      height:64px;
+      border:0;
+      border-radius:13px;
+      background:linear-gradient(90deg,#075cff,#0052ff);
+      color:#fff;
+      font-size:19px;
+      font-weight:800;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      box-shadow:0 16px 30px rgba(21,92,255,.22);
+      transition:.25s;
+    }
+
+    .main-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 38px rgba(21,92,255,.28);
+    }
+
+    .main-btn i{
+      position:absolute;
+      right:25px;
+      font-size:23px;
+      font-weight:300;
+    }
+
+    .separator{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      margin:30px 0 26px;
+      color:#7a859b;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .separator::before,
+    .separator::after{
+      content:"";
+      height:1px;
+      background:#e3e8f1;
+      flex:1;
+    }
+
+    .google-btn{
+      width:100%;
+      height:62px;
+      border:2px solid #82aaff;
+      background:#fff;
+      border-radius:13px;
+      color:#1260ff;
+      font-size:17px;
+      font-weight:800;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+    }
+
+    .google-g{
+      font-size:26px;
+      font-weight:900;
+      background:conic-gradient(#4285f4,#34a853,#fbbc05,#ea4335,#4285f4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .safe-box{
+      margin-top:36px;
+      background:linear-gradient(90deg,#f4f8ff,#f8fbff);
+      border-radius:16px;
+      padding:23px 28px;
+      display:flex;
+      align-items:center;
+      gap:22px;
+    }
+
+    .safe-icon{
+      min-width:60px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      border:1px solid #dde8fb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--blue);
+      font-size:31px;
+      background:#f7fbff;
+    }
+
+    .safe-box strong{
+      display:block;
+      font-size:16px;
+      margin-bottom:7px;
+    }
+
+    .safe-box p{
+      margin:0;
+      color:#667492;
+      line-height:1.55;
+      font-weight:500;
+      font-size:14px;
+    }
+
+    .message{
+      margin-top:16px;
+      display:none;
+      padding:13px 15px;
+      border-radius:12px;
+      font-weight:700;
+      text-align:center;
+      font-size:14px;
+    }
+
+    .message.ok{
+      display:block;
+      color:#0b7a3b;
+      background:#ecfff4;
+      border:1px solid #bdf2d2;
+    }
+
+    .message.error{
+      display:block;
+      color:#b42318;
+      background:#fff1f0;
+      border:1px solid #ffd0cc;
+    }
+
+    .features{
+      width:100%;
+      max-width:1060px;
+      margin-top:38px;
+      background:linear-gradient(90deg,#f7fbff,#f2f7ff);
+      border-radius:18px;
+      box-shadow:0 18px 45px rgba(21,72,160,.08);
+      padding:28px 24px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+    }
+
+    .feature{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:0 22px;
+      border-right:1px solid #d9e5f7;
+    }
+
+    .feature:last-child{
+      border-right:0;
+    }
+
+    .feature-icon{
+      min-width:58px;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      border:1px solid #dce8fb;
+      background:#fff;
+      color:var(--blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:27px;
+      box-shadow:0 10px 25px rgba(21,92,255,.06);
+    }
+
+    .feature strong{
+      font-size:14px;
+      display:block;
+      margin-bottom:7px;
+    }
+
+    .feature p{
+      margin:0;
+      color:#697894;
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+
+    @media(max-width:900px){
+      .page{
+        padding:45px 18px;
+      }
+
+      h1{
+        font-size:36px;
+      }
+
+      .subtitle{
+        font-size:15px;
+        margin-bottom:30px;
+      }
+
+      .login-card{
+        padding:32px 20px;
+      }
+
+      .features{
+        grid-template-columns:1fr;
+        gap:0;
+        padding:18px;
+      }
+
+      .feature{
+        border-right:0;
+        border-bottom:1px solid #d9e5f7;
+        padding:18px 5px;
+      }
+
+      .feature:last-child{
+        border-bottom:0;
+      }
+
+      .dots.top{
+        right:15px;
+        top:70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="blob-left"></div>
+    <div class="blob-bottom"></div>
+    <div class="dots top"></div>
+    <div class="dots bottom"></div>
+
+    <div class="badge">
+      <i class="fa-solid fa-lock"></i>
+      Panel właściciela
+    </div>
+
+    <h1>Witaj ponownie!</h1>
+    <p class="subtitle">Zaloguj się do panelu i zarządzaj swoją obecnością w internecie.</p>
+
+    <section class="login-card">
+      <div class="store-icon">
+        <i class="fa-solid fa-shop"></i>
+      </div>
+
+      <h2>Logowanie do panelu</h2>
+      <p class="desc">Zaloguj się, aby uzyskać dostęp do swojego konta.</p>
+
+      <form class="form" id="loginForm">
+        <label class="field">
+          <i class="fa-regular fa-envelope"></i>
+          <input type="email" id="email" placeholder="Adres e-mail">
+        </label>
+
+        <label class="field">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="password" placeholder="Hasło">
+          <button type="button" class="eye" id="togglePassword">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </label>
+
+        <button class="main-btn" type="submit">
+          Zaloguj się do panelu
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="message" id="message"></div>
+
+        <div class="separator">lub</div>
+
+        <button class="google-btn" type="button">
+          <span class="google-g">G</span>
+          Zaloguj się przez Google
+        </button>
+
+        <div class="safe-box">
+          <div class="safe-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <strong>Bezpieczne logowanie</strong>
+            <p>Twoje dane są u nas w pełni bezpieczne.<br>Korzystamy z szyfrowanego połączenia.</p>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div>
+          <strong>Podgląd wyników</strong>
+          <p>Śledź efekty działań w czasie rzeczywistym.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-regular fa-message"></i></div>
+        <div>
+          <strong>Wiadomości</strong>
+          <p>Otrzymuj aktualizacje i ważne informacje.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-regular fa-clipboard"></i></div>
+        <div>
+          <strong>Zadania i raporty</strong>
+          <p>Sprawdzaj postępy i rekomendacje.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-regular fa-user"></i></div>
+        <div>
+          <strong>Twój profil</strong>
+          <p>Zarządzaj danymi firmy i ustawieniami.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.getElementById("password");
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    togglePassword.addEventListener("click", () => {
+      const isPassword = password.type === "password";
+      password.type = isPassword ? "text" : "password";
+      togglePassword.innerHTML = isPassword
+        ? '<i class="fa-regular fa-eye-slash"></i>'
+        : '<i class="fa-regular fa-eye"></i>';
+    });
+
+   form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const pass = password.value.trim();
+
+  message.className = "message";
+
+  if (!email || !pass) {
+    message.textContent = "Uzupełnij adres e-mail i hasło.";
+    message.classList.add("error");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: pass
+  });
+
+  if (error) {
+    message.textContent = "Błędny login lub hasło.";
+    message.classList.add("error");
+    return;
+  }
+
+  message.textContent = "Zalogowano pomyślnie!";
+  message.classList.add("ok");
+
+  // 👉 PRZEKIEROWANIE DO PANELU
+  setTimeout(() => {
+    window.location.href = "panel.html";
+  }, 800);
+});
+  </script>
+</body>
+</html>
