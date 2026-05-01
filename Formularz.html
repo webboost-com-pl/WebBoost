@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebBoost — Rozpocznij projekt</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#1f63e9;
+      --blue-dark:#0f4fe0;
+      --blue-soft:#eef5ff;
+      --text:#071633;
+      --muted:#6b7890;
+      --line:#dfe8f7;
+      --bg:#ffffff;
+      --soft:#f8fbff;
+      --shadow:0 22px 60px rgba(31,99,233,.10);
+      --shadow-card:0 18px 45px rgba(10,31,68,.08);
+      --radius:24px;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(31,99,233,.11), transparent 280px),
+        radial-gradient(circle at top right, rgba(31,99,233,.10), transparent 300px),
+        linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:absolute;
+      left:28px;
+      top:80px;
+      width:90px;
+      height:90px;
+      background-image:radial-gradient(rgba(31,99,233,.25) 2px, transparent 2px);
+      background-size:14px 14px;
+      opacity:.55;
+    }
+
+    .page{
+      width:min(1160px, calc(100% - 34px));
+      margin:0 auto;
+      padding:56px 0 52px;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border:1px solid var(--line);
+      border-radius:15px;
+      background:rgba(255,255,255,.85);
+      box-shadow:0 8px 25px rgba(31,99,233,.08);
+      color:var(--blue);
+      font-weight:700;
+      font-size:15px;
+      margin-bottom:28px;
+    }
+
+    .badge span{
+      width:13px;
+      height:13px;
+      border-radius:50%;
+      background:var(--blue);
+      display:inline-block;
+      box-shadow:0 0 0 5px rgba(31,99,233,.12);
+    }
+
+    h1{
+      font-size:44px;
+      line-height:1.12;
+      letter-spacing:-1.7px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:18px;
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .step-head{
+      display:flex;
+      align-items:flex-start;
+      gap:20px;
+      margin-bottom:34px;
+    }
+
+    .num{
+      min-width:52px;
+      height:52px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--blue),#0757ff);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      font-size:24px;
+      box-shadow:0 12px 28px rgba(31,99,233,.22);
+    }
+
+    .step-head h2{
+      font-size:25px;
+      margin-bottom:8px;
+      letter-spacing:-.5px;
+    }
+
+    .step-head p{
+      color:var(--muted);
+      font-size:15px;
+      font-weight:500;
+    }
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-bottom:30px;
+    }
+
+    .plan{
+      position:relative;
+      background:rgba(255,255,255,.94);
+      border:1px solid #dfe7f2;
+      border-radius:18px;
+      padding:34px 28px 28px;
+      min-height:500px;
+      box-shadow:var(--shadow-card);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      transition:.25s ease;
+    }
+
+    .plan.active{
+      border:2px solid #73a2ff;
+      background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);
+      box-shadow:0 24px 70px rgba(31,99,233,.16);
+      transform:translateY(-10px);
+    }
+
+    .popular{
+      position:absolute;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      background:var(--blue);
+      color:white;
+      padding:8px 15px;
+      border-radius:8px;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .icon{
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      background:linear-gradient(145deg,#edf4ff,#f8fbff);
+      display:grid;
+      place-items:center;
+      margin:18px 0 24px;
+    }
+
+    .icon svg{
+      width:46px;
+      height:46px;
+      stroke:var(--blue);
+      stroke-width:2.4;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .plan h3{
+      font-size:25px;
+      margin-bottom:14px;
+      letter-spacing:-.5px;
+    }
+
+    .price{
+      font-size:26px;
+      font-weight:800;
+      margin-bottom:32px;
+      letter-spacing:-.8px;
+    }
+
+    .price small{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .features{
+      width:100%;
+      display:grid;
+      gap:17px;
+      margin-bottom:auto;
+      text-align:left;
+    }
+
+    .features li{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#33415c;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .check{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:var(--blue);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-size:12px;
+      flex:none;
+    }
+
+    .plan button,
+    .btn{
+      width:100%;
+      height:54px;
+      border-radius:10px;
+      border:2px solid #7ca8ff;
+      background:white;
+      color:var(--blue);
+      font-weight:800;
+      font-size:16px;
+      margin-top:34px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .plan.active button,
+    .primary{
+      background:linear-gradient(135deg,var(--blue),#0757ff);
+      color:white;
+      border:none;
+      box-shadow:0 14px 35px rgba(31,99,233,.25);
+    }
+
+    .form-card{
+      background:rgba(255,255,255,.96);
+      border:1px solid #dfe7f2;
+      border-radius:24px;
+      padding:38px 26px 18px;
+      box-shadow:var(--shadow-card);
+      margin-bottom:38px;
+    }
+
+    .form-top{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:start;
+      margin-bottom:26px;
+    }
+
+    .selected{
+      height:56px;
+      border:1.5px solid #9bbcff;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:0 22px;
+      color:#34415c;
+      font-weight:700;
+      background:#fff;
+    }
+
+    .selected strong{
+      color:var(--blue);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px 24px;
+    }
+
+    .field{
+      position:relative;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      border:1px solid #dfe7f2;
+      background:white;
+      border-radius:10px;
+      height:56px;
+      padding:0 18px 0 52px;
+      font:600 15px Inter,sans-serif;
+      color:var(--text);
+      outline:none;
+      transition:.2s ease;
+    }
+
+    .field textarea{
+      height:118px;
+      padding-top:20px;
+      resize:none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:#8db1ff;
+      box-shadow:0 0 0 4px rgba(31,99,233,.08);
+    }
+
+    .field svg{
+      position:absolute;
+      left:19px;
+      top:17px;
+      width:22px;
+      height:22px;
+      stroke:#7b869d;
+      fill:none;
+      stroke-width:2;
+    }
+
+    .wide{
+      grid-column:1 / -1;
+    }
+
+    .counter{
+      position:absolute;
+      right:18px;
+      bottom:14px;
+      color:#7d879a;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .next{
+      display:grid;
+      grid-template-columns:1fr 220px 380px;
+      align-items:center;
+      gap:32px;
+      margin-bottom:36px;
+    }
+
+    .mail-art{
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:linear-gradient(145deg,#eaf2ff,#f8fbff);
+      display:grid;
+      place-items:center;
+      justify-self:center;
+      position:relative;
+    }
+
+    .mail-art::before,
+    .mail-art::after{
+      content:"";
+      position:absolute;
+      width:70px;
+      height:40px;
+      border:2px dashed #a7c2ff;
+      border-left:0;
+      border-bottom:0;
+      border-radius:50%;
+      opacity:.8;
+    }
+
+    .mail-art::before{
+      left:-30px;
+      bottom:20px;
+      transform:rotate(-35deg);
+    }
+
+    .mail-art::after{
+      right:-28px;
+      top:18px;
+      transform:rotate(30deg);
+    }
+
+    .mail-art svg{
+      width:78px;
+      height:78px;
+      stroke:var(--blue);
+      fill:none;
+      stroke-width:2.4;
+    }
+
+    .actions{
+      display:grid;
+      gap:18px;
+    }
+
+    .actions .btn{
+      margin:0;
+      height:72px;
+      font-size:20px;
+      border-radius:10px;
+    }
+
+    .outline{
+      background:white;
+      color:var(--blue);
+      border:2px solid #8db1ff;
+      box-shadow:none;
+      font-size:17px!important;
+      height:62px!important;
+    }
+
+    .benefits{
+      background:rgba(255,255,255,.72);
+      border-radius:22px;
+      box-shadow:0 18px 45px rgba(31,99,233,.08);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      padding:28px;
+      gap:0;
+    }
+
+    .benefit{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:0 22px;
+      border-right:1px solid #dfe7f2;
+    }
+
+    .benefit:last-child{
+      border-right:0;
+    }
+
+    .benefit .circle{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:white;
+      border:1px solid #e4ebf7;
+      display:grid;
+      place-items:center;
+      flex:none;
+      box-shadow:0 12px 28px rgba(31,99,233,.08);
+    }
+
+    .benefit svg{
+      width:30px;
+      height:30px;
+      stroke:var(--blue);
+      fill:none;
+      stroke-width:2.2;
+    }
+
+    .benefit h4{
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .benefit p{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+      font-weight:600;
+    }
+
+    .success{
+      display:none;
+      margin-top:18px;
+      padding:16px 20px;
+      border-radius:14px;
+      background:#ecfff5;
+      border:1px solid #b9f2d0;
+      color:#087a3d;
+      font-weight:800;
+      text-align:center;
+    }
+
+    .success.show{
+      display:block;
+    }
+
+    @media(max-width:950px){
+      h1{font-size:34px}
+      .plans{grid-template-columns:1fr}
+      .plan.active{transform:none}
+      .form-top,
+      .form-grid,
+      .next,
+      .benefits{
+        grid-template-columns:1fr;
+      }
+
+      .benefit{
+        border-right:0;
+        border-bottom:1px solid #dfe7f2;
+        padding:18px 6px;
+      }
+
+      .benefit:last-child{
+        border-bottom:0;
+      }
+
+      .next{
+        gap:20px;
+      }
+
+      .actions .btn{
+        height:62px;
+        font-size:17px;
+      }
+    }
+
+    @media(max-width:520px){
+      .page{
+        width:min(100% - 22px, 1160px);
+        padding-top:34px;
+      }
+
+      .hero{
+        margin-bottom:48px;
+      }
+
+      h1{
+        font-size:30px;
+      }
+
+      .hero p{
+        font-size:15px;
+      }
+
+      .step-head{
+        gap:14px;
+      }
+
+      .num{
+        min-width:44px;
+        height:44px;
+        font-size:20px;
+      }
+
+      .form-card{
+        padding:26px 16px 18px;
+      }
+
+      .field input,
+      .field select{
+        height:54px;
+      }
+
+      .plans{
+        gap:18px;
+      }
+
+      .plan{
+        padding:28px 20px;
+        min-height:auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="badge"><span></span> Prosty proces</div>
+      <h1>Rozpocznij projekt w 3 krokach</h1>
+      <p>Wybierz pakiet, zostaw kontakt i zobacz jak możemy pomóc Twojej firmie zdobywać klientów</p>
+    </section>
+
+    <section>
+      <div class="step-head">
+        <div class="num">1</div>
+        <div>
+          <h2>Wybierz pakiet</h2>
+          <p>Dopasuj zakres współpracy do potrzeb Twojej firmy.</p>
+        </div>
+      </div>
+
+      <div class="plans">
+        <article class="plan" data-plan="Starter">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M5 15c-1 1-1 4-1 4s3 0 4-1l9-9c2-2 3-5 3-5s-3 1-5 3z"/><path d="M9 15l-2-2"/><path d="M15 9l2 2"/><path d="M8 20l-4-4"/></svg>
+          </div>
+          <h3>Starter</h3>
+          <div class="price">199 – 299 zł</div>
+          <!-- STARTER -->
+<ul class="features">
+  <li><span class="check">✓</span>Nowoczesna strona internetowa</li>
+  <li><span class="check">✓</span>Podstawowa optymalizacja SEO</li>
+  <li><span class="check">✓</span>Formularz kontaktowy</li>
+  <li><span class="check">✓</span>Dostosowanie do telefonu</li>
+</ul>
+          <button>Wybierz pakiet</button>
+        </article>
+
+        <article class="plan active" data-plan="Standard">
+          <div class="popular">Najczęściej wybierany</div>
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16v-5"/><path d="M12 16V8"/><path d="M17 16V5"/><path d="M7 11l5-3 5-3"/></svg>
+          </div>
+          <h3>Standard</h3>
+          <div class="price">299 – 399 zł</div>
+<!-- STANDARD -->
+<ul class="features">
+  <li><span class="check">✓</span>Profesjonalna strona internetowa</li>
+  <li><span class="check">✓</span>Pozycjonowanie lokalne SEO</li>
+  <li><span class="check">✓</span>Wizytówka Google + optymalizacja</li>
+  <li><span class="check">✓</span>Formularz kontaktowy</li>
+  <li><span class="check">✓</span>Podpięcie mapy i podstawowych danych</li>
+</ul>
+          <button>Wybierz pakiet</button>
+        </article>
+
+        <article class="plan" data-plan="Premium">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M12 21L8 9l4-6 4 6z"/></svg>
+          </div>
+          <h3>Premium</h3>
+          <div class="price">399 – 500 zł</div>
+<!-- PREMIUM -->
+<!-- PREMIUM -->
+<ul class="features">
+  <li><span class="check">✓</span>Indywidualny projekt strony internetowej</li>
+  <li><span class="check">✓</span>Wszystko z pakietu Starter i Standard</li>
+  <li><span class="check">✓</span>Rozbudowana strona z większą liczbą sekcji</li>
+  <li><span class="check">✓</span>Optymalizacja pod telefon i Google</li>
+  <li><span class="check">✓</span>Wizytówka Google + podstawowe SEO lokalne</li>
+  <li><span class="check">✓</span>System rezerwacji, zapytań lub zapisów</li>
+  <li><span class="check">✓</span>Dodatkowe poprawki po wdrożeniu</li>
+</ul>
+          <button>Wybierz pakiet</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <div class="form-top">
+        <div class="step-head" style="margin-bottom:0;">
+          <div class="num">2</div>
+          <div>
+            <h2>Opisz swój biznes</h2>
+            <p>Dzięki temu lepiej zrozumiemy Twoje potrzeby.</p>
+          </div>
+        </div>
+
+        <div class="selected">
+          <span class="check">✓</span>
+          Wybrany pakiet: <strong id="selectedPlan">Standard</strong>
+        </div>
+      </div>
+
+      <form class="form-grid">
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" placeholder="Imię i nazwisko">
+        </label>
+
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.4 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.6.5 2.5.6A2 2 0 0 1 22 16.9z"/></svg>
+          <input type="tel" placeholder="Numer telefonu">
+        </label>
+
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+          <input type="email" placeholder="Adres e-mail">
+        </label>
+
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
+          <input type="text" placeholder="Nazwa firmy">
+        </label>
+
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="m12 2 9 9-9 9-9-9z"/><circle cx="12" cy="11" r="3"/></svg>
+          <select>
+            <option>Branża</option>
+            <option>Beauty / kosmetyka</option>
+            <option>Fryzjerstwo</option>
+            <option>Mechanika</option>
+            <option>Usługi lokalne</option>
+            <option>Inna</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg>
+          <input type="url" placeholder="Link do strony lub wizytówki Google firmy">
+        </label>
+
+        <label class="field wide">
+          <svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+          <textarea id="message" maxlength="500" placeholder="Czego potrzebujesz?"></textarea>
+          <span class="counter"><span id="count">0</span> / 500</span>
+        </label>
+      </form>
+    </section>
+
+    <section class="next">
+      <div class="step-head" style="margin-bottom:0;">
+        <div class="num">3</div>
+        <div>
+          <h2>Co dalej?</h2>
+          <p>Po wysłaniu formularza skontaktujemy się z Tobą i przygotujemy dopasowaną propozycję.</p>
+        </div>
+      </div>
+
+      <div class="mail-art">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="sendBtn">Wyślij i rozpocznij projekt →</button>
+        <div class="success" id="success">Formularz został wysłany. Skontaktujemy się z Tobą wkrótce.</div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit">
+        <div class="circle">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-5"/></svg>
+        </div>
+        <div>
+          <h4>Bez zobowiązań</h4>
+          <p>Rozmowa i wycena są całkowicie darmowe.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="circle">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <div>
+          <h4>Szybka odpowiedź</h4>
+          <p>Odezwiemy się w ciągu 24 godzin w dni robocze.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="circle">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        </div>
+        <div>
+          <h4>Dopasowane rozwiązania</h4>
+          <p>Proponujemy tylko to, czego naprawdę potrzebujesz.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="circle">
+          <svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16v-4"/><path d="M12 16V9"/><path d="M17 16V5"/><path d="M7 12l5-3 5-4"/></svg>
+        </div>
+        <div>
+          <h4>Wzrost Twojego biznesu</h4>
+          <p>Skupiamy się na efektach, które przynoszą klientów.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const plans = document.querySelectorAll(".plan");
+    const selectedPlan = document.getElementById("selectedPlan");
+    const textarea = document.getElementById("message");
+    const count = document.getElementById("count");
+    const sendBtn = document.getElementById("sendBtn");
+    const success = document.getElementById("success");
+
+    plans.forEach(plan => {
+      plan.querySelector("button").addEventListener("click", () => {
+        plans.forEach(p => p.classList.remove("active"));
+        plan.classList.add("active");
+        selectedPlan.textContent = plan.dataset.plan;
+        success.classList.remove("show");
+      });
+    });
+
+    textarea.addEventListener("input", () => {
+      count.textContent = textarea.value.length;
+    });
+
+    sendBtn.addEventListener("click", () => {
+      success.classList.add("show");
+    });
+  </script>
+</body>
+</html>
