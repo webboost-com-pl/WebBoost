@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebBoost — Panel właściciela</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <style>
+    :root{
+      --blue:#1f63e9;
+      --blue-dark:#0f4fe0;
+      --blue-soft:#eef5ff;
+      --text:#071633;
+      --muted:#6b7890;
+      --line:#dfe8f7;
+      --bg:#ffffff;
+      --soft:#f8fbff;
+      --green:#17b26a;
+      --orange:#f79009;
+      --purple:#7c3aed;
+      --shadow:0 20px 55px rgba(10,31,68,.08);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:#fff;
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    button,input,select,textarea{font-family:inherit}
+    button{cursor:pointer}
+
+    .hidden{display:none!important}
+
+    .login-page{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at top left, rgba(31,99,233,.12), transparent 320px),
+        radial-gradient(circle at bottom right, rgba(31,99,233,.10), transparent 360px),
+        linear-gradient(180deg,#fff,#f8fbff);
+      padding:28px;
+    }
+
+    .login-card{
+      width:min(520px,100%);
+      background:rgba(255,255,255,.94);
+      border:1px solid var(--line);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:42px;
+      text-align:center;
+    }
+
+    .login-badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 18px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:15px;
+      color:var(--blue);
+      font-weight:800;
+      margin-bottom:24px;
+    }
+
+    .login-card h1{font-size:38px;letter-spacing:-1.3px;margin-bottom:10px}
+    .login-card p{color:var(--muted);font-weight:600;margin-bottom:30px;line-height:1.6}
+
+    .login-icon{
+      width:92px;height:92px;border-radius:50%;
+      background:linear-gradient(145deg,#edf4ff,#f8fbff);
+      display:grid;place-items:center;margin:0 auto 22px;
+    }
+
+    .login-icon svg{width:46px;height:46px;stroke:var(--blue);fill:none;stroke-width:2.4}
+
+    .login-form{display:grid;gap:16px;text-align:left}
+
+    .field{position:relative}
+    .field input,.field select,.field textarea{
+      width:100%;height:56px;border:1px solid var(--line);border-radius:12px;
+      padding:0 16px 0 48px;outline:none;background:white;color:var(--text);font-weight:650;
+      transition:.2s ease;
+    }
+    .field textarea{height:120px;padding-top:18px;resize:none}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:#8db1ff;box-shadow:0 0 0 4px rgba(31,99,233,.08)}
+    .field svg{position:absolute;left:17px;top:17px;width:21px;height:21px;stroke:#7180a0;fill:none;stroke-width:2}
+
+    .primary-btn{
+      height:58px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--blue),#0757ff);
+      color:white;font-weight:800;font-size:16px;box-shadow:0 14px 35px rgba(31,99,233,.25);
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    }
+
+    .error-box{display:none;background:#fff1f1;color:#b42318;border:1px solid #ffd0d0;border-radius:12px;padding:13px 15px;font-weight:700;font-size:14px;text-align:center}
+    .error-box.show{display:block}
+
+    .app{display:grid;grid-template-columns:290px 1fr;min-height:100vh;background:linear-gradient(180deg,#fff,#f8fbff)}
+
+    .sidebar{
+      background:rgba(255,255,255,.96);border-right:1px solid var(--line);
+      padding:34px 18px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;
+    }
+
+    .logo{font-size:28px;font-weight:850;letter-spacing:-1px;margin:8px 12px 42px;color:#081633}
+    .logo span{color:var(--blue)}
+
+    .nav{display:grid;gap:12px}
+    .nav-btn{
+      height:58px;border:0;background:transparent;border-radius:14px;padding:0 16px;
+      display:flex;align-items:center;gap:15px;color:#23345b;font-weight:750;font-size:15px;position:relative;
+    }
+    .nav-btn.active{background:var(--blue-soft);color:var(--blue);box-shadow:0 10px 24px rgba(31,99,233,.08)}
+    .nav-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#6f7fa3}
+    .nav-btn.active .nav-icon{background:linear-gradient(135deg,var(--blue),#0757ff);color:white}
+    .nav-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+    .nav-count{margin-left:auto;background:#edf3ff;color:var(--blue);border-radius:8px;padding:4px 8px;font-size:12px;font-weight:850}
+
+    .profile-card{margin-top:auto;border:1px solid var(--line);border-radius:18px;padding:18px;background:white;box-shadow:0 12px 28px rgba(10,31,68,.04)}
+    .profile-top{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+    .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#0757ff);color:white;display:grid;place-items:center;font-weight:850}
+    .profile-top strong{display:block;font-size:14px}
+    .profile-top span{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:3px}
+    .logout{border:0;background:transparent;color:#53627f;font-weight:750;display:flex;align-items:center;gap:9px;padding:8px 2px}
+
+    .main{padding:36px 40px 42px;min-width:0}
+
+    .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:22px;margin-bottom:30px}
+    .page-title h1{font-size:30px;letter-spacing:-.8px;margin-bottom:8px}
+    .page-title p{color:var(--muted);font-weight:600}
+    .top-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .mini-btn{height:48px;border:1px solid var(--line);background:white;border-radius:12px;color:var(--blue);font-weight:800;padding:0 18px;display:inline-flex;align-items:center;gap:10px}
+    .mini-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+    .new-btn{background:linear-gradient(135deg,var(--blue),#0757ff);color:white;border:0}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:24px}
+    .stat-card{background:white;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 12px 30px rgba(10,31,68,.04);display:flex;gap:22px;align-items:center}
+    .stat-icon{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;background:#eef5ff;color:var(--blue)}
+    .stat-icon.orange{background:#fff4e5;color:var(--orange)}
+    .stat-icon.green{background:#eafaf2;color:var(--green)}
+    .stat-icon svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:2.2}
+    .stat-card small{color:#61708e;font-weight:800}
+    .stat-card strong{display:block;font-size:30px;margin:7px 0 5px;letter-spacing:-.8px}
+    .stat-card span{font-size:13px;font-weight:750;color:var(--green)}
+    .stat-card .orange-text{color:var(--orange)}
+    .stat-card .blue-text{color:var(--blue)}
+
+    .panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 40px rgba(10,31,68,.05);overflow:hidden}
+    .panel-head{height:76px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px}
+    .panel-head h2{font-size:20px;letter-spacing:-.3px}
+    .tools{display:flex;gap:14px;align-items:center}
+    .search{position:relative;width:270px}
+    .search input{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 16px 0 45px;font-weight:650;outline:none}
+    .search svg{position:absolute;left:15px;top:14px;width:20px;height:20px;stroke:#7180a0;fill:none;stroke-width:2}
+    .filter-select{height:48px;border:1px solid var(--line);background:white;border-radius:12px;padding:0 15px;font-weight:750;color:#53627f;outline:none}
+
+    .table-wrap{overflow:auto}
+    table{width:100%;border-collapse:collapse;min-width:980px}
+    th{text-align:left;color:#516184;font-size:13px;font-weight:850;padding:18px 18px;background:#fbfdff;border-bottom:1px solid var(--line)}
+    td{padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px;color:#15254a;font-weight:650}
+    tr{transition:.18s ease}
+    tbody tr:hover{background:#f8fbff}
+    tbody tr.selected-row{background:#f4f8ff}
+    .client{display:flex;align-items:center;gap:13px}
+    .client-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:850;color:var(--blue);background:#eaf2ff;flex:none}
+    .client strong,.company strong{display:block;font-size:14px;margin-bottom:4px}
+    .client span,.company span,.contact span{display:block;color:#5f6f91;font-size:13px;font-weight:650;line-height:1.4}
+    .pill{display:inline-flex;align-items:center;justify-content:center;min-width:86px;padding:8px 12px;border-radius:9px;font-size:13px;font-weight:850}
+    .pill.Standard{background:#e7f0ff;color:var(--blue)}
+    .pill.Starter{background:#ddf8eb;color:#0b8f55}
+    .pill.Premium{background:#efe7ff;color:var(--purple)}
+    .status{border:0;outline:none;appearance:none;text-align:center}
+    .status.Nowe{background:#fff0cc;color:#d97800}
+    .status.W-trakcie{background:#e4efff;color:var(--blue)}
+    .status.Zakończone{background:#dcf8e9;color:#0b8f55}
+    .link-cell a{color:var(--blue);font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+    .arrow-btn{border:0;background:transparent;color:#6f7fa3;font-size:26px}
+
+    .details-layout{display:grid;grid-template-columns:1fr 260px;gap:18px;padding:0 18px 18px;background:#fff}
+    .details{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:0}
+    .details-tab{height:48px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 18px;color:var(--blue);font-weight:850;font-size:14px;gap:8px}
+    .details-grid{display:grid;grid-template-columns:1.1fr 1.1fr .8fr 1.4fr;padding:24px 0}
+    .detail-col{padding:0 20px;border-right:1px solid var(--line)}
+    .detail-col:last-child{border-right:0}
+    .detail-col h3{font-size:15px;margin-bottom:16px;color:#102554;display:flex;align-items:center;gap:8px}
+    .detail-col p{font-size:13px;color:#61708e;font-weight:650;margin:14px 0 5px}
+    .detail-col strong{font-size:14px;color:#071633}
+    .service-list{display:grid;gap:9px;list-style:none;font-size:13px;color:#21375f;font-weight:700;line-height:1.35}
+    .service-list li::before{content:'✓';color:var(--blue);font-weight:900;margin-right:8px}
+    .message-box{margin:0 18px 18px;border:1px solid var(--line);background:#fbfdff;border-radius:14px;padding:16px 18px}
+    .message-box h3{font-size:14px;color:var(--blue);margin-bottom:10px}
+    .message-box p{font-size:14px;color:#263a60;font-weight:650;line-height:1.7}
+
+    .side-summary{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+    .side-summary h3{font-size:15px;margin-bottom:18px}
+    .donut{width:120px;height:120px;margin:8px auto 18px;border-radius:50%;background:conic-gradient(var(--green) 0 25%, var(--blue) 25% 67%, var(--purple) 67% 100%);display:grid;place-items:center}
+    .donut-inner{width:72px;height:72px;border-radius:50%;background:white;display:grid;place-items:center;text-align:center;font-weight:850;color:#14244d}
+    .donut-inner span{display:block;font-size:11px;color:var(--muted)}
+    .legend{display:grid;gap:12px;margin-top:14px}
+    .legend-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:750;color:#34415c}
+    .dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:8px}.dot.green{background:var(--green)}.dot.blue{background:var(--blue)}.dot.purple{background:var(--purple)}.dot.orange{background:var(--orange)}
+
+    .tab-content{display:none}.tab-content.active{display:block}
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .package-card,.simple-card{background:white;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 12px 30px rgba(10,31,68,.04)}
+    .package-card h3{font-size:22px;margin-bottom:8px}.package-card .price{font-size:24px;font-weight:850;margin-bottom:18px}.package-card ul{display:grid;gap:12px;list-style:none;color:#33415c;font-weight:650}.package-card li::before{content:'✓';color:var(--blue);font-weight:900;margin-right:8px}
+    .messages-list{display:grid;gap:16px}.msg-card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 10px 24px rgba(10,31,68,.04)}.msg-card strong{display:block;margin-bottom:8px}.msg-card p{color:#33415c;line-height:1.6;font-weight:650}
+    .empty{padding:38px;text-align:center;color:var(--muted);font-weight:750}
+
+    @media(max-width:1120px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.main{padding:24px 18px}.stats-grid,.cards-grid{grid-template-columns:1fr 1fr}.details-layout{grid-template-columns:1fr}.details-grid{grid-template-columns:1fr 1fr}.topbar{flex-direction:column}.tools{flex-wrap:wrap}.search{width:100%}}
+    @media(max-width:720px){.stats-grid,.cards-grid,.details-grid{grid-template-columns:1fr}.detail-col{border-right:0;border-bottom:1px solid var(--line);padding:18px}.detail-col:last-child{border-bottom:0}.panel-head{height:auto;padding:16px;align-items:flex-start;flex-direction:column}.top-actions{width:100%}.mini-btn{flex:1}.login-card{padding:28px}.login-card h1{font-size:30px}}
+  </style>
+</head>
+<body>
+
+  <section class="login-page" id="loginPage">
+    <div class="login-card">
+      <div class="login-badge">🔒 Panel właściciela</div>
+      <h1>Witaj ponownie!</h1>
+      <p>Zaloguj się do panelu WebBoost i zarządzaj zgłoszeniami klientów.</p>
+      <div class="login-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9h18v11H3z"/><path d="M7 9V6a5 5 0 0 1 10 0v3"/><path d="M12 14v2"/></svg>
+      </div>
+      <form class="login-form" id="loginForm">
+        <label class="field"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg><input id="loginEmail" type="email" placeholder="Adres e-mail" required></label>
+        <label class="field"><svg viewBox="0 0 24 24"><path d="M6 10V8a6 6 0 1 1 12 0v2"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg><input id="loginPassword" type="password" placeholder="Hasło" required></label>
+        <button class="primary-btn" type="submit">Zaloguj się do panelu →</button>
+        <div class="error-box" id="loginError">Nie udało się zalogować. Sprawdź dane.</div>
+      </form>
+    </div>
+  </section>
+
+  <section class="app hidden" id="app">
+    <aside class="sidebar">
+      <div class="logo"><span>Web</span>Boost</div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="orders"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg></span>Zlecenia <span class="nav-count" id="sidebarCount">0</span></button>
+        <button class="nav-btn" data-tab="stats"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16v-4"/><path d="M12 16V8"/><path d="M17 16V5"/></svg></span>Statystyki</button>
+        <button class="nav-btn" data-tab="packages"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>Pakiety i usługi</button>
+        <button class="nav-btn" data-tab="messages"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></span>Wiadomości <span class="nav-count" id="msgCount">0</span></button>
+        <button class="nav-btn" data-tab="settings"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 0-.33 1.82V22a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8.6 20a1.65 1.65 0 0 0-1.82-.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 0-1.82-.33H2a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4 8.6a1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 6.44 3.9l.06.06A1.65 1.65 0 0 0 8.6 4.6a1.65 1.65 0 0 0 1-.6A1.65 1.65 0 0 0 10 2.18V2a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15.4 4a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8.6a1.65 1.65 0 0 0 .6 1 1.65 1.65 0 0 0 1.82.33H22a2 2 0 1 1 0 4h-.09A1.65 1.65 0 0 0 20 15z"/></svg></span>Ustawienia</button>
+      </nav>
+      <div class="profile-card">
+        <div class="profile-top"><div class="avatar">WB</div><div><strong>Właściciel</strong><span>webboost.pl</span></div></div>
+        <button class="logout" id="logoutBtn">↩ Wyloguj się</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="tab-content active" id="ordersTab">
+        <div class="topbar">
+          <div class="page-title"><h1>Zlecenia</h1><p>Wszystkie zgłoszenia od potencjalnych klientów.</p></div>
+          <div class="top-actions"><button class="mini-btn" id="exportBtn">Eksportuj</button><button class="mini-btn" id="refreshBtn">Odśwież</button><button class="mini-btn new-btn">+ Nowe zlecenie</button></div>
+        </div>
+        <div class="stats-grid" id="statsCards"></div>
+        <section class="panel">
+          <div class="panel-head"><h2>Lista zleceń</h2><div class="tools"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="Szukaj..."></div><select class="filter-select" id="statusFilter"><option value="all">Filtry</option><option>Nowe</option><option>W trakcie</option><option>Zakończone</option></select></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Klient</th><th>Pakiet</th><th>Kontakt</th><th>Firma / Branża</th><th>Link</th><th>Zgłoszenie</th><th>Status</th><th></th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+          <div id="emptyOrders" class="empty hidden">Brak zgłoszeń do wyświetlenia.</div>
+          <div class="details-layout hidden" id="detailsLayout"><div id="detailsBox"></div><aside class="side-summary" id="sideSummary"></aside></div>
+        </section>
+      </div>
+
+      <div class="tab-content" id="statsTab"><div class="topbar"><div class="page-title"><h1>Statystyki</h1><p>Podsumowanie zgłoszeń, pakietów i statusów.</p></div></div><div class="stats-grid" id="statsCards2"></div><div class="cards-grid" id="statsExtra"></div></div>
+      <div class="tab-content" id="packagesTab"><div class="topbar"><div class="page-title"><h1>Pakiety i usługi</h1><p>Podgląd oferty WebBoost.</p></div></div><div class="cards-grid" id="packagesGrid"></div></div>
+      <div class="tab-content" id="messagesTab"><div class="topbar"><div class="page-title"><h1>Wiadomości</h1><p>Wiadomości przesłane przez klientów.</p></div></div><div class="messages-list" id="messagesList"></div></div>
+      <div class="tab-content" id="settingsTab"><div class="topbar"><div class="page-title"><h1>Ustawienia</h1><p>Podstawowe informacje o panelu.</p></div></div><div class="cards-grid"><div class="simple-card"><h3>Właściciel</h3><p style="color:#61708e;font-weight:650;line-height:1.8;margin-top:12px">Panel administracyjny WebBoost do obsługi zgłoszeń z formularza.</p></div><div class="simple-card"><h3>Połączenie Supabase</h3><p id="connectionInfo" style="color:#61708e;font-weight:650;line-height:1.8;margin-top:12px">Sprawdzanie...</p></div><div class="simple-card"><h3>Sesja</h3><button class="primary-btn" style="margin-top:18px;width:100%" onclick="logout()">Wyloguj się</button></div></div></div>
+    </main>
+  </section>
+
+<script>
+const TABLE_NAME = 'WebBoost';
+let requests = [];
+let selectedId = null;
+let currentTab = 'orders';
+let realtimeChannel = null;
+
+const packageData = {
+  Starter:{price:'199 – 299 zł', features:['Nowoczesna strona internetowa','Podstawowa optymalizacja SEO','Formularz kontaktowy','Dostosowanie do telefonu']},
+  Standard:{price:'299 – 399 zł', features:['Profesjonalna strona internetowa','Pozycjonowanie lokalne SEO','Wizytówka Google + optymalizacja','Formularz kontaktowy','Podpięcie mapy i podstawowych danych']},
+  Premium:{price:'399 – 500 zł', features:['Indywidualny projekt strony internetowej','Wszystko z pakietu Starter i Standard','Rozbudowana strona z większą liczbą sekcji','Optymalizacja pod telefon i Google','Wizytówka Google + podstawowe SEO lokalne','System rezerwacji, zapytań lub zapisów','Dodatkowe poprawki po wdrożeniu']}
+};
+
+const fallbackData = [];
+
+const $ = id => document.getElementById(id);
+
+function hasSupabase(){return typeof supabaseClient !== 'undefined' && supabaseClient;}
+function normalizeStatus(s){return s || 'Nowe'}
+function statusClass(s){return normalizeStatus(s).replaceAll(' ','-')}
+function initials(name='?'){return name.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase()}
+function formatDate(date){const d=new Date(date); if(isNaN(d)) return '-'; return d.toLocaleDateString('pl-PL')+'<br>'+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'});}
+function escapeHtml(v=''){return String(v).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[m]))}
+
+async function init(){
+  renderPackages();
+  bindEvents();
+  if(hasSupabase()){
+    const {data:{session}} = await supabaseClient.auth.getSession();
+    session ? showApp() : showLogin();
+  }else{
+    $('connectionInfo').textContent = 'Brak config.js — pokazuję dane przykładowe.';
+    showApp(true);
+  }
+}
+
+function showLogin(){ $('loginPage').classList.remove('hidden'); $('app').classList.add('hidden'); }
+async function showApp(useFallback=false){
+  $('loginPage').classList.add('hidden'); $('app').classList.remove('hidden');
+  await loadRequests(useFallback);
+  setupRealtime();
+}
+
+async function login(e){
+  e.preventDefault();
+  $('loginError').classList.remove('show');
+  if(!hasSupabase()){ showApp(true); return; }
+  const email=$('loginEmail').value.trim();
+  const password=$('loginPassword').value.trim();
+  const {error}=await supabaseClient.auth.signInWithPassword({email,password});
+  if(error){$('loginError').classList.add('show');return;}
+  showApp();
+}
+
+async function logout(){
+  if(hasSupabase()) await supabaseClient.auth.signOut();
+  requests=[]; selectedId=null; showLogin();
+}
+window.logout = logout;
+
+async function loadRequests(useFallback=false){
+  if(useFallback || !hasSupabase()){
+    requests = fallbackData;
+    $('connectionInfo').textContent = 'Tryb przykładowy — skonfiguruj config.js, aby połączyć panel z Supabase.';
+    renderAll();
+    return;
+  }
+  const {data,error}=await supabaseClient.from(TABLE_NAME).select('*').order('created_at',{ascending:false});
+  if(error){
+    console.error(error);
+    requests = fallbackData;
+    $('connectionInfo').textContent = 'Błąd połączenia z Supabase. Sprawdź nazwę tabeli, RLS i config.js.';
+  }else{
+    requests = data || [];
+    $('connectionInfo').textContent = 'Połączono z Supabase. Tabela: WebBoost.';
+  }
+  renderAll();
+}
+
+function setupRealtime(){
+  if(!hasSupabase() || realtimeChannel) return;
+  realtimeChannel = supabaseClient.channel('webboost-panel')
+    .on('postgres_changes',{event:'*',schema:'public',table:TABLE_NAME},()=>loadRequests())
+    .subscribe();
+}
+
+function bindEvents(){
+  $('loginForm').addEventListener('submit', login);
+  $('logoutBtn').addEventListener('click', logout);
+  $('refreshBtn').addEventListener('click',()=>loadRequests());
+  $('searchInput').addEventListener('input', renderOrders);
+  $('statusFilter').addEventListener('change', renderOrders);
+  $('exportBtn').addEventListener('click', exportCSV);
+  document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
+}
+
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  $(tab+'Tab').classList.add('active');
+  renderAll();
+}
+
+function renderAll(){renderStats();renderOrders();renderMessages();renderPackages();}
+
+function counts(){
+  return {
+    all:requests.length,
+    nowe:requests.filter(r=>normalizeStatus(r.status)==='Nowe').length,
+    progress:requests.filter(r=>normalizeStatus(r.status)==='W trakcie').length,
+    done:requests.filter(r=>normalizeStatus(r.status)==='Zakończone').length,
+    messages:requests.filter(r=>(r.message||'').trim()).length
+  }
+}
+
+function statCardsHtml(){
+  const c=counts();
+  return `
+  <article class="stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div><small>Wszystkie zlecenia</small><strong>${c.all}</strong><span>Łącznie</span></div></article>
+  <article class="stat-card"><div class="stat-icon orange"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><div><small>Nowe</small><strong>${c.nowe}</strong><span class="orange-text">Wymagają odpowiedzi</span></div></article>
+  <article class="stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div><div><small>W trakcie</small><strong>${c.progress}</strong><span class="blue-text">Trwają realizacje</span></div></article>
+  <article class="stat-card"><div class="stat-icon green"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><small>Zakończone</small><strong>${c.done}</strong><span>Gotowe</span></div></article>`;
+}
+
+function renderStats(){
+  $('statsCards').innerHTML=statCardsHtml();
+  $('statsCards2').innerHTML=statCardsHtml();
+  $('sidebarCount').textContent=requests.length;
+  $('msgCount').textContent=counts().messages;
+  const starter=requests.filter(r=>r.plan==='Starter').length, standard=requests.filter(r=>r.plan==='Standard').length, premium=requests.filter(r=>r.plan==='Premium').length;
+  $('statsExtra').innerHTML=`
+    <div class="simple-card"><h3>Pakiety</h3><div class="legend"><div class="legend-row"><span><i class="dot green"></i>Starter</span><strong>${starter}</strong></div><div class="legend-row"><span><i class="dot blue"></i>Standard</span><strong>${standard}</strong></div><div class="legend-row"><span><i class="dot purple"></i>Premium</span><strong>${premium}</strong></div></div></div>
+    <div class="simple-card"><h3>Statusy</h3><div class="legend"><div class="legend-row"><span><i class="dot orange"></i>Nowe</span><strong>${counts().nowe}</strong></div><div class="legend-row"><span><i class="dot blue"></i>W trakcie</span><strong>${counts().progress}</strong></div><div class="legend-row"><span><i class="dot green"></i>Zakończone</span><strong>${counts().done}</strong></div></div></div>
+    <div class="simple-card"><h3>Wiadomości</h3><p style="font-size:34px;font-weight:850;margin-top:18px">${counts().messages}</p><p style="color:#61708e;font-weight:650;margin-top:8px">zgłoszeń zawiera wiadomość klienta</p></div>`;
+}
+
+function filteredRequests(){
+  const q=($('searchInput')?.value||'').toLowerCase().trim();
+  const status=$('statusFilter')?.value||'all';
+  return requests.filter(r=>{
+    const text=[r.name,r.company,r.email,r.phone,r.industry,r.plan].join(' ').toLowerCase();
+    const matchesSearch=!q || text.includes(q);
+    const matchesStatus=status==='all' || normalizeStatus(r.status)===status;
+    return matchesSearch && matchesStatus;
+  });
+}
+
+function renderOrders(){
+  const data=filteredRequests();
+  const body=$('ordersBody');
+  body.innerHTML=data.map(r=>`
+    <tr class="${selectedId===r.id?'selected-row':''}" onclick="selectRequest('${r.id}')">
+      <td><div class="client"><div class="client-avatar">${initials(r.name)}</div><div><strong>${escapeHtml(r.name||'-')}</strong><span>${escapeHtml(r.email||'-')}</span></div></div></td>
+      <td><span class="pill ${escapeHtml(r.plan||'Standard')}">${escapeHtml(r.plan||'-')}</span></td>
+      <td><div class="contact"><span>☎ ${escapeHtml(r.phone||'-')}</span><span>✉ ${escapeHtml(r.email||'-')}</span></div></td>
+      <td><div class="company"><strong>${escapeHtml(r.company||'-')}</strong><span>${escapeHtml(r.industry||'-')}</span></div></td>
+      <td class="link-cell">${r.link ? `<a href="${escapeHtml(r.link)}" target="_blank">Link ↗</a>` : '—'}</td>
+      <td>${formatDate(r.created_at)}</td>
+      <td onclick="event.stopPropagation()"><select class="pill status ${statusClass(r.status)}" onchange="changeStatus('${r.id}', this.value)"><option ${normalizeStatus(r.status)==='Nowe'?'selected':''}>Nowe</option><option ${normalizeStatus(r.status)==='W trakcie'?'selected':''}>W trakcie</option><option ${normalizeStatus(r.status)==='Zakończone'?'selected':''}>Zakończone</option></select></td>
+      <td><button class="arrow-btn">›</button></td>
+    </tr>`).join('');
+  $('emptyOrders').classList.toggle('hidden',data.length>0);
+  if(!selectedId && data[0]) selectedId=data[0].id;
+  renderDetails();
+}
+
+window.selectRequest = function(id){selectedId = isNaN(Number(id)) ? id : Number(id); renderOrders();}
+
+async function changeStatus(id,status){
+  const item=requests.find(r=>String(r.id)===String(id)); if(item) item.status=status;
+  renderAll();
+  if(hasSupabase() && !fallbackData.find(x=>String(x.id)===String(id))){
+    const {error}=await supabaseClient.from(TABLE_NAME).update({status}).eq('id',id);
+    if(error){alert('Nie udało się zapisać statusu.');console.error(error);}
+  }
+}
+window.changeStatus = changeStatus;
+
+function renderDetails(){
+  const r=requests.find(x=>String(x.id)===String(selectedId));
+  if(!r){$('detailsLayout').classList.add('hidden');return;}
+  $('detailsLayout').classList.remove('hidden');
+  const pack=packageData[r.plan]||packageData.Standard;
+  $('detailsBox').innerHTML=`<div class="details"><div class="details-tab">▣ Szczegóły zgłoszenia</div><div class="details-grid">
+    <div class="detail-col"><h3>👤 Dane kontaktowe</h3><p>Imię i nazwisko:</p><strong>${escapeHtml(r.name||'-')}</strong><p>Telefon:</p><strong>${escapeHtml(r.phone||'-')}</strong><p>E-mail:</p><strong>${escapeHtml(r.email||'-')}</strong></div>
+    <div class="detail-col"><h3>🏢 Informacje o firmie</h3><p>Nazwa firmy:</p><strong>${escapeHtml(r.company||'-')}</strong><p>Branża:</p><strong>${escapeHtml(r.industry||'-')}</strong><p>Link do strony / wizytówki:</p><strong>${r.link?`<a href="${escapeHtml(r.link)}" target="_blank" style="color:var(--blue);text-decoration:none">${escapeHtml(r.link)} ↗</a>`:'—'}</strong></div>
+    <div class="detail-col"><h3>🔗 Wybrany pakiet</h3><span class="pill ${escapeHtml(r.plan||'Standard')}">${escapeHtml(r.plan||'-')}</span><p>Cena:</p><strong>${pack.price}</strong><p>Status:</p><select class="pill status ${statusClass(r.status)}" onchange="changeStatus('${r.id}', this.value)"><option ${normalizeStatus(r.status)==='Nowe'?'selected':''}>Nowe</option><option ${normalizeStatus(r.status)==='W trakcie'?'selected':''}>W trakcie</option><option ${normalizeStatus(r.status)==='Zakończone'?'selected':''}>Zakończone</option></select></div>
+    <div class="detail-col"><h3>⚙ Zakres usług w pakiecie</h3><ul class="service-list">${pack.features.map(f=>`<li>${escapeHtml(f)}</li>`).join('')}</ul></div>
+  </div><div class="message-box"><h3>💬 Czego potrzebuje klient?</h3><p>${escapeHtml(r.message||'Klient nie dodał dodatkowej wiadomości.')}</p></div></div>`;
+  renderSideSummary();
+}
+
+function renderSideSummary(){
+  const starter=requests.filter(r=>r.plan==='Starter').length, standard=requests.filter(r=>r.plan==='Standard').length, premium=requests.filter(r=>r.plan==='Premium').length;
+  $('sideSummary').innerHTML=`<h3>Podsumowanie pakietów</h3><div class="donut"><div class="donut-inner">${requests.length}<span>łącznie</span></div></div><div class="legend"><div class="legend-row"><span><i class="dot green"></i>Starter</span><strong>${starter}</strong></div><div class="legend-row"><span><i class="dot blue"></i>Standard</span><strong>${standard}</strong></div><div class="legend-row"><span><i class="dot purple"></i>Premium</span><strong>${premium}</strong></div></div><h3 style="margin-top:28px">Statusy</h3><div class="legend"><div class="legend-row"><span><i class="dot orange"></i>Nowe</span><strong>${counts().nowe}</strong></div><div class="legend-row"><span><i class="dot blue"></i>W trakcie</span><strong>${counts().progress}</strong></div><div class="legend-row"><span><i class="dot green"></i>Zakończone</span><strong>${counts().done}</strong></div></div>`;
+}
+
+function renderPackages(){
+  if(!$('packagesGrid')) return;
+  $('packagesGrid').innerHTML=Object.entries(packageData).map(([name,p])=>`<article class="package-card"><h3>${name}</h3><div class="price">${p.price}</div><ul>${p.features.map(f=>`<li>${f}</li>`).join('')}</ul></article>`).join('');
+}
+
+function renderMessages(){
+  const msgs=requests.filter(r=>(r.message||'').trim());
+  $('messagesList').innerHTML=msgs.length?msgs.map(r=>`<article class="msg-card"><strong>${escapeHtml(r.name||'-')} — ${escapeHtml(r.company||'-')}</strong><p>${escapeHtml(r.message)}</p></article>`).join(''):'<div class="empty">Brak wiadomości od klientów.</div>';
+}
+
+function exportCSV(){
+  const rows=[['created_at','plan','name','phone','email','company','industry','link','message','status'],...requests.map(r=>[r.created_at,r.plan,r.name,r.phone,r.email,r.company,r.industry,r.link,r.message,r.status])];
+  const csv=rows.map(row=>row.map(v=>`"${String(v||'').replaceAll('"','""')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='webboost-zlecenia.csv';a.click();URL.revokeObjectURL(a.href);
+}
+
+init();
+</script>
+</body>
+</html>
