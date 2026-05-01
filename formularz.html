@@ -6,7 +6,8 @@
   <title>WebBoost — Rozpocznij projekt</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
   <style>
     :root{
       --blue:#1f63e9;
@@ -679,40 +680,38 @@
       <form class="form-grid">
         <label class="field">
           <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-          <input type="text" placeholder="Imię i nazwisko">
+<input id="nameInput" type="text" placeholder="Imię i nazwisko">
         </label>
 
         <label class="field">
           <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.4 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.6.5 2.5.6A2 2 0 0 1 22 16.9z"/></svg>
-          <input type="tel" placeholder="Numer telefonu">
+<input id="phoneInput" type="tel" placeholder="Numer telefonu">
         </label>
 
         <label class="field">
           <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
-          <input type="email" placeholder="Adres e-mail">
+<input id="emailInput" type="email" placeholder="Adres e-mail">
         </label>
 
         <label class="field">
           <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
-          <input type="text" placeholder="Nazwa firmy">
+<input id="companyInput" type="text" placeholder="Nazwa firmy">
         </label>
-
-        <label class="field">
-          <svg viewBox="0 0 24 24"><path d="m12 2 9 9-9 9-9-9z"/><circle cx="12" cy="11" r="3"/></svg>
-          <select>
-            <option>Branża</option>
-            <option>Beauty / kosmetyka</option>
-            <option>Fryzjerstwo</option>
-            <option>Mechanika</option>
-            <option>Usługi lokalne</option>
-            <option>Inna</option>
-          </select>
-        </label>
+       <label class="field">
+  <svg viewBox="0 0 24 24"><path d="m12 2 9 9-9 9-9-9z"/><circle cx="12" cy="11" r="3"/></svg>
+  <select id="industryInput">
+    <option>Branża</option>
+    <option>Beauty / kosmetyka</option>
+    <option>Fryzjerstwo</option>
+    <option>Mechanika</option>
+    <option>Usługi lokalne</option>
+    <option>Inna</option>
+  </select>
+</label>
 
         <label class="field">
           <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg>
-          <input type="url" placeholder="Link do strony lub wizytówki Google firmy">
-        </label>
+<input id="linkInput" type="url" placeholder="Link do strony lub wizytówki Google firmy">        </label>
 
         <label class="field wide">
           <svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
@@ -806,9 +805,42 @@
       count.textContent = textarea.value.length;
     });
 
-    sendBtn.addEventListener("click", () => {
-      success.classList.add("show");
-    });
+  sendBtn.addEventListener("click", async () => {
+  const request = {
+    plan: selectedPlan.textContent,
+    name: document.getElementById("nameInput").value.trim(),
+    phone: document.getElementById("phoneInput").value.trim(),
+    email: document.getElementById("emailInput").value.trim(),
+    company: document.getElementById("companyInput").value.trim(),
+    industry: document.getElementById("industryInput").value,
+    link: document.getElementById("linkInput").value.trim(),
+    message: document.getElementById("message").value.trim(),
+    status: "Nowe"
+  };
+
+  if(!request.name || !request.phone || !request.email || !request.company){
+    alert("Uzupełnij imię, telefon, e-mail i nazwę firmy.");
+    return;
+  }
+
+  sendBtn.disabled = true;
+  sendBtn.textContent = "Wysyłanie...";
+
+  const { error } = await supabaseClient
+    .from("WebBoost")
+    .insert([request]);
+
+  if(error){
+    sendBtn.disabled = false;
+    sendBtn.textContent = "Wyślij i rozpocznij projekt →";
+    alert("Błąd wysyłania formularza.");
+    console.log(error);
+    return;
+  }
+
+  success.classList.add("show");
+  sendBtn.textContent = "Wysłano ✓";
+});
   </script>
 </body>
 </html>
