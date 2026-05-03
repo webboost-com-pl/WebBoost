@@ -281,6 +281,7 @@
   </section>
 
 <script>
+const OWNER_EMAIL = "kontakt.webboost@gmail.com";
 const TABLE_NAME = 'WebBoost';
 let requests = [];
 let selectedId = null;
@@ -307,15 +308,22 @@ function escapeHtml(v=''){return String(v).replace(/[&<>'"]/g,m=>({'&':'&amp;','
 async function init(){
   renderPackages();
   bindEvents();
-  if(hasSupabase()){
-    const {data:{session}} = await supabaseClient.auth.getSession();
-    session ? showApp() : showLogin();
-  }else{
-    $('connectionInfo').textContent = 'Brak config.js — pokazuję dane przykładowe.';
-    showApp(true);
-  }
-}
 
+  if(!hasSupabase()){
+    showLogin();
+    return;
+  }
+
+  const { data: { session } } = await supabaseClient.auth.getSession();
+
+  if(!session || session.user.email !== OWNER_EMAIL){
+    await supabaseClient.auth.signOut();
+    showLogin();
+    return;
+  }
+
+  showApp();
+}
 function showLogin(){ $('loginPage').classList.remove('hidden'); $('app').classList.add('hidden'); }
 async function showApp(useFallback=false){
   $('loginPage').classList.add('hidden'); $('app').classList.remove('hidden');
@@ -325,15 +333,25 @@ async function showApp(useFallback=false){
 
 async function login(e){
   e.preventDefault();
-  $('loginError').classList.remove('show');
-  if(!hasSupabase()){ showApp(true); return; }
-  const email=$('loginEmail').value.trim();
-  const password=$('loginPassword').value.trim();
-  const {error}=await supabaseClient.auth.signInWithPassword({email,password});
-  if(error){$('loginError').classList.add('show');return;}
+
+  $("loginError").classList.remove("show");
+
+  const email = $("loginEmail").value.trim();
+  const password = $("loginPassword").value.trim();
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error || data.user.email !== OWNER_EMAIL){
+    $("loginError").classList.add("show");
+    await supabaseClient.auth.signOut();
+    return;
+  }
+
   showApp();
 }
-
 async function logout(){
   if(hasSupabase()) await supabaseClient.auth.signOut();
   requests=[]; selectedId=null; showLogin();
