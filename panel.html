@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -218,8 +219,140 @@
     .package-card h3{font-size:22px;margin-bottom:8px}.package-card .price{font-size:24px;font-weight:850;margin-bottom:18px}.package-card ul{display:grid;gap:12px;list-style:none;color:#33415c;font-weight:650}.package-card li::before{content:'✓';color:var(--blue);font-weight:900;margin-right:8px}
     .messages-list{display:grid;gap:16px}.msg-card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 10px 24px rgba(10,31,68,.04)}.msg-card strong{display:block;margin-bottom:8px}.msg-card p{color:#33415c;line-height:1.6;font-weight:650}
     .empty{padding:38px;text-align:center;color:var(--muted);font-weight:750}
+.tasks-layout{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:24px;
+}
 
-    @media(max-width:1120px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.main{padding:24px 18px}.stats-grid,.cards-grid{grid-template-columns:1fr 1fr}.details-layout{grid-template-columns:1fr}.details-grid{grid-template-columns:1fr 1fr}.topbar{flex-direction:column}.tools{flex-wrap:wrap}.search{width:100%}}
+.task-form{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 12px 30px rgba(10,31,68,.04);
+  display:grid;
+  gap:14px;
+  align-self:start;
+}
+
+.task-form h2{
+  font-size:20px;
+  letter-spacing:-.3px;
+  margin-bottom:6px;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px 15px;
+  outline:none;
+  font-weight:650;
+  color:var(--text);
+  background:white;
+}
+
+.task-form textarea{
+  min-height:110px;
+  resize:none;
+}
+
+.task-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.tasks-board{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.task-column{
+  background:#fbfdff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  min-height:420px;
+}
+
+.task-column h3{
+  font-size:16px;
+  margin-bottom:16px;
+  color:#102554;
+}
+
+.task-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 10px 24px rgba(10,31,68,.04);
+  margin-bottom:14px;
+}
+
+.task-card strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.task-card p{
+  color:#61708e;
+  font-size:13px;
+  font-weight:650;
+  line-height:1.55;
+  margin-bottom:12px;
+}
+
+.task-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.task-tag{
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:850;
+}
+
+.task-tag.Niski{background:#eafaf2;color:#0b8f55}
+.task-tag.Średni{background:#fff4e5;color:#d97800}
+.task-tag.Wysoki{background:#fff1f1;color:#b42318}
+
+.task-date{
+  color:#61708e;
+  font-size:12px;
+  font-weight:800;
+}
+
+.task-actions{
+  display:flex;
+  gap:8px;
+}
+
+.task-actions button{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:9px;
+  padding:8px 10px;
+  font-weight:800;
+  color:var(--blue);
+}
+
+.task-actions .delete-task{
+  color:#b42318;
+}
+    @media(max-width:1120px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.main{padding:24px 18px}.stats-grid,.cards-grid{grid-template-columns:1fr 1fr}.details-layout{grid-template-columns:1fr}.details-grid{grid-template-columns:1fr 1fr}.topbar{flex-direction:column}.tools{flex-wrap:wrap}.search{width:100%}   .tasks-layout{grid-template-columns:1fr}
+  .tasks-board{grid-template-columns:1fr}}
     @media(max-width:720px){.stats-grid,.cards-grid,.details-grid{grid-template-columns:1fr}.detail-col{border-right:0;border-bottom:1px solid var(--line);padding:18px}.detail-col:last-child{border-bottom:0}.panel-head{height:auto;padding:16px;align-items:flex-start;flex-direction:column}.top-actions{width:100%}.mini-btn{flex:1}.login-card{padding:28px}.login-card h1{font-size:30px}}
   </style>
 </head>
@@ -249,7 +382,15 @@
         <button class="nav-btn active" data-tab="orders"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg></span>Zlecenia <span class="nav-count" id="sidebarCount">0</span></button>
         <button class="nav-btn" data-tab="stats"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 16v-4"/><path d="M12 16V8"/><path d="M17 16V5"/></svg></span>Statystyki</button>
         <button class="nav-btn" data-tab="packages"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>Pakiety i usługi</button>
-        <button class="nav-btn" data-tab="messages"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></span>Wiadomości <span class="nav-count" id="msgCount">0</span></button>
+        <button class="nav-btn" data-tab="messages"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></span>Wiadomości <span class="nav-count" id="msgCount">0</span></button><button class="nav-btn" data-tab="tasks">
+  <span class="nav-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M9 11l3 3L22 4"/>
+      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+    </svg>
+  </span>
+  Zadania <span class="nav-count" id="tasksCount">0</span>
+</button>
         <button class="nav-btn" data-tab="settings"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 0-.33 1.82V22a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8.6 20a1.65 1.65 0 0 0-1.82-.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 0-1.82-.33H2a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4 8.6a1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 6.44 3.9l.06.06A1.65 1.65 0 0 0 8.6 4.6a1.65 1.65 0 0 0 1-.6A1.65 1.65 0 0 0 10 2.18V2a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15.4 4a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 8.6a1.65 1.65 0 0 0 .6 1 1.65 1.65 0 0 0 1.82.33H22a2 2 0 1 1 0 4h-.09A1.65 1.65 0 0 0 20 15z"/></svg></span>Ustawienia</button>
       </nav>
       <div class="profile-card">
@@ -276,6 +417,53 @@
       <div class="tab-content" id="statsTab"><div class="topbar"><div class="page-title"><h1>Statystyki</h1><p>Podsumowanie zgłoszeń, pakietów i statusów.</p></div></div><div class="stats-grid" id="statsCards2"></div><div class="cards-grid" id="statsExtra"></div></div>
       <div class="tab-content" id="packagesTab"><div class="topbar"><div class="page-title"><h1>Pakiety i usługi</h1><p>Podgląd oferty WebBoost.</p></div></div><div class="cards-grid" id="packagesGrid"></div></div>
       <div class="tab-content" id="messagesTab"><div class="topbar"><div class="page-title"><h1>Wiadomości</h1><p>Wiadomości przesłane przez klientów.</p></div></div><div class="messages-list" id="messagesList"></div></div>
+<div class="tab-content" id="tasksTab">
+  <div class="topbar">
+    <div class="page-title">
+      <h1>Zadania firmowe</h1>
+      <p>Notuj, co masz do zrobienia przy klientach, stronie, sprzedaży i firmie.</p>
+    </div>
+  </div>
+
+  <section class="tasks-layout">
+    <form class="task-form" id="taskForm">
+      <h2>Dodaj nowe zadanie</h2>
+
+      <input id="taskTitle" placeholder="Np. Zadzwonić do mechanika jutro" required>
+
+      <textarea id="taskDesc" placeholder="Krótki opis zadania..."></textarea>
+
+      <div class="task-row">
+        <select id="taskPriority">
+          <option value="Niski">Niski priorytet</option>
+          <option value="Średni">Średni priorytet</option>
+          <option value="Wysoki">Wysoki priorytet</option>
+        </select>
+
+        <input id="taskDate" type="date">
+      </div>
+
+      <button class="primary-btn" type="submit">+ Dodaj zadanie</button>
+    </form>
+
+    <div class="tasks-board">
+      <div class="task-column">
+        <h3>Do zrobienia</h3>
+        <div id="todoTasks"></div>
+      </div>
+
+      <div class="task-column">
+        <h3>W trakcie</h3>
+        <div id="progressTasks"></div>
+      </div>
+
+      <div class="task-column">
+        <h3>Zrobione</h3>
+        <div id="doneTasks"></div>
+      </div>
+    </div>
+  </section>
+</div>
       <div class="tab-content" id="settingsTab"><div class="topbar"><div class="page-title"><h1>Ustawienia</h1><p>Podstawowe informacje o panelu.</p></div></div><div class="cards-grid"><div class="simple-card"><h3>Właściciel</h3><p style="color:#61708e;font-weight:650;line-height:1.8;margin-top:12px">Panel administracyjny WebBoost do obsługi zgłoszeń z formularza.</p></div><div class="simple-card"><h3>Połączenie Supabase</h3><p id="connectionInfo" style="color:#61708e;font-weight:650;line-height:1.8;margin-top:12px">Sprawdzanie...</p></div><div class="simple-card"><h3>Sesja</h3><button class="primary-btn" style="margin-top:18px;width:100%" onclick="logout()">Wyloguj się</button></div></div></div>
     </main>
   </section>
@@ -287,7 +475,7 @@ let requests = [];
 let selectedId = null;
 let currentTab = 'orders';
 let realtimeChannel = null;
-
+let tasks = JSON.parse(localStorage.getItem('webboostTasks')) || [];
 const packageData = {
   Starter:{price:'199 – 299 zł', features:['Nowoczesna strona internetowa','Podstawowa optymalizacja SEO','Formularz kontaktowy','Dostosowanie do telefonu']},
   Standard:{price:'299 – 399 zł', features:['Profesjonalna strona internetowa','Pozycjonowanie lokalne SEO','Wizytówka Google + optymalizacja','Formularz kontaktowy','Podpięcie mapy i podstawowych danych']},
@@ -308,7 +496,7 @@ function escapeHtml(v=''){return String(v).replace(/[&<>'"]/g,m=>({'&':'&amp;','
 async function init(){
   renderPackages();
   bindEvents();
-
+	
   if(!hasSupabase()){
     showLogin();
     return;
@@ -321,7 +509,6 @@ async function init(){
     showLogin();
     return;
   }
-
   showApp();
 }
 function showLogin(){ $('loginPage').classList.remove('hidden'); $('app').classList.add('hidden'); }
@@ -391,6 +578,8 @@ function bindEvents(){
   $('searchInput').addEventListener('input', renderOrders);
   $('statusFilter').addEventListener('change', renderOrders);
   $('exportBtn').addEventListener('click', exportCSV);
+  $('taskForm')?.addEventListener('submit', addTask);
+
   document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
 }
 
@@ -402,8 +591,13 @@ function switchTab(tab){
   renderAll();
 }
 
-function renderAll(){renderStats();renderOrders();renderMessages();renderPackages();}
-
+function renderAll(){
+  renderStats();
+  renderOrders();
+  renderMessages();
+  renderPackages();
+  renderTasks();
+}
 function counts(){
   return {
     all:requests.length,
@@ -512,7 +706,97 @@ function exportCSV(){
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='webboost-zlecenia.csv';a.click();URL.revokeObjectURL(a.href);
 }
+function saveTasks(){
+  localStorage.setItem('webboostTasks', JSON.stringify(tasks));
+}
 
+function addTask(e){
+  e.preventDefault();
+
+  const title = $('taskTitle').value.trim();
+  const desc = $('taskDesc').value.trim();
+  const priority = $('taskPriority').value;
+  const date = $('taskDate').value;
+
+  if(!title) return;
+
+  tasks.unshift({
+    id: Date.now(),
+    title,
+    desc,
+    priority,
+    date,
+    status:'todo'
+  });
+
+  saveTasks();
+  $('taskForm').reset();
+  renderTasks();
+}
+
+function renderTasks(){
+  if(!$('todoTasks')) return;
+
+  $('todoTasks').innerHTML = '';
+  $('progressTasks').innerHTML = '';
+  $('doneTasks').innerHTML = '';
+
+  const todo = tasks.filter(t => t.status === 'todo');
+  const progress = tasks.filter(t => t.status === 'progress');
+  const done = tasks.filter(t => t.status === 'done');
+
+  $('tasksCount').textContent = tasks.filter(t => t.status !== 'done').length;
+
+  renderTaskColumn('todoTasks', todo);
+  renderTaskColumn('progressTasks', progress);
+  renderTaskColumn('doneTasks', done);
+}
+
+function renderTaskColumn(containerId, list){
+  const box = $(containerId);
+
+  if(!list.length){
+    box.innerHTML = `<div class="empty" style="padding:20px">Brak zadań.</div>`;
+    return;
+  }
+
+  box.innerHTML = list.map(t => `
+    <article class="task-card">
+      <strong>${escapeHtml(t.title)}</strong>
+      <p>${escapeHtml(t.desc || 'Brak opisu.')}</p>
+
+      <div class="task-meta">
+        <span class="task-tag ${escapeHtml(t.priority)}">${escapeHtml(t.priority)}</span>
+        <span class="task-date">${t.date ? escapeHtml(t.date) : 'Bez terminu'}</span>
+      </div>
+
+      <div class="task-actions">
+        ${t.status !== 'todo' ? `<button onclick="moveTask(${t.id}, 'todo')">Do zrobienia</button>` : ''}
+        ${t.status !== 'progress' ? `<button onclick="moveTask(${t.id}, 'progress')">W trakcie</button>` : ''}
+        ${t.status !== 'done' ? `<button onclick="moveTask(${t.id}, 'done')">Zrobione</button>` : ''}
+        <button class="delete-task" onclick="deleteTask(${t.id})">Usuń</button>
+      </div>
+    </article>
+  `).join('');
+}
+
+function moveTask(id, status){
+  const task = tasks.find(t => t.id === id);
+  if(task){
+    task.status = status;
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function deleteTask(id){
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  renderTasks();
+}
+
+window.moveTask = moveTask;
+window.deleteTask = deleteTask;
 init();
 </script>
 </body>
